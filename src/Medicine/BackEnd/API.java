@@ -18,34 +18,25 @@ public class API {
      */
     public static void main(String[] args) {
         Database db = new Database();
+        
+        db._init_();
         db._READ_();
-        //test push
+        
     }
 
     public static ArrayList<Person> getAll() {
         return Database.getPerson();
     }
 
-    public static ArrayList<Person> getAllStudent() {
-        Person st = new Student();
+    public static ArrayList<Person> getAllUser() {
+        Person st = new User();
         Database db = st.getDbPath();
         return (ArrayList<Person>) db.get();
     }
 
-    public static ArrayList<Person> getAllStaff() {
-        Person st = new Staff();
-        Database db = st.getDbPath();
-        return (ArrayList<Person>) db.get();
-    }
-
+   
     public static ArrayList<Person> getAllAdmin() {
         Person st = new Admin();
-        Database db = st.getDbPath();
-        return (ArrayList<Person>) db.get();
-    }
-
-    public static ArrayList<Person> getAllCourse() {
-        Person st = new Course();
         Database db = st.getDbPath();
         return (ArrayList<Person>) db.get();
     }

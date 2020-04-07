@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Medicine.BackEnd;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author USER
+ */
+public class User extends Person {
+
+    final String role = "User";
+
+    public User() {
+        super.setDbPath(new Database("users"));
+    }
+
+    public User(String name, String id, String password) {
+        super(name, id, password);
+        super.setDbPath(new Database("users"));
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public static User getById(String id) {
+        return   (User) Person.getById(id);
+    }
+
+    public static int getIndex(String id) {
+        return Person.getIndex(id, new User(), new Database("users"));
+    }
+
+    @Override
+    public String toString() {
+        String s = super.toString();
+        return "User" + s; //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

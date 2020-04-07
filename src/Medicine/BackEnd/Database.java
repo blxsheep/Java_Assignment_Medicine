@@ -44,22 +44,18 @@ public class Database implements Serializable {
     public void _init_() {
         this.setPath_Admins();
         this.write(null);;
-        this.setPath_Staffs();
+        this.setPath_Users();
         this.write(null);
-        this.setPath_Students();
-        this.write(null);
-        this.setPath_Courses();
-        this.write(null);
+        this.setPath_Drugs();
+        this.write("This FIlee is Drug");
     }
 
     public void _READ_() {
         this.setPath_Admins();
         this.read();
-        this.setPath_Staffs();
+        this.setPath_Users();
         this.read();
-        this.setPath_Students();
-        this.read();
-        this.setPath_Courses();
+        this.setPath_Drugs();
         this.read();
     }
 
@@ -77,19 +73,14 @@ public class Database implements Serializable {
         p = path.getParent().toString() + "\\admins.dat";
     }
 
-    public void setPath_Students() {
+    public void setPath_Users() {
         Path path = Paths.get(p);
-        p = path.getParent().toString() + "\\students.dat";
+        p = path.getParent().toString() + "\\users.dat";
     }
-
-    public void setPath_Staffs() {
+    
+    public void setPath_Drugs() {
         Path path = Paths.get(p);
-        p = path.getParent().toString() + "\\staffs.dat";
-    }
-
-    public void setPath_Courses() {
-        Path path = Paths.get(p);
-        p = path.getParent().toString() + "\\courses.dat";
+        p = path.getParent().toString() + "\\drugs.dat";
     }
 
     public <E> boolean write(E data) {
@@ -159,7 +150,7 @@ public class Database implements Serializable {
 
     public static ArrayList<Person> getPerson() {
         ArrayList<Person> arr = new ArrayList<>();
-        Database db = new Database("students");
+        Database db = new Database("users");
         var t = db.get();
         if (t != null) {
             arr.addAll((ArrayList<Person>) t);
@@ -169,10 +160,16 @@ public class Database implements Serializable {
         if (t != null) {
             arr.addAll((ArrayList<Person>) t);
         }
-        db.setPath_Staffs();
-        t = db.get();
+
+        return arr;
+    }
+    
+    public static ArrayList<Drug> getDrug() {
+        ArrayList<Drug> arr = new ArrayList<>();
+        Database db = new Database("drugs");
+        var t = db.get();
         if (t != null) {
-            arr.addAll((ArrayList<Person>) t);
+            arr.addAll((ArrayList<Drug>) t);
         }
         return arr;
     }
@@ -182,6 +179,7 @@ public class Database implements Serializable {
         return "Database{" + "p=" + p + ", file=" + file + '}';
     }
 
+    
 }
 /*
   Manual 
