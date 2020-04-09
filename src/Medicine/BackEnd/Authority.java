@@ -25,12 +25,12 @@ public class Authority {
     }
 
     public static <E extends Person> boolean registor(E data) {
-        if (Authority.login(data.getId(), data.getPassword()) == null) {
-            E.submit(data);
+        if (Authority.login(data.getUsername(), data.getPassword()) == null) {
+            return E.submit(data);
         } else {
             return false;
         }
-        return true;
+
     }
 
 

@@ -5,10 +5,6 @@
  */
 package Medicine.BackEnd;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-
 /**
  *
  * @author USER
@@ -16,28 +12,13 @@ import java.util.Arrays;
 public class Admin extends Person {
 
     final String role = "Admin";
-    
-    private ArrayList<Drug> drug = new ArrayList<Drug>();
 
     public Admin() {
-        super.setDbPath(new Database("admins"));
+        super();
     }
 
-    public Admin(String name, String id, String password) {
-        super(name, id, password);
-        super.setDbPath(new Database("admins"));
-    }
-    
-    public void addDrugs(Drug... drug) {
-        this.drug.addAll(Arrays.asList(drug));
-    }
-
-    public ArrayList<Drug> getDrugs() {
-        return drug;
-    }
-    
-    public void setDrugs(ArrayList<Drug> drug) {
-        this.drug = drug;
+    public Admin(String name, String lname, String age, String stuId, String id, String password, String email) {
+        super(name, lname, age, stuId, id, password, email);
     }
 
     public String getRole() {

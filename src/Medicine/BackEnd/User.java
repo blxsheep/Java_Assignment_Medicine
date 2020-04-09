@@ -16,13 +16,14 @@ public class User extends Person {
     final String role = "User";
 
     public User() {
-        super.setDbPath(new Database("users"));
+        super();
     }
 
-    public User(String name, String id, String password) {
-        super(name, id, password);
-        super.setDbPath(new Database("users"));
+    public User(String name, String lname, String age, String stuId, String id, String password, String email) {
+        super(name, lname, age, stuId, id, password, email);
     }
+
+   
 
     public String getRole() {
         return role;
