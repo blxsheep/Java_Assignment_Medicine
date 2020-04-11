@@ -13,14 +13,16 @@ import java.util.ArrayList;
  */
 public class Register {
     public static void main(String[] args) {
-      Database db = new Database(); 
+      
+      //Drug tt = new Drug("Edible", "14 Sep 2020", "For Heart Broken", 100, 1);
+      
 //      ArrayList<User> pp = new ArrayList<>();
 //      db.newDatabase("Users", pp);
       
 //        User pp = new User();
 //        API.saveToDatabase(pp);
 
-        System.out.println(API.getCustom("Users"));
+       //System.out.println(API.getCustom("Users"));
         
 
     }

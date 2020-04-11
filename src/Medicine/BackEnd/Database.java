@@ -101,6 +101,16 @@ public class Database implements Serializable {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Courses.dat";
     }
+    
+    public void setPath_Users() {
+        Path path = Paths.get(p);
+        p = path.getParent().toString() + "\\Users.dat";
+    }
+    
+    public void setPath_Drugs() {
+        Path path = Paths.get(p);
+        p = path.getParent().toString() + "\\Drugs.dat";
+    }
 
     public <E> boolean write(E data) {
         ObjectOutputStream out;

@@ -5,15 +5,12 @@
  */
 package Medicine.BackEnd;
 
-import java.io.Serializable;
-
 /**
  *
  * @author weera
  */
-public class Drug implements Serializable{
+public class Drug extends Person{
 
-    private Database dbPath = new Database();
     private String kind = "";
     private String expire = "";
     private String description = "";
@@ -31,13 +28,7 @@ public class Drug implements Serializable{
         this.stock = stock;
     }
     
-    public Database getDbPath() {
-        return dbPath;
-    }
-
-    public void setDbPath(Database dbPath) {
-        this.dbPath = dbPath;
-    }
+   
     
     public String getKind() {
         return kind;
@@ -78,4 +69,10 @@ public class Drug implements Serializable{
     public void setStock(int stock) {
         this.stock = stock;
     }
+    
+     @Override
+    public String toString() {
+        return "{Kind : " + this.kind + " Description : " + this.description + "}";
+    }
+
 }

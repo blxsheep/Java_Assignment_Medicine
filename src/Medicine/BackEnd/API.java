@@ -22,11 +22,35 @@ public class API {
 //        st.setFirstName("Drgn");
 //        Authority.registor(st);
 //        System.out.println(Authority.login("IDishere","passc"));
+        //Database db = new Database();
+       //API._NEW_DATABASE_("Drugs");
+        Database db = new Database();
+        db.setFile("Drugs");
+        ArrayList<Drug> dg = new ArrayList<>();
+        dg = (ArrayList<Drug>) db.get();
+        dg.add(new Drug("drug", "14Sep", "pls god", 10, 10));
+        db.write(dg);
+        dg.clear();
+        
+        //db.setFile("Drugs");
+        //API.saveToCustom("Drugs", drug);
+        
+        //Drug drug = new Drug("ytk", "14Sep", "pls god", 10, 10);
+        //API.addDrug(dg);
+        
+//        
+        //API.saveToCustom("Drugs", drug);
+        System.out.println(API.getCustom("Drugs"));
+//    }
     }
-
     public static boolean _INIT_DATABASE_() {
         Database db = new Database();
         return db._init_();
+    }
+    
+        public static boolean _NEW_DATABASE_(String fileName){
+        Database db = new Database();
+        return db.newDatabase(fileName, null);
     }
 
     public static ArrayList<ArrayList<Object>> _GET_DATABASE_() {
@@ -45,6 +69,18 @@ public class API {
      *
      * @return
      */
+    public static void addDrug (Drug drug) {
+        Database db = new Database();
+        API._NEW_DATABASE_("Drugs");
+        
+        db.setFile("Drugs");
+        //API.saveToCustom("Drugs", drug);
+        
+//        drug = (ArrayList<Drug>) db.get();
+//        drug.add(new Drug("drug", "14Sep", "pls god", 10, 10));
+        API.saveToCustom("Drugs", drug);
+    }
+    
     public static ArrayList<Student> getAllStudent() {
         Person st = new Student();
         Database db = st.getDbPath();
@@ -104,4 +140,36 @@ public class API {
     public static <E extends Person> boolean saveToDatabase(E... o) {
         return E.submit(o);
     }
+    
+    /**
+     * Pass file name and your data
+     * @param <E>
+     * @param file
+     * @param data
+     * @return boolean
+     */
+    public static <E extends Person> boolean saveToCustom(String file, E... data) {
+        Database db = new Database(file);
+        ArrayList<Person> cs;
+        for (Person c : data) {
+            cs = (ArrayList<Person>) db.get();
+            int isExist = Person.search(null, c.getUsername(), cs);
+            if (isExist != -1) {
+                cs.set(isExist, c);
+            } else {
+                if (cs == null) {
+                    cs = new ArrayList<>();
+                }
+                cs.add(c);
+            }
+            if (!db.write(cs)) {
+                System.out.println("Submit Falied.");
+                return false;
+            }
+        }
+        return true;
+    }
 }
+
+
+
