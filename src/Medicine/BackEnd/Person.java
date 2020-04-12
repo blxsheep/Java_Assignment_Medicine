@@ -23,12 +23,13 @@ public class Person implements Serializable {
     private String Age = "";
     private String StudentId = "";
     private String Email = "";
+    private String Gender = "";
 
     public Person() {
         this.setDbPath(new Database(this.getClass().getSimpleName()+"s"));
     }
 
-    public Person(String name, String lname, String age, String stuId, String id, String password, String email) {
+    public Person(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
         this.FirstName = name;
         this.UserName = id;
         this.PassWord = password;
@@ -36,11 +37,20 @@ public class Person implements Serializable {
         this.StudentId = stuId;
         this.LastName = lname;
         this.Email = email;
+        this.Gender = gender;
         this.setDbPath(new Database(this.getClass().getSimpleName()+"s"));
     }
 
     public String getUserName() {
         return UserName;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String Gender) {
+        this.Gender = Gender;
     }
 
     public String getStudentId() {
