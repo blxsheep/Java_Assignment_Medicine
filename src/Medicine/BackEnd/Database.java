@@ -57,7 +57,7 @@ public class Database implements Serializable {
         t += (this.write(null) ? 0 : 1);
         this.setPath_Students();
         t += (this.write(null) ? 0 : 1);
-        this.setPath_Courses();
+        this.setPath_Drugs();
         t += (this.write(null) ? 0 : 1);
         return t == 0;
     }
@@ -195,6 +195,17 @@ public class Database implements Serializable {
         if (t != null) {
             arr.addAll((ArrayList<Person>) t);
         }
+        return arr;
+    }
+     public static ArrayList<Drug> getDrug() {
+        ArrayList<Drug> arr = new ArrayList<>();
+        Database db = new Database();
+        db.setPath_Drugs();
+        var t = db.get();
+        if (t != null) {
+            arr.addAll((ArrayList<Drug>) t);
+        }
+       
         return arr;
     }
 
