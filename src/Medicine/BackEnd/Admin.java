@@ -17,8 +17,8 @@ public class Admin extends Person {
         super();
     }
 
-    public Admin(String name, String lname, String age, String stuId, String id, String password, String email) {
-        super(name, lname, age, stuId, id, password, email);
+    public Admin(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
+        super(name, lname, age, stuId, id, password, email,gender);
     }
 
     public String getRole() {
