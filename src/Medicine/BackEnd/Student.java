@@ -21,8 +21,8 @@ public class Student extends Person {
         super();
     }
 
-    public Student(String name, String lname, String age, String stuId, String id, String password, String email) {
-        super(name, lname, age, stuId, id, password, email);
+    public Student(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
+        super(name, lname, age, stuId, id, password, email,gender);
     }
 
     public char getMark() {
