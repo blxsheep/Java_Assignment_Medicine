@@ -17,7 +17,9 @@ public class API {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+      //  API._INIT_DATABASE_();
+      Person.submit(new Staff("Gat","1233"));
+        System.out.println(API._GET_DATABASE_());
         // Test pull
         //Registing 
 //        Student st = new Student("Drgn","Last","20","62010777","IDishere","pass","mail");

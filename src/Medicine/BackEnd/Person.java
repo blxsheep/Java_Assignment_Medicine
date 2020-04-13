@@ -40,6 +40,10 @@ public class Person implements Serializable {
         this.Gender = gender;
         this.setDbPath(new Database(this.getClass().getSimpleName()+"s"));
     }
+    public Person( String id, String password) {
+        this.UserName = id;
+        this.PassWord = password;
+    }
 
     public String getUserName() {
         return UserName;
@@ -189,6 +193,7 @@ public class Person implements Serializable {
         Database db;
         for (Person c : C) {
             db = c.getDbPath();
+            System.out.println(db.getP());
             cs = (ArrayList<Person>) db.get();
             int isExist = Person.search(c.getFirstName(), c.getUsername(), cs);
             if (isExist != -1) {

@@ -24,6 +24,9 @@ public class Staff extends Person {
     public Staff(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
         super(name, lname, age, stuId, id, password, email,gender);
     }
+    public Staff(String id, String password) {
+        super( id, password);
+    }
 
    
     public void addCourses(Course... course) {

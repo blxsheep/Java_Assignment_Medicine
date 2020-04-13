@@ -50,14 +50,22 @@ public class Database implements Serializable {
     public boolean _init_() {
         int t = 0;
         this.setFile("Lists");
-        t += (this.write(null) ? 0 : 1);
+        ArrayList<String> starterDatabase = new ArrayList<>() {
+            {
+                add("Admins");
+                add("Staffs");
+                add("Students");
+                add("Courses");
+            }
+        };
+        t += (this.write(starterDatabase) ? 0 : 1);
         this.setPath_Admins();
         t += (this.write(null) ? 0 : 1);
         this.setPath_Staffs();
         t += (this.write(null) ? 0 : 1);
         this.setPath_Students();
         t += (this.write(null) ? 0 : 1);
-        this.setPath_Drugs();
+        this.setPath_Courses();
         t += (this.write(null) ? 0 : 1);
         return t == 0;
     }
@@ -101,12 +109,12 @@ public class Database implements Serializable {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Courses.dat";
     }
-    
+
     public void setPath_Users() {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Users.dat";
     }
-    
+
     public void setPath_Drugs() {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Drugs.dat";
@@ -143,7 +151,7 @@ public class Database implements Serializable {
 
     public boolean read() {
         try {
-            try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(p))) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(p))) {
                 System.out.println(in.readObject());
             }
             return true;
@@ -167,7 +175,7 @@ public class Database implements Serializable {
     public Object get() {
         Object data;
         try {
-            try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(p))) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(p))) {
                 data = in.readObject();
             }
             return data;
@@ -197,7 +205,8 @@ public class Database implements Serializable {
         }
         return arr;
     }
-     public static ArrayList<Drug> getDrug() {
+
+    public static ArrayList<Drug> getDrug() {
         ArrayList<Drug> arr = new ArrayList<>();
         Database db = new Database();
         db.setPath_Drugs();
@@ -205,28 +214,36 @@ public class Database implements Serializable {
         if (t != null) {
             arr.addAll((ArrayList<Drug>) t);
         }
-       
+
         return arr;
     }
 
-    protected ArrayList<String> getDatabaseList(){
+    protected ArrayList<String> getDatabaseList() {
         Database db = new Database("Lists");
         return (ArrayList<String>) db.get();
     }
+
+    public String getP() {
+        return p;
+    }
     
+
     protected <E> boolean newDatabase(String name, E data) {
         String path = this.mainParent;
         Database db = new Database();
         db.setPath(path + name + ".dat");
-        if( !db.check() && db.write(data)){
+        if (!db.check() && db.write(data)) {
             db.setFile("Lists");
             ArrayList<String> arr = (ArrayList<String>) db.get();
             arr.add(name);
-            while(!db.write(arr)){
+            while (!db.write(arr)) {
             }
-        }else{
-            if(db.check()) System.out.println("Database already Existed.");
-            else System.out.println("Creating Database is Failured.");
+        } else {
+            if (db.check()) {
+                System.out.println("Database already Existed.");
+            } else {
+                System.out.println("Creating Database is Failured.");
+            }
             return false;
         }
         return true;

@@ -20,6 +20,9 @@ public class Admin extends Person {
     public Admin(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
         super(name, lname, age, stuId, id, password, email,gender);
     }
+     public Admin( String id, String password) {
+        super(id, password);
+    }
 
     public String getRole() {
         return role;
