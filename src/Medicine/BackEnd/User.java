@@ -19,9 +19,9 @@ public class User extends Person {
         super();
     }
 
-    public User(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
-        super(name, lname, age, stuId, id, password, email,gender);
-    }
+//    public User(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
+//        super(name, lname, age, stuId, id, password, email,gender);
+//    }
 
    
 

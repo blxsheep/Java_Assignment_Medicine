@@ -15,14 +15,20 @@ public class Student extends Person {
 
     final String role = "Student";
     private char Mark = 'X';
+    private String Score = "";
     protected ArrayList<Course> course = new ArrayList<Course>();
 
     public Student() {
         super();
     }
 
-    public Student(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
-        super(name, lname, age, stuId, id, password, email,gender);
+    public Student(String username, String password) {
+        super(username, password);
+    }
+    
+
+    public Student(String name, String lname, String age, String stuId, String id, String password, String email) {
+        super(name, lname, age, stuId, id, password, email);
     }
 
     public char getMark() {
@@ -43,10 +49,6 @@ public class Student extends Person {
 
     public void addCourse(Course course) {
         this.course.add(course);
-    }
-
-    public String getRole() {
-        return role;
     }
 
     public static Student getById(String id) {

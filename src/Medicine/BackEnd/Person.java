@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Person implements Serializable {
 
+    final String role = "";
     private Database dbPath = new Database();
     private String FirstName = "";
     private String LastName = "";
@@ -25,28 +26,12 @@ public class Person implements Serializable {
     private String Email = "";
     private String Gender = "";
 
-    public Person() {
-        this.setDbPath(new Database(this.getClass().getSimpleName()+"s"));
-    }
-
-    public Person(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
-        this.FirstName = name;
-        this.UserName = id;
-        this.PassWord = password;
-        this.Age = age;
-        this.StudentId = stuId;
-        this.LastName = lname;
-        this.Email = email;
-        this.Gender = gender;
-        this.setDbPath(new Database(this.getClass().getSimpleName()+"s"));
-    }
-    public Person( String id, String password) {
-        this.UserName = id;
-        this.PassWord = password;
-    }
-
     public String getUserName() {
         return UserName;
+    }
+
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
     }
 
     public String getGender() {
@@ -55,6 +40,27 @@ public class Person implements Serializable {
 
     public void setGender(String Gender) {
         this.Gender = Gender;
+    }
+
+    public Person() {
+        this.setDbPath(new Database(this.getClass().getSimpleName() + "s"));
+    }
+
+    public Person(String username, String password) {
+        this.UserName = username;
+        this.PassWord = password;
+        this.setDbPath(new Database(this.getClass().getSimpleName() + "s"));
+    }
+
+    public Person(String name, String lname, String age, String stuId, String id, String password, String email) {
+        this.FirstName = name;
+        this.UserName = id;
+        this.PassWord = password;
+        this.Age = age;
+        this.StudentId = stuId;
+        this.LastName = lname;
+        this.Email = email;
+        this.setDbPath(new Database(this.getClass().getSimpleName() + "s"));
     }
 
     public String getStudentId() {
@@ -67,10 +73,6 @@ public class Person implements Serializable {
 
     public void setLastName(String LastName) {
         this.LastName = LastName;
-    }
-
-    public String getPassWord() {
-        return PassWord;
     }
 
     public void setPassWord(String PassWord) {
@@ -121,17 +123,25 @@ public class Person implements Serializable {
         this.PassWord = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public static int search(String name, String id, ArrayList<Person> source) {
         ArrayList<Integer> byName, byId, result;
         byName = new ArrayList<>();
         byId = new ArrayList<>();
         if (source != null) {
             for (int i = 0; i < source.size(); i++) {
-                if (source.get(i).getFirstName().equals(name)) {
-                    byName.add(i);
+                if (name != null) {
+                    if (source.get(i).getFirstName().equals(name)) {
+                        byName.add(i);
+                    }
                 }
-                if (source.get(i).getUsername().equals(id)) {
-                    byId.add(i);
+                if (id != null) {
+                    if (source.get(i).getUsername().equals(id)) {
+                        byId.add(i);
+                    }
                 }
             }
         }
@@ -147,10 +157,6 @@ public class Person implements Serializable {
         }
 
     }
-     
-    // new 
-       
-
 
     public static <T> List<T> intersection(List<T> list1, List<T> list2) {
         List<T> list = new ArrayList<>();
@@ -193,9 +199,8 @@ public class Person implements Serializable {
         Database db;
         for (Person c : C) {
             db = c.getDbPath();
-            System.out.println(db.getP());
             cs = (ArrayList<Person>) db.get();
-            int isExist = Person.search(c.getFirstName(), c.getUsername(), cs);
+            int isExist = Person.search(null, c.getUsername(), cs);
             if (isExist != -1) {
                 cs.set(isExist, c);
             } else {

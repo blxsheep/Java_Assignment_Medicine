@@ -16,16 +16,13 @@ public class Admin extends Person {
     public Admin() {
         super();
     }
-
-    public Admin(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
-        super(name, lname, age, stuId, id, password, email,gender);
-    }
-     public Admin( String id, String password) {
-        super(id, password);
+    
+    public Admin(String username, String password) {
+        super(username, password);
     }
 
-    public String getRole() {
-        return role;
+    public Admin(String name, String lname, String age, String stuId, String id, String password, String email) {
+        super(name, lname, age, stuId, id, password, email);
     }
 
     public static Admin getById(String id) {

@@ -7,14 +7,23 @@ package Medicine.BackEnd;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javafx.util.Pair;
 
 /**
  *
  * @author USER
  */
-class Course extends Person {
+public class Course extends Person {
 
-    private ArrayList<Student> students = new ArrayList<Student>();
+    public static void main(String[] args) {
+        Course c = new Course();
+        c.addStudent(new Student("s1", "123123"), new Student("s2", "123123"));
+        c.getStudents().get(0).getValue().setScore("50.25");
+        System.out.println(c.getStudents());
+    }
+
+    final String role = "Course";
+    private ArrayList<Pair<Student, Grading>> students = new ArrayList<>();
     private String classDescription = "";
     private ArrayList<Staff> staffs = new ArrayList<Staff>();
 
@@ -22,8 +31,12 @@ class Course extends Person {
         super();
     }
 
-    public Course(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
-        super(name, lname, age, stuId, id, password, email,gender);
+    public Course(String username, String password) {
+        super(username, password);
+    }
+
+    public Course(String name, String lname, String age, String stuId, String id, String password, String email) {
+        super(name, lname, age, stuId, id, password, email);
     }
 
     public Course(String des) {
@@ -35,10 +48,14 @@ class Course extends Person {
     }
 
     public void addStudent(Student... student) {
-        this.students.addAll(Arrays.asList(student));
+        ArrayList<Pair<Student, Grading>> arr = new ArrayList<>();
+        for (Student st : student) {
+            arr.add(new Pair<>(st, new Grading()));
+        }
+        this.students.addAll(arr);
     }
 
-    public ArrayList<Student> getStudents() {
+    public ArrayList<Pair<Student, Grading>> getStudents() {
         return students;
     }
 
@@ -50,7 +67,7 @@ class Course extends Person {
         return staffs;
     }
 
-    public void setStudents(ArrayList<Student> students) {
+    public void setStudents(ArrayList<Pair<Student, Grading>> students) {
         this.students = students;
     }
 
@@ -70,10 +87,40 @@ class Course extends Person {
         return Person.getIndex(id, new Student(), new Database("courses"));
     }
 
+    public Grading getStudentGrading(Student st) {
+        ArrayList<Student> arr = new ArrayList<>();
+        for (Pair<Student, Grading> s : this.students) {
+            if (s.getKey().getUsername().equals(st.getUsername())) {
+                return s.getValue();
+            }
+        }
+        return null;
+    }
+
+    public boolean isStudentExist(Student st) {
+        ArrayList<Student> arr = new ArrayList<>();
+        for (Pair<Student, Grading> s : this.students) {
+            if (s.getKey().getUsername().equals(st.getUsername())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Pair<Student, Grading> getStudent(Student st) {
+        ArrayList<Student> arr = new ArrayList<>();
+        for (Pair<Student, Grading> s : this.students) {
+            if (s.getKey().getUsername().equals(st.getUsername())) {
+                return s;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         String s = super.toString();
         return "Course" + s; //To change body of generated methods, choose Tools | Templates.
     }
-
 }
