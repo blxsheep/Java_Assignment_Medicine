@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author weera
  */
-public class Drug extends Person{
+public class Drug extends Person {
 
     private String kind = "";
     private String name = "";
@@ -21,22 +21,19 @@ public class Drug extends Person{
     private String description = "";
     private int price;
     private int stock;
-    
 
     public Drug() {
     }
 
-    public Drug(String kind,String name , String expire, String description, int price, int stock) {
+    public Drug(String kind, String name, String expire, String description, int price, int stock) {
         this.kind = kind;
-        this.name =name;
+        this.name = name;
         this.description = description;
         this.expire = expire;
         this.price = price;
         this.stock = stock;
     }
-    
-   
-    
+
     public String getKind() {
         return kind;
     }
@@ -89,8 +86,7 @@ public class Drug extends Person{
         ArrayList<Integer> byName, byKind, result;
         byName = new ArrayList<>();
         byKind = new ArrayList<>();
-     
-               
+
         if (source != null) {
             for (int i = 0; i < source.size(); i++) {
                 if (source.get(i).getName().equals(name)) {
@@ -113,30 +109,32 @@ public class Drug extends Person{
         }
 
     }
- public static <T> List<T> intersection(List<T> list1, List<T> list2) {
+
+    public static <T> List<T> intersection(List<T> list1, List<T> list2) {
         List<T> list = new ArrayList<>();
         list1.stream().filter((t) -> (list2.contains(t))).forEachOrdered((t) -> {
             list.add(t);
         });
         return list;
     }
-   public static int getIdxDrug(String name,String kind, Database d) {
-        Database db = d;
+
+    public static int getIdxDrug(String name) {
+        Database db = new Database();
+        db.setFile("Drugs");
         ArrayList<Drug> arr;
         if (db.check()) {
-            arr = (ArrayList<Drug>) db.get();
-            int res = Drug.searchDrug("",name, arr);
+            arr = API.getAllDrug();
+            int res = Drug.searchDrug(name, "", arr);
             return res;
         } else {
-            System.out.println("Get Data Falied.");
+            System.out.println("Get Indx Drug Falied.");
             return -1;
         }
     }
 
-    
-     @Override
+    @Override
     public String toString() {
-        return "{Kind : " + this.kind + " Description : " + this.description + "}";
+        return "{Kind : " + this.kind + "name>>" + name + " Description : " + this.description + "}";
     }
 
 }
