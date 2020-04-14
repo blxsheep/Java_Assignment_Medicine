@@ -52,12 +52,12 @@ public class Person implements Serializable {
         this.setDbPath(new Database(this.getClass().getSimpleName() + "s"));
     }
 
-    public Person(String name, String lname, String age, String stuId, String id, String password, String email) {
+    public Person(String name, String lname, String age,  String id, String password, String email) {
         this.FirstName = name;
         this.UserName = id;
         this.PassWord = password;
         this.Age = age;
-        this.StudentId = stuId;
+       
         this.LastName = lname;
         this.Email = email;
         this.setDbPath(new Database(this.getClass().getSimpleName() + "s"));

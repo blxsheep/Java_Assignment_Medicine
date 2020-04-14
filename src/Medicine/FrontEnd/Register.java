@@ -62,8 +62,8 @@ public class Register extends Application {
     TextField[] allfill;
     HBox[] Column;
 
-    ObservableList<String> options = FXCollections.observableArrayList("Admin", "Staff");
-    ObservableList<String> Registorr = FXCollections.observableArrayList("Admin", "Staff");
+    ObservableList<String> options = FXCollections.observableArrayList("Admin", "User");
+    ObservableList<String> Registorr = FXCollections.observableArrayList("Admin", "User");
     ObservableList<String> gender = FXCollections.observableArrayList("MALE", "FEMALE");
 
     ComboBox comboBox = new ComboBox(options);
@@ -145,8 +145,9 @@ public class Register extends Application {
                     Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
                     Authority.registor(st);
                 }// get role
-                else if (comboBox2.getValue().equals("Staff")) {
-                    Staff st = new Staff(allfill[1].getText(), allfill[2].getText());
+                else if (comboBox2.getValue().equals("User")) {
+                    User st = new User(allfill[1].getText(), allfill[2].getText());
+                    //User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
                     Authority.registor(st);
                 }
                 genderBox.getValue();

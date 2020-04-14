@@ -6,6 +6,7 @@
 package Medicine.BackEnd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -13,34 +14,49 @@ import java.util.ArrayList;
  */
 public class User extends Person {
 
-    final String role = "User";
+    final String role = "Staff";
+  //  private ArrayList<Course> courses = new ArrayList<Course>();
 
     public User() {
         super();
     }
 
-//    public User(String name, String lname, String age, String stuId, String id, String password, String email,String gender) {
-//        super(name, lname, age, stuId, id, password, email,gender);
-//    }
+    public User(String username, String password) {
+        super(username, password);
+    }
+
+    public User(String name, String lname, String age,  String id, String password, String email) {
+        super(name, lname, age,  id, password, email);
+    }
 
    
+   /* public void addCourses(Course... course) {
+        this.courses.addAll(Arrays.asList(course));
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }*/
 
     public String getRole() {
         return role;
     }
 
     public static User getById(String id) {
-        return   (User) Person.getById(id);
+        return (User) Person.getById(id);
     }
 
     public static int getIndex(String id) {
-        return Person.getIndex(id, new User(), new Database("users"));
+        return Person.getIndex(id, new User(), new Database("staffs"));
     }
 
     @Override
     public String toString() {
         String s = super.toString();
-        return "User" + s; //To change body of generated methods, choose Tools | Templates.
+        return "Staff" + s; //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -50,20 +50,14 @@ public class Database implements Serializable {
     public boolean _init_() {
         int t = 0;
         this.setFile("Lists");
-        ArrayList<String> starterDatabase = new ArrayList<>(){{
-            add("Admins");
-            add("Staffs");
-            add("Students");
-            add("Courses");
-        }};
-        t += (this.write(starterDatabase) ? 0 : 1);
+        t += (this.write(null) ? 0 : 1);
         this.setPath_Admins();
         t += (this.write(null) ? 0 : 1);
-        this.setPath_Staffs();
+        this.setPath_Users();
         t += (this.write(null) ? 0 : 1);
         this.setPath_Students();
         t += (this.write(null) ? 0 : 1);
-        this.setPath_Courses();
+        this.setPath_Drugs();
         t += (this.write(null) ? 0 : 1);
         return t == 0;
     }
@@ -71,7 +65,7 @@ public class Database implements Serializable {
     public void _READ_() {
         this.setPath_Admins();
         this.read();
-        this.setPath_Staffs();
+        this.setPath_Users();
         this.read();
         this.setPath_Students();
         this.read();
@@ -98,14 +92,21 @@ public class Database implements Serializable {
         p = path.getParent().toString() + "\\Students.dat";
     }
 
-    public void setPath_Staffs() {
-        Path path = Paths.get(p);
-        p = path.getParent().toString() + "\\Staffs.dat";
-    }
+ 
 
     public void setPath_Courses() {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Courses.dat";
+    }
+    
+    public void setPath_Users() {
+        Path path = Paths.get(p);
+        p = path.getParent().toString() + "\\Users.dat";
+    }
+    
+    public void setPath_Drugs() {
+        Path path = Paths.get(p);
+        p = path.getParent().toString() + "\\Drugs.dat";
     }
 
     public <E> boolean write(E data) {
@@ -186,11 +187,22 @@ public class Database implements Serializable {
         if (t != null) {
             arr.addAll((ArrayList<Person>) t);
         }
-        db.setPath_Staffs();
+        db.setPath_Users();
         t = db.get();
         if (t != null) {
             arr.addAll((ArrayList<Person>) t);
         }
+        return arr;
+    }
+     public static ArrayList<Drug> getDrug() {
+        ArrayList<Drug> arr = new ArrayList<>();
+        Database db = new Database();
+        db.setPath_Drugs();
+        var t = db.get();
+        if (t != null) {
+            arr.addAll((ArrayList<Drug>) t);
+        }
+       
         return arr;
     }
 

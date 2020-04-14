@@ -21,8 +21,8 @@ public class Admin extends Person {
         super(username, password);
     }
 
-    public Admin(String name, String lname, String age, String stuId, String id, String password, String email) {
-        super(name, lname, age, stuId, id, password, email);
+    public Admin(String name, String lname, String age, String id, String password, String email) {
+        super(name, lname, age,  id, password, email);
     }
 
     public static Admin getById(String id) {

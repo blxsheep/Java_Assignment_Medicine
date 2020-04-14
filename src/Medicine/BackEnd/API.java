@@ -94,6 +94,7 @@ public class API {
             return null;
         }
     }
+    
 
     public static <E extends Person> boolean saveToDatabase(E... o) {
         return E.submit(o);
@@ -127,4 +128,22 @@ public class API {
         }
         return true;
     }
+    public static void InitDrugInform() {
+        Database db = new Database();
+        ArrayList<Drug> arr = new ArrayList<Drug>();
+        int index = 0;
+        db.setFile("Drugs");
+        Drug d1 = new Drug("A", "a1", "20/2/20", "Nothing Here", 200, 1);
+        Drug d2 = new Drug("A", "a2", "20/2/20", "Nothing Here", 20500, 2);
+        Drug d3 = new Drug("B", "b1", "20/2/20", "Nothing Here", 2007, 3);
+        Drug d4 = new Drug("B", "b2", "20/2/20", "Nothing Here", 270, 4);
+        arr.add(d1);
+        arr.add(d2);
+        arr.add(d3);
+        arr.add(d4);
+        db.write(arr);
+
+    }
+
+    
 }
