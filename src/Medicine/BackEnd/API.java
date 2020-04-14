@@ -21,19 +21,28 @@ public class API {
 //        System.out.println(API.getAllUser());
 //         Authority.login("Gai", "g12345"); 
         //API.InitDrugInform();
+        
         Database db = new Database();
+        
         db.setFile("Drugs");
-        ArrayList<Drug> arr = new ArrayList<Drug>();
-        API.InitDrugInform();
-        System.out.println(API.getCustom("Drugs"));
-
-        API.addDrug(new Drug("asd", "name1", "20/10/20", "Testing add", 1, 20));
-        System.out.println(API.getCustom("Drugs"));
-             
-       API.removeDrug("b1");
-        System.out.println(API.getCustom("Drugs"));
-        API.editDrug("b2", new Drug("Edit", "Edited", "20/10/20", "Testing add", 1, 20));
+        
+//        ArrayList<Drug> arr = new ArrayList<Drug>();
+//        API.InitDrugInform();
+//        System.out.println(API.getCustom("Drugs"));
+//
+//       API.addDrug(new Drug("asd", "name1", "20/10/20", "Testing add", 1, 20));
+//        System.out.println(API.getCustom("Drugs"));
+//             
+//       API.removeDrug("b1");
+//        System.out.println(API.getCustom("Drugs"));
+//        API.editDrug("b2", new Drug("Edit", "Edited", "20/10/20", "Testing add", 1, 20));
+       
        System.out.println(API.getCustom("Drugs"));
+//       
+//       ArrayList<Comment> cm = new ArrayList<Comment>();
+//        API.InitComment();
+//        API.addComment(new Comment("Hello Admin", "drgn"));
+//        System.out.println(API.getCustom("Comments"));
     }
 
     public static boolean _INIT_DATABASE_() {
@@ -79,6 +88,12 @@ public class API {
         Person st = new Drug();
         Database db = st.getDbPath();
         return (ArrayList<Drug>) db.get();
+    }
+    
+    public static ArrayList<Comment> getAllComment() {
+        Person st = new Comment();
+        Database db = st.getDbPath();
+        return (ArrayList<Comment>) db.get();
     }
 
     public static ArrayList<Object> getCustom(String file) {
@@ -164,21 +179,35 @@ public class API {
         db.write(arr);
 
     }
-
-    public static void addDrug(Drug drug) {
+     public static void InitComment() {
 
         Database db = new Database();
-        //API._NEW_DATABASE_("Drugs");
-        db.setFile("Drugs");
+        ArrayList<Comment> arr = new ArrayList<Comment>();
 
-        //API.saveToCustom("Drugs", drug);
-        ArrayList<Drug> d = API.getAllDrug();
+        db.setFile("Comments");
+      Comment  c = new Comment ("Ment Rakk","Dek doi");
+        
+        arr.add(c);
+       
+        db.write(arr);
+
+    }
+
+    public static void addDrug(Drug drug) {
+      Database db = new Database();
+        db.setFile("Drugs");
+        ArrayList<Drug> d= API.getAllDrug();
+        
+       if(d ==null){
+           ArrayList<Drug> k =new ArrayList<Drug>();
+              k.add(drug);
+                db.write(k);
+       }else {
+      
         d.add(drug);
         db.write(null);
-
-//        drug = (ArrayList<Drug>) db.get();
-//        drug.add(new Drug("drug", "14Sep", "pls god", 10, 10));
         db.write(d);
+       }
     }
 
     public static void removeDrug(String Dname) {
@@ -205,7 +234,23 @@ public class API {
           
 
     }
-    
+    public static void addComment(Comment cm) {
+
+         Database db = new Database();
+        db.setFile("Comment");
+        ArrayList<Comment> d = API.getAllComment();
+        
+       if(d ==null){
+           ArrayList<Comment> k =new ArrayList<Comment>();
+              k.add(cm);
+                db.write(k);
+       }else {
+      
+        d.add(cm);
+        db.write(null);
+        db.write(d);
+       }
+    }
     
 
 }

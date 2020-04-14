@@ -55,10 +55,12 @@ public class Database implements Serializable {
         t += (this.write(null) ? 0 : 1);
         this.setPath_Users();
         t += (this.write(null) ? 0 : 1);
-        this.setPath_Students();
+        this.setPath_Comments();
         t += (this.write(null) ? 0 : 1);
         this.setPath_Drugs();
         t += (this.write(null) ? 0 : 1);
+        
+        
         return t == 0;
     }
 
@@ -67,7 +69,7 @@ public class Database implements Serializable {
         this.read();
         this.setPath_Users();
         this.read();
-        this.setPath_Students();
+        this.setPath_Comments();
         this.read();
         this.setPath_Courses();
         this.read();
@@ -87,13 +89,11 @@ public class Database implements Serializable {
         p = path.getParent().toString() + "\\Admins.dat";
     }
 
-    public void setPath_Students() {
+    public void setPath_Comments() {
         Path path = Paths.get(p);
-        p = path.getParent().toString() + "\\Students.dat";
+        p = path.getParent().toString() + "\\Comments.dat";
     }
-
- 
-
+    
     public void setPath_Courses() {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Courses.dat";
@@ -177,7 +177,7 @@ public class Database implements Serializable {
     public static ArrayList<Person> getPerson() {
         ArrayList<Person> arr = new ArrayList<>();
         Database db = new Database();
-        db.setPath_Students();
+      
         var t = db.get();
         if (t != null) {
             arr.addAll((ArrayList<Person>) t);
