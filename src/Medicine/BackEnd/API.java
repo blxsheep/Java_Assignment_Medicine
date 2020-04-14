@@ -5,6 +5,7 @@
  */
 package Medicine.BackEnd;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -17,16 +18,31 @@ public class API {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(API.getAllUser());
-         Authority.login("Gai", "g12345");
+//        System.out.println(API.getAllUser());
+//         Authority.login("Gai", "g12345"); 
+        //API.InitDrugInform();
+        Database db = new Database();
+        db.setFile("Drugs");
+        ArrayList<Drug> arr = new ArrayList<Drug>();
+        API.InitDrugInform();
+        System.out.println(API.getCustom("Drugs"));
+
+        API.addDrug(new Drug("asd", "name1", "20/10/20", "Testing add", 1, 20));
+        System.out.println(API.getCustom("Drugs"));
+             
+       API.removeDrug("b1");
+        System.out.println(API.getCustom("Drugs"));
+        API.editDrug("b2", new Drug("Edit", "Edited", "20/10/20", "Testing add", 1, 20));
+       System.out.println(API.getCustom("Drugs"));
     }
 
     public static boolean _INIT_DATABASE_() {
         Database db = new Database();
+
         return db._init_();
     }
-    
-    public static boolean _NEW_DATABASE_(String fileName){
+
+    public static boolean _NEW_DATABASE_(String fileName) {
         Database db = new Database();
         return db.newDatabase(fileName, null);
     }
@@ -47,8 +63,6 @@ public class API {
      *
      * @return
      */
-  
-
     public static ArrayList<User> getAllUser() {
         Person st = new User();
         Database db = st.getDbPath();
@@ -61,7 +75,11 @@ public class API {
         return (ArrayList<Admin>) db.get();
     }
 
-
+    public static ArrayList<Drug> getAllDrug() {
+        Person st = new Drug();
+        Database db = st.getDbPath();
+        return (ArrayList<Drug>) db.get();
+    }
 
     public static ArrayList<Object> getCustom(String file) {
         Database db = new Database(file);
@@ -94,7 +112,6 @@ public class API {
             return null;
         }
     }
-    
 
     public static <E extends Person> boolean saveToDatabase(E... o) {
         return E.submit(o);
@@ -102,6 +119,7 @@ public class API {
 
     /**
      * Pass file name and your data
+     *
      * @param <E>
      * @param file
      * @param data
@@ -128,10 +146,12 @@ public class API {
         }
         return true;
     }
+
     public static void InitDrugInform() {
+
         Database db = new Database();
         ArrayList<Drug> arr = new ArrayList<Drug>();
-        int index = 0;
+
         db.setFile("Drugs");
         Drug d1 = new Drug("A", "a1", "20/2/20", "Nothing Here", 200, 1);
         Drug d2 = new Drug("A", "a2", "20/2/20", "Nothing Here", 20500, 2);
@@ -145,5 +165,47 @@ public class API {
 
     }
 
+    public static void addDrug(Drug drug) {
+
+        Database db = new Database();
+        //API._NEW_DATABASE_("Drugs");
+        db.setFile("Drugs");
+
+        //API.saveToCustom("Drugs", drug);
+        ArrayList<Drug> d = API.getAllDrug();
+        d.add(drug);
+        db.write(null);
+
+//        drug = (ArrayList<Drug>) db.get();
+//        drug.add(new Drug("drug", "14Sep", "pls god", 10, 10));
+        db.write(d);
+    }
+
+    public static void removeDrug(String Dname) {
+        int index = Drug.getIdxDrug(Dname);
+        System.out.println("inx"+index);
+        Database db =  new Database();
+        db.setFile("Drugs");
+        ArrayList<Drug> d = API.getAllDrug();
+        d.remove(index);
+        db.write(null);
+        db.write(d);
+
+    }
+      public static void editDrug(String Old_Drugname,Drug New) {
+          // Hard when merge ,Have to create new Drug.
+         int index = Drug.getIdxDrug(Old_Drugname);
+         Database db = new Database();
+         db.setFile("Drugs");
+         ArrayList  arr = API.getAllDrug();
+         db.write(null);
+         arr.add(index, New);
+         arr.remove(index+1);
+          db.write(arr);
+          
+
+    }
     
+    
+
 }
