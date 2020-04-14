@@ -17,7 +17,7 @@ public class API {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(API.getAllStaff());
+        System.out.println(API.getAllUser());
          Authority.login("Gai", "g12345");
     }
 
@@ -47,16 +47,12 @@ public class API {
      *
      * @return
      */
-    public static ArrayList<Student> getAllStudent() {
-        Person st = new Student();
-        Database db = st.getDbPath();
-        return (ArrayList<Student>) db.get();
-    }
+  
 
-    public static ArrayList<Staff> getAllStaff() {
-        Person st = new Staff();
+    public static ArrayList<User> getAllUser() {
+        Person st = new User();
         Database db = st.getDbPath();
-        return (ArrayList<Staff>) db.get();
+        return (ArrayList<User>) db.get();
     }
 
     public static ArrayList<Admin> getAllAdmin() {
@@ -65,11 +61,7 @@ public class API {
         return (ArrayList<Admin>) db.get();
     }
 
-    public static ArrayList<Course> getAllCourse() {
-        Person st = new Course();
-        Database db = st.getDbPath();
-        return (ArrayList<Course>) db.get();
-    }
+
 
     public static ArrayList<Object> getCustom(String file) {
         Database db = new Database(file);
