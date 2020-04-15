@@ -15,6 +15,10 @@ import java.util.List;
  */
 public class Drug extends Person {
 
+    public static int getindexDrug(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private String kind = "";
     private String name = "";
     private String expire = "";

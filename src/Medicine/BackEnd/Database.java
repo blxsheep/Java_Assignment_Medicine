@@ -59,6 +59,8 @@ public class Database implements Serializable {
         t += (this.write(null) ? 0 : 1);
         this.setPath_Drugs();
         t += (this.write(null) ? 0 : 1);
+        this.setPath_Symptoms();
+        t += (this.write(null) ? 0 : 1);
         
         
         return t == 0;
@@ -72,6 +74,8 @@ public class Database implements Serializable {
         this.setPath_Comments();
         this.read();
         this.setPath_Courses();
+        this.read();
+        this.setPath_Symptoms();
         this.read();
     }
 
@@ -91,7 +95,7 @@ public class Database implements Serializable {
 
     public void setPath_Comments() {
         Path path = Paths.get(p);
-        p = path.getParent().toString() + "\\Comments.dat";
+        p = path.getParent().toString() + "\\BComments.dat";
     }
     
     public void setPath_Courses() {
@@ -107,6 +111,11 @@ public class Database implements Serializable {
     public void setPath_Drugs() {
         Path path = Paths.get(p);
         p = path.getParent().toString() + "\\Drugs.dat";
+    }
+    
+    public void setPath_Symptoms() {
+        Path path = Paths.get(p);
+        p = path.getParent().toString() + "\\BSymptoms.dat";
     }
 
     public <E> boolean write(E data) {

@@ -23,8 +23,11 @@ public class API {
         //API.InitDrugInform();
         
         Database db = new Database();
-        
-        db.setFile("Drugs");
+        db.setFile("BSymptoms");
+        ArrayList<BSymptom> st = new ArrayList<BSymptom>();
+        API.InitSymptom();
+        System.out.println(API.getCustom("BSymptoms"));
+        //db.setFile("Drugs");
         
 //        ArrayList<Drug> arr = new ArrayList<Drug>();
 //        API.InitDrugInform();
@@ -37,7 +40,7 @@ public class API {
 //        System.out.println(API.getCustom("Drugs"));
 //        API.editDrug("b2", new Drug("Edit", "Edited", "20/10/20", "Testing add", 1, 20));
        
-       System.out.println(API.getCustom("Drugs"));
+       //System.out.println(API.getCustom("Drugs"));
 //       
 //       ArrayList<Comment> cm = new ArrayList<Comment>();
 //        API.InitComment();
@@ -94,6 +97,12 @@ public class API {
         Person st = new BComment();
         Database db = st.getDbPath();
         return (ArrayList<BComment>) db.get();
+    }
+    
+    public static ArrayList<BSymptom> getAllSymptom() {
+        Person st = new BSymptom();
+        Database db = st.getDbPath();
+        return (ArrayList<BSymptom>) db.get();
     }
 
     public static ArrayList<Object> getCustom(String file) {
@@ -184,8 +193,22 @@ public class API {
         Database db = new Database();
         ArrayList<BComment> arr = new ArrayList<BComment>();
 
-        db.setFile("Comments");
+        db.setFile("BComments");
       BComment  c = new BComment ("Ment Rakk","Dek doi");
+        
+        arr.add(c);
+       
+        db.write(arr);
+
+    }
+     
+     public static void InitSymptom() {
+
+        Database db = new Database();
+        ArrayList<BSymptom> arr = new ArrayList<BSymptom>();
+
+        db.setFile("BSymptoms");
+      BSymptom  c = new BSymptom ("Symptom Rxample");
         
         arr.add(c);
        
@@ -237,7 +260,7 @@ public class API {
     public static void addComment(BComment cm) {
 
          Database db = new Database();
-        db.setFile("Comment");
+        db.setFile("BComments");
         ArrayList<BComment> d = API.getAllComment();
         
        if(d ==null){
@@ -247,6 +270,23 @@ public class API {
        }else {
       
         d.add(cm);
+        db.write(null);
+        db.write(d);
+       }
+    }
+    public static void addSymptom(BSymptom st) {
+
+         Database db = new Database();
+        db.setFile("BSymptoms");
+        ArrayList<BSymptom> d = API.getAllSymptom();
+        
+       if(d ==null){
+           ArrayList<BSymptom> k =new ArrayList<BSymptom>();
+              k.add(st);
+                db.write(k);
+       }else {
+      
+        d.add(st);
         db.write(null);
         db.write(d);
        }

@@ -22,6 +22,13 @@ public class BComment extends Person{
     public BComment(String statement, String writer) {
         this.statement = statement;
         this.writer = writer;
+        this.date = new Date();
+    }
+
+    public BComment(String statement) {
+        this.statement = statement;
+        this.writer = "Unknown";
+        this.date  = new Date();
     }
 
     public String getWriter() {
