@@ -142,12 +142,12 @@ public class Register extends Application {
                 }
                 alltext[12].setText(" Login Success Press Back To Continues ");
                 if (comboBox2.getValue().equals("Admin")) {
-                    Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
+                     User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
                     Authority.registor(st);
                 }// get role
                 else if (comboBox2.getValue().equals("User")) {
-                    User st = new User(allfill[1].getText(), allfill[2].getText());
-                    //User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                   // User st = new User(allfill[1].getText(), allfill[2].getText());
+                    User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
                     Authority.registor(st);
                 }
                 genderBox.getValue();

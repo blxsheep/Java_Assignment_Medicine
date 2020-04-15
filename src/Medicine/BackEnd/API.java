@@ -41,7 +41,7 @@ public class API {
 //       
 //       ArrayList<Comment> cm = new ArrayList<Comment>();
 //        API.InitComment();
-//        API.addComment(new Comment("Hello Admin", "drgn"));
+//        API.addComment(new BComment("Hello Admin", "drgn"));
 //        System.out.println(API.getCustom("Comments"));
     }
 
@@ -90,10 +90,10 @@ public class API {
         return (ArrayList<Drug>) db.get();
     }
     
-    public static ArrayList<Comment> getAllComment() {
-        Person st = new Comment();
+    public static ArrayList<BComment> getAllComment() {
+        Person st = new BComment();
         Database db = st.getDbPath();
-        return (ArrayList<Comment>) db.get();
+        return (ArrayList<BComment>) db.get();
     }
 
     public static ArrayList<Object> getCustom(String file) {
@@ -182,10 +182,10 @@ public class API {
      public static void InitComment() {
 
         Database db = new Database();
-        ArrayList<Comment> arr = new ArrayList<Comment>();
+        ArrayList<BComment> arr = new ArrayList<BComment>();
 
         db.setFile("Comments");
-      Comment  c = new Comment ("Ment Rakk","Dek doi");
+      BComment  c = new BComment ("Ment Rakk","Dek doi");
         
         arr.add(c);
        
@@ -234,14 +234,14 @@ public class API {
           
 
     }
-    public static void addComment(Comment cm) {
+    public static void addComment(BComment cm) {
 
          Database db = new Database();
         db.setFile("Comment");
-        ArrayList<Comment> d = API.getAllComment();
+        ArrayList<BComment> d = API.getAllComment();
         
        if(d ==null){
-           ArrayList<Comment> k =new ArrayList<Comment>();
+           ArrayList<BComment> k =new ArrayList<BComment>();
               k.add(cm);
                 db.write(k);
        }else {

@@ -11,15 +11,15 @@ import java.util.Date;
  *
  * @author Voranipit
  */
-public class Comment extends Person{
+public class BComment extends Person{
     private String statement;
     private String writer;
     Date date;
 
-    public Comment() {
+    public BComment() {
     }
 
-    public Comment(String statement, String writer) {
+    public BComment(String statement, String writer) {
         this.statement = statement;
         this.writer = writer;
     }
