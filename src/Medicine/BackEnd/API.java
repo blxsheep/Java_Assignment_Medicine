@@ -20,15 +20,19 @@ public class API {
     public static void main(String[] args) {
 //        System.out.println(API.getAllUser());
 //         Authority.login("Gai", "g12345"); 
-        //API.InitDrugInform();
+        API.InitDrugInform();
         
-        Database db = new Database();
-        db.setFile("BSymptoms");
-        ArrayList<BSymptom> st = new ArrayList<BSymptom>();
-        API.InitSymptom();
-        System.out.println(API.getCustom("BSymptoms"));
+//        
+//        Database db = new Database();
+//        db.setFile("BSymptoms");
+//        ArrayList<BSymptom> st = new ArrayList<BSymptom>();
+//        API.InitSymptom();
+//        System.out.println(API.getCustom("BSymptoms"));
         //db.setFile("Drugs");
         
+      
+       int  index = Drug.getIdxDrug("b1");
+        System.out.println(index);
 //        ArrayList<Drug> arr = new ArrayList<Drug>();
 //        API.InitDrugInform();
 //        System.out.println(API.getCustom("Drugs"));
@@ -39,8 +43,8 @@ public class API {
 //       API.removeDrug("b1");
 //        System.out.println(API.getCustom("Drugs"));
 //        API.editDrug("b2", new Drug("Edit", "Edited", "20/10/20", "Testing add", 1, 20));
-       
-       //System.out.println(API.getCustom("Drugs"));
+//       
+//       System.out.println(API.getCustom("Drugs"));
 //       
 //       ArrayList<Comment> cm = new ArrayList<Comment>();
 //        API.InitComment();
