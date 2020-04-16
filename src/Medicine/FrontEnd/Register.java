@@ -34,14 +34,15 @@ import Medicine.BackEnd.*;
  */
 public class Register extends Application {
 
-    boolean check;
-    int i = 0, p = 0;
+    boolean check, np;
+    int i = 0, p = 0,o;
     VBox LogInpage = new VBox(5);
     VBox Registerpage = new VBox(4);
-    VBox Registerpage2 = new VBox(4);
+  HBox Registerpage2 = new HBox(4);
     HBox NameBox = new HBox(70);
     HBox PWBox = new HBox(70);
     HBox TextBox = new HBox(70);
+    VBox Na= new VBox(14);
 
     VBox Error_Page = new VBox(60);
     VBox NameBox2 = new VBox(10);
@@ -87,31 +88,39 @@ public class Register extends Application {
         setTextbox();
         SetErrpage();
         SetRegis();
-        fillName.setText("Your ID");
+        Admin1 Adminpage = new Admin1();
+        np=false;
+     fillName.setText("Your ID");
         fillPW.setText("");
         LogInpage.setAlignment(Pos.CENTER);
         NameBox.setAlignment(Pos.CENTER);
         PWBox.setAlignment(Pos.CENTER);
         TextBox.setAlignment(Pos.CENTER);
-        allbutton[3].setText("Register");
+        allbutton[3].setText("สมัครสมาชิก");
         allbutton[3].setAlignment(Pos.BOTTOM_RIGHT);
-        alltext[1].setText("Welcome Please Login");
-        alltext[1].setFill(Color.NAVY);
-        alltext[1].setUnderline(true);
+        alltext[1].setText("ยินดีต้อนรับเข้าสู่ระบบ");
+        alltext[1].setFill(Color.DARKRED);
+        alltext[1].setFont(Font.font(15));
+        alltext[13].setText("");
+        alltext[13].setFill(Color.RED);
         NameBox.getChildren().add(fillName);
-        comboBox.setVisibleRowCount(2);
         PWBox.getChildren().add(fillPW);
         TextBox.getChildren().add(alltext[1]);
-        LogInpage.getChildren().addAll(TextBox, NameBox, PWBox, comboBox);
-        LogInpage.getChildren().addAll(next, allbutton[3]);
+        LogInpage.getChildren().addAll(TextBox, NameBox, PWBox,alltext[13],next, allbutton[3]);
         next.setOnAction((ActionEvent t) -> {
             Person user = (Person) idcheckers();
             if (user != null) {
                 System.out.println(user.getUserName() + " LOGIN ");
+                 if (user.getRole().equals("Staff")) {
+                    alltext[13].setText("User welcome");
+                }
+                else
+                    a.setScene(Adminpage.admain);
+             
             } 
             else {
-                a.setScene(scene[2]);
-                a.setTitle("Error404_PAGE");
+                 alltext[13].setText("เกิดข้อผิดพลาด กรุณาเช็ค id หรือ password อีกครั้ง");
+                Setbacktostartingpage();
             }
 
         });
@@ -123,6 +132,7 @@ public class Register extends Application {
         back.setOnAction((ActionEvent t) -> {
             Setbacktostartingpage();
             a.setScene(scene[1]);
+            alltext[13].setText("");
             a.setTitle("LOGIN_PAGE");
         });
         ///////////Registor Page///////////////////
@@ -131,6 +141,7 @@ public class Register extends Application {
             Setbacktostartingpage();
             registerclear();
             alltext[12].setText("");
+            alltext[13].setText("");
             a.setScene(scene[1]);
             a.setTitle("LOGIN_PAGE");
         });
@@ -142,25 +153,32 @@ public class Register extends Application {
                 }
                 alltext[12].setText(" Login Success Press Back To Continues ");
                 if (comboBox2.getValue().equals("Admin")) {
-                     User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                    Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
                     Authority.registor(st);
                 }// get role
                 else if (comboBox2.getValue().equals("User")) {
-                   // User st = new User(allfill[1].getText(), allfill[2].getText());
-                    User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                    User st = new User(allfill[1].getText(), allfill[2].getText());
+                    //User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
                     Authority.registor(st);
                 }
                 genderBox.getValue();
                 System.out.println(comboBox2.getValue());
                 registerclear();
             } else {
-                registerclear();
-                registerclear();
-                a.setScene(scene[2]);
-                a.setTitle("Error_PAGE");
+             alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
             }
 
         });
+        Adminpage.allbutton[2].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.adupdate);
+        });
+        Adminpage.allbutton[3].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.adadd);
+        });
+        Adminpage.allbutton[5].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.admain);
+        });
+
 
     }
 
@@ -179,31 +197,32 @@ public class Register extends Application {
     }
 
     void SetRegis() {
-        alltext[0].setText("SELECTED YOUR ROLE :        ");
-        alltext[4].setText("                  ENTER  YOUR ID : ");
-        alltext[5].setText("   ENTER  YOUR PASSWORD : ");
-        alltext[6].setText("  REPEAT YOUR PASSWORD : ");
-        alltext[7].setText("    ENTER YOUR FIRSTNAME : ");
-        alltext[8].setText("     ENTER YOUR LASTNAME : ");
-        alltext[9].setText("                 ENTER YOUR AGE : ");
-        alltext[10].setText("            ENTER YOUR E-MAIL : ");
-        alltext[11].setText("SELECTED YOUR GENDER :  ");
+       alltext[0].setText("สถานะ");
+        alltext[4].setText( "ID :");
+        alltext[5].setText("PASSWORD :");
+        alltext[6].setText("PASSWORD :");
+        alltext[7].setText("ชื่อ :");
+        alltext[8].setText("นามสกุล :");
+        alltext[9].setText("อายุ :");
+        alltext[10].setText("อีเมล :");
+        alltext[11].setText("เพศ");
         alltext[12].setText("");
         alltext[12].setFill(Color.RED);
         allbutton[4].setText("Register");
         allbutton[5].setText("back");
-        for (int i = 1; i <= 7; i++) {
-            Column[i].getChildren().addAll(alltext[i + 3], allfill[i]);
-            Column[i].setAlignment(Pos.TOP_CENTER);
+        Na.setAlignment(Pos.TOP_RIGHT);
+         Row[6].setAlignment(Pos.TOP_RIGHT);
+        for (int j = 1; j <= 7; j++) {
+         Na.getChildren().addAll(alltext[j+3]);
+          Row[6].getChildren().addAll(allfill[j]);
         }
         Column[0].setAlignment(Pos.TOP_CENTER);
+         Column[0].setAlignment(Pos.TOP_CENTER);
         Column[0].getChildren().addAll(alltext[0], comboBox2);
         Column[8].setAlignment(Pos.CENTER);
         Column[8].getChildren().addAll(alltext[11], genderBox);
-        Registerpage2.setAlignment(Pos.TOP_CENTER);
-        for (int j = 0; j < 8; j++) {
-            Registerpage2.getChildren().addAll(Column[j]);
-        }
+         Registerpage2.setAlignment(Pos.TOP_CENTER);
+         Registerpage2.getChildren().addAll(Na,Row[6]);
         allbutton[4].setAlignment(Pos.CENTER_RIGHT);
         allbutton[5].setAlignment(Pos.CENTER_RIGHT);
         Column[11].getChildren().addAll(allbutton[4], allbutton[5]);
@@ -216,7 +235,7 @@ public class Register extends Application {
     ///////////////another function///////////////////////
     //////////////////////////////////////////////////////
     boolean checkpassWord() {
-        if (allfill[2].getText().equals(allfill[3].getText()) && allfill[2].getText() != "") {
+        if (allfill[2].getText().equals(allfill[3].getText()) && allfill[2].getText() != " ") {
             check = true;
         } else {
             check = false;
@@ -270,7 +289,7 @@ public class Register extends Application {
     public void setVbox() {
         Row = new VBox[20];
         for (int i = 1; i < 20; i++) {
-            Row[i] = new VBox();
+            Row[i] = new VBox(4);
             Row[i].setAlignment(Pos.CENTER);
         }
     }
