@@ -20,6 +20,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Register a = new Register(stage);
+        stage.setResizable(false);
         stage.setScene(a.scene[1]);
         stage.setTitle("LOGIN_PAGE");
         stage.show();
