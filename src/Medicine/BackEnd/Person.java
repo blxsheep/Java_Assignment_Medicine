@@ -131,11 +131,6 @@ abstract  public class Person implements Serializable {
         byId = new ArrayList<>();
         if (source != null) {
             for (int i = 0; i < source.size(); i++) {
-                if (name != null) {
-                    if (source.get(i).getFirstName().equals(name)) {
-                        byName.add(i);
-                    }
-                }
                 if (id != null) {
                     if (source.get(i).getUsername().equals(id)) {
                         byId.add(i);

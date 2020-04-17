@@ -14,20 +14,20 @@ public class Admin extends Person {
     private String role = "Admin";
 
     public String getRole() {
-       
+
         return this.role;
     }
 
     public Admin() {
         super();
     }
-    
+
     public Admin(String username, String password) {
         super(username, password);
     }
 
-    public Admin(String username, String password, String name,  String lname, String age, String email) {
-        super(name, lname, age,  username, password, email);
+    public Admin(String username, String password, String name, String lname, String age, String email) {
+        super(username, password, name, lname, age, email);
     }
 
     public static Admin getById(String id) {

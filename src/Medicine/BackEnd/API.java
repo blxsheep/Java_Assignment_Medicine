@@ -18,23 +18,24 @@ public class API {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        API._INIT_DATABASE_();
+        API.InitDrugInform();
+        System.out.println(API.getAllDrug());
 //        System.out.println(API.getAllUser());
 //         Authority.login("Gai", "g12345"); 
 //        API.InitDrugInform();
 //        System.out.println(API.getAllDrug());
 //        
-        
-        
-
+  //    Authority.registor(new User("t1", "123", "", "", "", ""));
+System.out.println(API.getAllUser());
+System.out.println(Authority.login("t2", "12345"));
 //        db.setFile("BSymptoms");
 //        ArrayList<BSymptom> st = new ArrayList<BSymptom>();
 //        API.InitSymptom();
 //        System.out.println(API.getCustom("BSymptoms"));
         //db.setFile("Drugs");
-        
-      
- //      int  index = Drug.getIdxDrug("b1");
-    //    System.out.println(index);
+        //      int  index = Drug.getIdxDrug("b1");
+        //    System.out.println(index);
 //        ArrayList<Drug> arr = new ArrayList<Drug>();
 //        API.InitDrugInform();
 //        System.out.println(API.getCustom("Drugs"));
@@ -98,13 +99,13 @@ public class API {
         Database db = st.getDbPath();
         return (ArrayList<Drug>) db.get();
     }
-    
+
     public static ArrayList<BComment> getAllComment() {
         Person st = new BComment();
         Database db = st.getDbPath();
         return (ArrayList<BComment>) db.get();
     }
-    
+
     public static ArrayList<BSymptom> getAllSymptom() {
         Person st = new BSymptom();
         Database db = st.getDbPath();
@@ -194,55 +195,56 @@ public class API {
         db.write(arr);
 
     }
-     public static void InitComment() {
+
+    public static void InitComment() {
 
         Database db = new Database();
         ArrayList<BComment> arr = new ArrayList<BComment>();
 
         db.setFile("BComments");
-      BComment  c = new BComment ("Ment Rakk","Dek doi");
-        
+        BComment c = new BComment("Ment Rakk", "Dek doi");
+
         arr.add(c);
-       
+
         db.write(arr);
 
     }
-     
-     public static void InitSymptom() {
+
+    public static void InitSymptom() {
 
         Database db = new Database();
         ArrayList<BSymptom> arr = new ArrayList<BSymptom>();
 
         db.setFile("BSymptoms");
-      BSymptom  c = new BSymptom ("Symptom Rxample");
-        
+        BSymptom c = new BSymptom("Symptom Rxample");
+
         arr.add(c);
-       
+
         db.write(arr);
 
     }
 
     public static void addDrug(Drug drug) {
-      Database db = new Database();
+        Database db = new Database();
         db.setFile("Drugs");
-        ArrayList<Drug> d= API.getAllDrug();
-        
-       if(d ==null){
-           ArrayList<Drug> k =new ArrayList<Drug>();
-              k.add(drug);
-                db.write(k);
-       }else {
-      
-        d.add(drug);
-        db.write(null);
-        db.write(d);
-       }
+        ArrayList<Drug> d = API.getAllDrug();
+
+        if (d == null) {
+            ArrayList<Drug> k = new ArrayList<Drug>();
+            k.add(drug);
+            db.write(k);
+        } else {
+
+            d.add(drug);
+            db.write(null);
+            db.write(d);
+        }
     }
 
     public static void removeDrug(String Dname) {
         int index = Drug.getIdxDrug(Dname);
-        System.out.println("inx"+index);
-        Database db =  new Database();
+        System.out.println("inx" + index);
+        Database db = new Database();
         db.setFile("Drugs");
         ArrayList<Drug> d = API.getAllDrug();
         d.remove(index);
@@ -250,53 +252,54 @@ public class API {
         db.write(d);
 
     }
-      public static void editDrug(String Old_Drugname,Drug New) {
-          // Hard when merge ,Have to create new Drug.
-         int index = Drug.getIdxDrug(Old_Drugname);
-         Database db = new Database();
-         db.setFile("Drugs");
-         ArrayList  arr = API.getAllDrug();
-         db.write(null);
-         arr.add(index, New);
-         arr.remove(index+1);
-          db.write(arr);
-          
+
+    public static void editDrug(String Old_Drugname, Drug New) {
+        // Hard when merge ,Have to create new Drug.
+        int index = Drug.getIdxDrug(Old_Drugname);
+        Database db = new Database();
+        db.setFile("Drugs");
+        ArrayList arr = API.getAllDrug();
+        db.write(null);
+        arr.add(index, New);
+        arr.remove(index + 1);
+        db.write(arr);
 
     }
+
     public static void addComment(BComment cm) {
 
-         Database db = new Database();
+        Database db = new Database();
         db.setFile("BComments");
         ArrayList<BComment> d = API.getAllComment();
-        
-       if(d ==null){
-           ArrayList<BComment> k =new ArrayList<BComment>();
-              k.add(cm);
-                db.write(k);
-       }else {
-      
-        d.add(cm);
-        db.write(null);
-        db.write(d);
-       }
+
+        if (d == null) {
+            ArrayList<BComment> k = new ArrayList<BComment>();
+            k.add(cm);
+            db.write(k);
+        } else {
+
+            d.add(cm);
+            db.write(null);
+            db.write(d);
+        }
     }
+
     public static void addSymptom(BSymptom st) {
 
-         Database db = new Database();
+        Database db = new Database();
         db.setFile("BSymptoms");
         ArrayList<BSymptom> d = API.getAllSymptom();
-        
-       if(d ==null){
-           ArrayList<BSymptom> k =new ArrayList<BSymptom>();
-              k.add(st);
-                db.write(k);
-       }else {
-      
-        d.add(st);
-        db.write(null);
-        db.write(d);
-       }
+
+        if (d == null) {
+            ArrayList<BSymptom> k = new ArrayList<BSymptom>();
+            k.add(st);
+            db.write(k);
+        } else {
+
+            d.add(st);
+            db.write(null);
+            db.write(d);
+        }
     }
-    
 
 }

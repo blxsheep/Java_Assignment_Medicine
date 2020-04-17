@@ -40,6 +40,9 @@ public class USER extends Application {
 
     ArrayList<String> type = new ArrayList<>();
     List<List<String>> name = new ArrayList<>();
+
+    public USER() {
+    }
     //  List<String> name = new ArrayList<>();
     Button button;
 
@@ -111,6 +114,7 @@ public class USER extends Application {
         int[] chtype = new int[50];
         int first = 0;
         //First Line is type
+        
         ArrayList<Drug> arr = API.getAllDrug();
         for (int i = 0; i < arr.size(); i++) {
             temp.clear();

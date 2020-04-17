@@ -26,7 +26,7 @@ private String role = "User";
     }
 
     public User(String username, String password, String name,  String lname, String age, String email) {
-        super(name, lname, age,  username, password, email);
+         super(username, password, name,  lname, age, email);
        
     }
 
