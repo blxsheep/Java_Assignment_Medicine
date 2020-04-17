@@ -141,4 +141,9 @@ public class Drug extends Person {
         return "{Kind : " + this.kind + "name>>" + name + " Description : " + this.description + "}";
     }
 
+    @Override
+    public String getRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

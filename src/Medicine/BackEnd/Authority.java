@@ -13,8 +13,21 @@ import java.util.ArrayList;
  */
 public class Authority {
 
-    public static <E extends Person> Person login(String id, String password) {
-       
+    public static <E extends Person> Person login(Person p) {
+       String  id = p.getUsername();
+       String password = p.getPassword();
+        ArrayList<Person> arr = Database.getPerson();
+        int res = Person.search("", id, arr);
+        if (res != -1) {
+            if (arr.get(res).getPassword().equals(password)) {
+                return arr.get(res);
+            }
+            
+        }
+       return null;
+    }
+        public static <E extends Person> Person login(String id, String password) {
+     
         ArrayList<Person> arr = Database.getPerson();
         int res = Person.search("", id, arr);
         if (res != -1) {

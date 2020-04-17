@@ -20,10 +20,12 @@ public class API {
     public static void main(String[] args) {
 //        System.out.println(API.getAllUser());
 //         Authority.login("Gai", "g12345"); 
-        API.InitDrugInform();
-        
+//        API.InitDrugInform();
+//        System.out.println(API.getAllDrug());
 //        
-//        Database db = new Database();
+        
+        
+
 //        db.setFile("BSymptoms");
 //        ArrayList<BSymptom> st = new ArrayList<BSymptom>();
 //        API.InitSymptom();
@@ -31,8 +33,8 @@ public class API {
         //db.setFile("Drugs");
         
       
-       int  index = Drug.getIdxDrug("b1");
-        System.out.println(index);
+ //      int  index = Drug.getIdxDrug("b1");
+    //    System.out.println(index);
 //        ArrayList<Drug> arr = new ArrayList<Drug>();
 //        API.InitDrugInform();
 //        System.out.println(API.getCustom("Drugs"));

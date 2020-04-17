@@ -13,9 +13,9 @@ import java.util.List;
  *
  * @author USER
  */
-public class Person implements Serializable {
+abstract  public class Person implements Serializable {
 
-    final String role = "";
+    protected String role = "";
     private Database dbPath = new Database();
     private String FirstName = "";
     private String LastName = "";
@@ -52,9 +52,9 @@ public class Person implements Serializable {
         this.setDbPath(new Database(this.getClass().getSimpleName() + "s"));
     }
 
-    public Person(String name, String lname, String age,  String id, String password, String email) {
+    public Person(String username, String password, String name,  String lname, String age, String email) {
         this.FirstName = name;
-        this.UserName = id;
+        this.UserName = username;
         this.PassWord = password;
         this.Age = age;
        
@@ -123,9 +123,7 @@ public class Person implements Serializable {
         this.PassWord = password;
     }
 
-    public String getRole() {
-        return role;
-    }
+   abstract public String getRole();
 
     public static int search(String name, String id, ArrayList<Person> source) {
         ArrayList<Integer> byName, byId, result;

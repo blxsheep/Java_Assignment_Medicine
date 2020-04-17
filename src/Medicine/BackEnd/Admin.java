@@ -11,7 +11,12 @@ package Medicine.BackEnd;
  */
 public class Admin extends Person {
 
-    final String role = "Admin";
+    private String role = "Admin";
+
+    public String getRole() {
+       
+        return this.role;
+    }
 
     public Admin() {
         super();
@@ -21,8 +26,8 @@ public class Admin extends Person {
         super(username, password);
     }
 
-    public Admin(String name, String lname, String age, String id, String password, String email) {
-        super(name, lname, age,  id, password, email);
+    public Admin(String username, String password, String name,  String lname, String age, String email) {
+        super(name, lname, age,  username, password, email);
     }
 
     public static Admin getById(String id) {

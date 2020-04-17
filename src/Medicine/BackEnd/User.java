@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class User extends Person {
 
-    final String role = "Staff";
+private String role = "User";
   //  private ArrayList<Course> courses = new ArrayList<Course>();
 
     public User() {
@@ -25,8 +25,9 @@ public class User extends Person {
         super(username, password);
     }
 
-    public User(String name, String lname, String age,  String id, String password, String email) {
-        super(name, lname, age,  id, password, email);
+    public User(String username, String password, String name,  String lname, String age, String email) {
+        super(name, lname, age,  username, password, email);
+       
     }
 
    
@@ -43,9 +44,11 @@ public class User extends Person {
     }*/
 
     public String getRole() {
+      
         return role;
     }
 
+    
     public static User getById(String id) {
         return (User) Person.getById(id);
     }
@@ -57,6 +60,8 @@ public class User extends Person {
     @Override
     public String toString() {
         String s = super.toString();
-        return "Staff" + s; //To change body of generated methods, choose Tools | Templates.
+        return "User" + s + " " + super.getUsername() + " " + super.getUserName() + " "  +super.getPassword(); //To change body of generated methods, choose Tools | Templates.
     }
 }
+    
+

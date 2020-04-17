@@ -51,6 +51,11 @@ public class BComment extends Person{
     public String toString() {
         return "Comment{" + "statement: " + statement + ", writer: " + writer + '}';
     }
+
+    @Override
+    public String getRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

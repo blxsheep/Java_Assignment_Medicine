@@ -5,6 +5,9 @@
  */
 package Medicine.FrontEnd;
 
+import Medicine.BackEnd.BSymptom;
+import Medicine.BackEnd.Drug;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +21,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import Medicine.BackEnd.*;
+import javafx.event.ActionEvent;
 
 /**
  *
@@ -31,6 +36,7 @@ public class Admin1 extends  Application{
     TextField[] allfill;
     HBox[] Column;
     VBox addpage = new VBox(4);
+    VBox addq = new VBox(4);
   HBox addpage2 = new HBox(4);
     VBox Na= new VBox(14);
     HBox page1= new HBox(10);
@@ -40,6 +46,7 @@ public class Admin1 extends  Application{
     Scene admain = new Scene(page1, 450, 150);
     Scene adupdate = new Scene(updatepage, 450, 450);
     Scene adadd = new Scene(addpage, 450, 450);
+  Scene adshowpatient = new Scene(addq, 450, 450);
     ObservableList<String> Type = FXCollections.observableArrayList("ยาลดอาการปวด", "ยาลดไข้","ยาแก้ไอ","ยาฆ่าเชื้อ","---------------");
     ObservableList<String>Medname = FXCollections.observableArrayList("Admin", "User","---------------");
     ObservableList<String> count = FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10","---------------");
@@ -64,6 +71,7 @@ public class Admin1 extends  Application{
         setVbox();
         Updatepage();
         Setadd();
+        showpatient ();
         allbutton[4].setText("เพิ่มยา");
         allbutton[3].setText("เพิ่มยาตัวใหม่");
         allbutton[2].setText("อัพเดท/ดูข้อมูล");
@@ -74,6 +82,7 @@ public class Admin1 extends  Application{
         }    
         page1.setAlignment(Pos.CENTER);
         page1.getChildren().add(Column[1]);
+        
     }
     
     void Updatepage(){
@@ -98,17 +107,18 @@ public class Admin1 extends  Application{
         alltext[5].setText("สรรพคุณ :");
         alltext[6].setText("จำนวน :");
         alltext[7].setText("ราคา :");
+        alltext[8].setText("วันหมดอายุ:");
         allbutton[4].setText("Register");
         allbutton[5].setText("back");
         Na.setAlignment(Pos.TOP_RIGHT);
          Row[6].setAlignment(Pos.TOP_RIGHT);
-        for (int j = 1; j <= 4; j++) {
+        for (int j = 1; j <= 5; j++) {
          Na.getChildren().addAll(alltext[j+3]);
           Row[6].getChildren().addAll(allfill[j]);
         }
         Column[0].setAlignment(Pos.TOP_CENTER);
          Column[0].setAlignment(Pos.TOP_CENTER);
-        Column[0].getChildren().addAll(alltext[0], typeBox3);
+        Column[0].getChildren().addAll(alltext[0], allfill[7]);
         addpage2.setAlignment(Pos.TOP_CENTER);
          addpage2.getChildren().addAll(Na,Row[6]);
         allbutton[4].setAlignment(Pos.CENTER_RIGHT);
@@ -117,6 +127,24 @@ public class Admin1 extends  Application{
         Column[11].setAlignment(Pos.CENTER);
         addpage.setAlignment(Pos.TOP_CENTER);
         addpage.getChildren().addAll(addpage2, Column[0], Column[11]);
+    }
+    void showpatient (){
+        ArrayList<BSymptom> arr = new ArrayList<BSymptom>();
+       
+     //  API.InitSymptom();
+        arr = API.getAllSymptom();
+        if(arr == null) addq.getChildren().add(new Text(String.format("No Older Patient")));
+        else{
+        for (int i = 0; i < arr.size(); i++) {
+            addq.getChildren().clear();
+            addq.getChildren().add(new Text(String.format("Symptom  : %s   Writer : %s\n",arr.get(i).getCymtomp(),arr.get(i).getPatient())));
+            
+        }
+        }
+        allbutton[7].setText("Read ALL");
+        allbutton[8].setText("Back");
+        addq.getChildren().addAll(allbutton[7],allbutton[8]);
+        
     }
     
      public void settext() {
