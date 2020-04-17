@@ -42,6 +42,7 @@ public class USER extends Application {
     ArrayList<String> type = new ArrayList<>();
     List<List<String>> name = new ArrayList<>();
     //  List<String> name = new ArrayList<>();
+
     Button button;
 
     //comment
@@ -160,9 +161,9 @@ public class USER extends Application {
 //            }
     @Override
     public void start(Stage userStage) throws Exception { // this is main!
+        userStage.show();
         Symptom sym = new Symptom(userStage);
-        sym.show();
-
+        
         userStage.setResizable(false);
 
         third = new Comment(userStage);
@@ -180,6 +181,7 @@ public class USER extends Application {
         });
 
         Button button2 = new Button("ดูข้อมูลของยา");
+        Button button4 = new Button("สอบถามอาการเบื้องต้น");
         Button button3 = new Button("ขอความคิดเห็นเกี่ยวกับโปรแกรม");
 
         /*
@@ -225,7 +227,7 @@ public class USER extends Application {
 
         BorderPane layout = new BorderPane();
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(cb1, cb2, button2, button3);
+        vbox.getChildren().addAll(cb1, cb2, button2, button4, button3);
         //INSERT TOP LEFT BOTTON RIGHT
         VBox.setMargin(cb1, new Insets(10, 0, 5, 0)); // set Margin btn1
         VBox.setMargin(cb2, new Insets(10, 0, 5, 0)); // set Margin btn2
@@ -281,6 +283,10 @@ public class USER extends Application {
             userStage.hide();
         });
 
+        button4.setOnAction((ActionEvent ex) -> {
+            sym.show();
+            userStage.hide();
+        });
     }
 //    @Override
 //    public void start(Stage stage) throws Exception {

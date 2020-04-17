@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package Medicine.FrontEnd;
+import Medicine.BackEnd.Person;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,7 +25,10 @@ public class GUI extends Application {
         stage.setScene(a.scene[1]);
         stage.setTitle("LOGIN_PAGE");
         stage.show();
+        
+        
     }
+    
 
     public static void main(String[] args) {
         launch(args);

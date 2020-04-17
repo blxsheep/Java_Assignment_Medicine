@@ -35,14 +35,14 @@ import Medicine.BackEnd.*;
 public class Register extends Application {
 
     boolean check, np;
-    int i = 0, p = 0,o;
+    int i = 0, p = 0, o;
     VBox LogInpage = new VBox(5);
     VBox Registerpage = new VBox(4);
-  HBox Registerpage2 = new HBox(4);
+    HBox Registerpage2 = new HBox(4);
     HBox NameBox = new HBox(70);
     HBox PWBox = new HBox(70);
     HBox TextBox = new HBox(70);
-    VBox Na= new VBox(14);
+    VBox Na = new VBox(14);
 
     VBox Error_Page = new VBox(60);
     VBox NameBox2 = new VBox(10);
@@ -89,8 +89,8 @@ public class Register extends Application {
         SetErrpage();
         SetRegis();
         Admin1 Adminpage = new Admin1();
-        np=false;
-     fillName.setText("Your ID");
+        np = false;
+        fillName.setText("Your ID");
         fillPW.setText("");
         LogInpage.setAlignment(Pos.CENTER);
         NameBox.setAlignment(Pos.CENTER);
@@ -106,20 +106,19 @@ public class Register extends Application {
         NameBox.getChildren().add(fillName);
         PWBox.getChildren().add(fillPW);
         TextBox.getChildren().add(alltext[1]);
-        LogInpage.getChildren().addAll(TextBox, NameBox, PWBox,alltext[13],next, allbutton[3]);
+        LogInpage.getChildren().addAll(TextBox, NameBox, PWBox, alltext[13], next, allbutton[3]);
         next.setOnAction((ActionEvent t) -> {
             Person user = (Person) idcheckers();
             if (user != null) {
                 System.out.println(user.getUserName() + " LOGIN ");
-                 if (user.getRole().equals("Staff")) {
+                if (user.getRole().equals("Staff")) {
                     alltext[13].setText("User welcome");
-                }
-                else
+                } else {
                     a.setScene(Adminpage.admain);
-             
-            } 
-            else {
-                 alltext[13].setText("เกิดข้อผิดพลาด กรุณาเช็ค id หรือ password อีกครั้ง");
+                }
+
+            } else {
+                alltext[13].setText("เกิดข้อผิดพลาด กรุณาเช็ค id หรือ password อีกครั้ง");
                 Setbacktostartingpage();
             }
 
@@ -165,7 +164,7 @@ public class Register extends Application {
                 System.out.println(comboBox2.getValue());
                 registerclear();
             } else {
-             alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
+                alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
             }
 
         });
@@ -178,7 +177,6 @@ public class Register extends Application {
         Adminpage.allbutton[5].setOnAction((ActionEvent t) -> {
             a.setScene(Adminpage.admain);
         });
-
 
     }
 
@@ -197,8 +195,8 @@ public class Register extends Application {
     }
 
     void SetRegis() {
-       alltext[0].setText("สถานะ");
-        alltext[4].setText( "ID :");
+        alltext[0].setText("สถานะ");
+        alltext[4].setText("ID :");
         alltext[5].setText("PASSWORD :");
         alltext[6].setText("PASSWORD :");
         alltext[7].setText("ชื่อ :");
@@ -211,18 +209,18 @@ public class Register extends Application {
         allbutton[4].setText("Register");
         allbutton[5].setText("back");
         Na.setAlignment(Pos.TOP_RIGHT);
-         Row[6].setAlignment(Pos.TOP_RIGHT);
+        Row[6].setAlignment(Pos.TOP_RIGHT);
         for (int j = 1; j <= 7; j++) {
-         Na.getChildren().addAll(alltext[j+3]);
-          Row[6].getChildren().addAll(allfill[j]);
+            Na.getChildren().addAll(alltext[j + 3]);
+            Row[6].getChildren().addAll(allfill[j]);
         }
         Column[0].setAlignment(Pos.TOP_CENTER);
-         Column[0].setAlignment(Pos.TOP_CENTER);
+        Column[0].setAlignment(Pos.TOP_CENTER);
         Column[0].getChildren().addAll(alltext[0], comboBox2);
         Column[8].setAlignment(Pos.CENTER);
         Column[8].getChildren().addAll(alltext[11], genderBox);
-         Registerpage2.setAlignment(Pos.TOP_CENTER);
-         Registerpage2.getChildren().addAll(Na,Row[6]);
+        Registerpage2.setAlignment(Pos.TOP_CENTER);
+        Registerpage2.getChildren().addAll(Na, Row[6]);
         allbutton[4].setAlignment(Pos.CENTER_RIGHT);
         allbutton[5].setAlignment(Pos.CENTER_RIGHT);
         Column[11].getChildren().addAll(allbutton[4], allbutton[5]);

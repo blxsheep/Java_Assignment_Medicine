@@ -1,6 +1,5 @@
 package Medicine.FrontEnd;
 
-
 import Medicine.BackEnd.API;
 import Medicine.BackEnd.BComment;
 import static javafx.application.Application.launch;
@@ -21,49 +20,53 @@ import javafx.stage.Stage;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author dunkdink
  */
 public class Comment {
-   
+
     TextField textbox = new TextField();
     Button btn = new Button("Submit! and Thankyou");
+    Button back = new Button("Back");
     VBox pane = new VBox();
     Stage third = new Stage();
-    
+
     public Comment(Stage primary) {
         textbox.setPrefSize(250, 20); //size ลูก
         textbox.setMaxSize(250, 20);
         VBox.setMargin(textbox, new Insets(10));
-        
+
         pane.setPadding(new Insets(20)); //size แม่
-       
+
         pane.setAlignment(Pos.CENTER);
         third.setTitle("Comment");
-        pane.getChildren().addAll(textbox,btn);
-        Scene scene = new Scene(pane,400,200);
+        pane.getChildren().addAll(textbox, btn, back);
+        Scene scene = new Scene(pane, 400, 200);
         third.setScene(scene);
         third.setResizable(false);
-        //second.initOwner(primary);
-        third.setOnHiding( event -> {
-            
+        third.setOnHiding(event -> {
+
             primary.show();
         });
-        btn.setOnAction((ActionEvent ex)->{
-            
-         String s = textbox.getText();
-         BComment cm = new  BComment(s);
-        API.addComment(cm);
+        btn.setOnAction((ActionEvent ex) -> {
+
+            String s = textbox.getText();
+            BComment cm = new BComment(s);
+            API.addComment(cm);
             System.out.println(API.getCustom("BComments"));
             third.hide();
             primary.show();
         });
+        
+        back.setOnAction((ActionEvent ex) -> {
+            third.hide();
+            primary.show();
+        });
     }
-    
-    public void show(){
+
+    public void show() {
         third.show();
     }
-    
+
 }
