@@ -5,12 +5,7 @@
  */
 package Medicine.FrontEnd;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javafx.fxml.Initializable;
 
 /**
  *
@@ -50,6 +45,8 @@ public class LOGIN extends javax.swing.JFrame {
         TEXT_ID = new javax.swing.JLabel();
         TEXT_PW = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         PIC_LEFT = new javax.swing.JPanel();
         GIF_0 = new javax.swing.JLabel();
 
@@ -198,6 +195,10 @@ public class LOGIN extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout LOGIN_LAYERLayout = new javax.swing.GroupLayout(LOGIN_LAYER);
         LOGIN_LAYER.setLayout(LOGIN_LAYERLayout);
         LOGIN_LAYERLayout.setHorizontalGroup(
@@ -225,8 +226,13 @@ public class LOGIN extends javax.swing.JFrame {
                 .addGap(0, 45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
+                .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))))
         );
         LOGIN_LAYERLayout.setVerticalGroup(
             LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +251,9 @@ public class LOGIN extends javax.swing.JFrame {
                     .addComponent(Button_CANCLE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(0, 192, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         BOX_ID.getAccessibleContext().setAccessibleName("ID");
@@ -377,6 +385,8 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JLabel TEXT_PW;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
 
