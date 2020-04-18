@@ -33,46 +33,48 @@ import java.io.InputStream;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
+import javax.swing.JPanel;
 
 /**
  *
  * @author USER
  */
-public class Register extends Application {
-
+public final class Register extends Application {
+    
     boolean check, np;
-    int i = 0, p = 0,o;
+    int i = 0, p = 0, o;
     VBox LogInpage = new VBox(5);
     VBox Registerpage = new VBox(4);
     HBox Registerpage2 = new HBox(4);
     HBox NameBox = new HBox(70);
     HBox PWBox = new HBox(70);
     HBox TextBox = new HBox(70);
-    VBox Na= new VBox(14);
-
+    VBox Na = new VBox(14);
+    
     VBox Error_Page = new VBox(60);
-    VBox NameBox2 = new VBox(10);
+    VBox NameBox2 = new VBox(200);
     HBox BackBox = new HBox(20);
-
+    
     Button next = new Button("OK");
     TextField fillName = new TextField();
     TextField fillPW = new PasswordField();
-
+    
     Button back = new Button("back");
-
+    
     ScrollPane sp = new ScrollPane();
-
+    
     Text[] alltext;
     Button[] allbutton;
     Scene[] scene;
     VBox[] Row;
     TextField[] allfill;
     HBox[] Column;
-
+    
     ObservableList<String> options = FXCollections.observableArrayList("Admin", "User");
     ObservableList<String> Registorr = FXCollections.observableArrayList("Admin", "User");
     ObservableList<String> gender = FXCollections.observableArrayList("MALE", "FEMALE");
-
+    
     ComboBox comboBox = new ComboBox(options);
     ComboBox comboBox2 = new ComboBox(Registorr);
     ComboBox genderBox = new ComboBox(gender);
@@ -86,29 +88,29 @@ public class Register extends Application {
     /////////////setting for scene///////////////////////////////
     //Create starting page//
     Register(Stage a) {
-        
-        
+
         /*-------------------------------------------------------*/
-       // HBox.setMargin(fillName, new Insets(5));
-//        fillName.setPrefSize(150, 15);
-//         fillPW.setPrefSize(150, 15);
-    //    fillName.setPromptText("asd");
-        
+        // HBox.setMargin(fillName, new Insets(5));
+        fillName.setPrefSize(150, 15);
+        fillPW.setPrefSize(150, 15);
+        //    fillName.setPromptText("asd");
+ 
         LogInpage.setStyle("-fx-background-image:url(\"src/Medicine/FrontEnd/Images/bg.png\");");
         LogInpage.setPrefSize(600, 800);
-        
-        
+   
         next.setPrefSize(200, 15);
-   //     next.setMaxSize(120, 60); // linear-gradient(#042A5A, #0B509B)
-        next.setStyle("-fx-background-color: transparent; -fx-text-fill: Blue;-fx-border-color: black;");
-        try{ 
+        //     next.setMaxSize(120, 60); // linear-gradient(#042A5A, #0B509B)
+        next.setStyle("-fx-background-color :linear-gradient(#042A5A,#0B509B); -fx-text-fill: red;-fx-border-color: black;");
+        try {            
             next.setFont(Font.loadFont(new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Anantason-Regular.ttf")), 10));
-            fillName.setFont(Font.loadFont(new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Anantason-Regular.ttf")), 10));
-           ImageView imgv = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/GIF1.gif"))));
+            //  fillName.setFont(Font.loadFont(new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Anantason-Regular.ttf")), 10));
+            ImageView imgv = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/GIF1.gif"))));
             LogInpage.getChildren().add(imgv);
-        }catch(Exception e){e.printStackTrace();}
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         /*-------------------------------------------------------*/
-        
         
         settext();
         setVbox();
@@ -118,8 +120,9 @@ public class Register extends Application {
         setTextbox();
         SetErrpage();
         SetRegis();
+        
         Admin1 Adminpage = new Admin1();
-        np=false;
+        np = false;
         fillName.setPromptText("YOUR ID");
         fillPW.setPromptText("YOUR PASSWORD");
         
@@ -132,7 +135,7 @@ public class Register extends Application {
         allbutton[3].setAlignment(Pos.BOTTOM_RIGHT);
         
         alltext[1].setText("ยินดีต้อนรับเข้าสู่ระบบ");
-        alltext[1].setFill(Color.DARKRED);
+        alltext[1].setFill(Color.YELLOWGREEN);
         alltext[1].setFont(Font.font(24));
         
         alltext[13].setText("");
@@ -141,20 +144,19 @@ public class Register extends Application {
         NameBox.getChildren().add(fillName);
         PWBox.getChildren().add(fillPW);
         TextBox.getChildren().add(alltext[1]);
-        LogInpage.getChildren().addAll(TextBox, NameBox, PWBox,alltext[13],next, allbutton[3]);
+        LogInpage.getChildren().addAll(TextBox, NameBox, PWBox, alltext[13], next, allbutton[3]);
         
         next.setOnAction((ActionEvent t) -> {
             Person user = (Person) idcheckers();
             if (user != null) {
                 System.out.println(user.getUserName() + " LOGIN ");
-                 if (user.getRole().equals("Staff")) {
-                    alltext[13].setText("User welcome");
-                }
-                else
+//                if (user.getRole().equals("Staff")) {
+//                    alltext[13].setText("User welcome");
+//                } else {
                     a.setScene(Adminpage.admain);
-            } 
-            else {
-                 alltext[13].setText("เกิดข้อผิดพลาด กรุณาเช็ค id หรือ password อีกครั้ง");
+//                }
+            } else {
+                alltext[13].setText("เกิดข้อผิดพลาด กรุณาตรวจสอบ ID หรือ PASSWORD อีกครั้ง");
                 Setbacktostartingpage();
             }
         });
@@ -179,19 +181,21 @@ public class Register extends Application {
             a.setScene(scene[1]);
             a.setTitle("LOGIN_PAGE");
         });
-
+        
         allbutton[4].setOnAction((ActionEvent t) -> {
             if (checkpassWord()) {
                 for (int i = 1; i < 8; i++) {
                     System.out.println(allfill[i].getText());
                 }
                 alltext[12].setText(" Login Success Press Back To Continues ");
+                
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("asdasdasd");
                 alert.setTitle("TITLE");
                 alert.setHeaderText("Header");
                 alert.showAndWait();
-               if (comboBox2.getValue().equals("Admin")) {
+                
+                if (comboBox2.getValue().equals("Admin")) {
                     Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
                     Authority.registor(st);
                 }// get role
@@ -204,9 +208,9 @@ public class Register extends Application {
                 System.out.println(comboBox2.getValue());
                 registerclear();
             } else {
-             alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
+                alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
             }
-
+            
         });
         Adminpage.allbutton[2].setOnAction((ActionEvent t) -> {
             a.setScene(Adminpage.adupdate);
@@ -217,8 +221,7 @@ public class Register extends Application {
         Adminpage.allbutton[5].setOnAction((ActionEvent t) -> {
             a.setScene(Adminpage.admain);
         });
-
-
+        
     }
 
     ///// set position error page ////
@@ -226,7 +229,7 @@ public class Register extends Application {
         Error_Page.setAlignment(Pos.CENTER);
         NameBox2.setAlignment(Pos.CENTER);
         BackBox.setAlignment(Pos.BOTTOM_RIGHT);
-        alltext[3].setText("Plesae check your ID or PASSWORD");
+        alltext[3].setText("Plesae check YOUR ID or PASSWORD");
         alltext[3].setFill(Color.RED);
         alltext[2].setText("Error");
         alltext[2].setFont(Font.font(20));
@@ -234,10 +237,10 @@ public class Register extends Application {
         NameBox2.getChildren().addAll(alltext[2], alltext[3]);
         Error_Page.getChildren().addAll(NameBox2, BackBox);
     }
-
+    
     void SetRegis() {
-       alltext[0].setText("สถานะ");
-        alltext[4].setText( "ID :");
+        alltext[0].setText("สถานะ");
+        alltext[4].setText("ID :");
         alltext[5].setText("PASSWORD :");
         alltext[6].setText("CONFIRM YOUR PASSWORD :");
         alltext[7].setText("ชื่อ :");
@@ -250,18 +253,18 @@ public class Register extends Application {
         allbutton[4].setText("Register");
         allbutton[5].setText("back");
         Na.setAlignment(Pos.TOP_RIGHT);
-         Row[6].setAlignment(Pos.TOP_RIGHT);
+        Row[6].setAlignment(Pos.TOP_RIGHT);
         for (int j = 1; j <= 7; j++) {
-         Na.getChildren().addAll(alltext[j+3]);
-          Row[6].getChildren().addAll(allfill[j]);
+            Na.getChildren().addAll(alltext[j + 3]);
+            Row[6].getChildren().addAll(allfill[j]);
         }
         Column[0].setAlignment(Pos.TOP_CENTER);
-         Column[0].setAlignment(Pos.TOP_CENTER);
+        Column[0].setAlignment(Pos.TOP_CENTER);
         Column[0].getChildren().addAll(alltext[0], comboBox2);
         Column[8].setAlignment(Pos.CENTER);
         Column[8].getChildren().addAll(alltext[11], genderBox);
-         Registerpage2.setAlignment(Pos.TOP_CENTER);
-         Registerpage2.getChildren().addAll(Na,Row[6]);
+        Registerpage2.setAlignment(Pos.TOP_CENTER);
+        Registerpage2.getChildren().addAll(Na, Row[6]);
         allbutton[4].setAlignment(Pos.CENTER_RIGHT);
         allbutton[5].setAlignment(Pos.CENTER_RIGHT);
         Column[11].getChildren().addAll(allbutton[4], allbutton[5]);
@@ -281,14 +284,14 @@ public class Register extends Application {
         }
         return check;
     }
-
+    
     void Setbacktostartingpage() {
-        fillName.setText("Your ID");
+        fillName.setPromptText("YOUR ID");
         fillPW.setText("");
         comboBox.setValue("");
         scene[1] = s1;
     }
-
+    
     void registerclear() {
         for (int j = 1; j < 8; j++) {
             allfill[j].setText("");
@@ -296,27 +299,27 @@ public class Register extends Application {
         comboBox2.setValue("");
         genderBox.setValue("");
     }
-
+    
     Object idcheckers() {
         System.out.println("test " + fillName.getText());
         return Authority.login(fillName.getText(), fillPW.getText());
-
+        
     }
-
+    
     public void settingscene() {
         scene = new Scene[5];
         scene[1] = s1;
         scene[2] = s2;
         scene[3] = s3;
     }
-
+    
     public void settext() {
         alltext = new Text[20];
         for (int i = 0; i < 20; i++) {
             alltext[i] = new Text("");
         }
     }
-
+    
     public void setbut() {
         allbutton = new Button[20];
         for (int i = 1; i < 20; i++) {
@@ -324,7 +327,7 @@ public class Register extends Application {
             allbutton[i].setAlignment(Pos.CENTER);
         }
     }
-
+    
     public void setVbox() {
         Row = new VBox[20];
         for (int i = 1; i < 20; i++) {
@@ -332,16 +335,16 @@ public class Register extends Application {
             Row[i].setAlignment(Pos.CENTER);
         }
     }
-
+    
     public void setTextbox() {
         allfill = new TextField[20];
         for (int i = 1; i < 20; i++) {
             allfill[i] = new TextField("");
             allfill[i].setAlignment(Pos.CENTER);
         }
-
+        
     }
-
+    
     public void setHbox() {
         Column = new HBox[20];
         for (int i = 0; i < 20; i++) {
@@ -349,10 +352,10 @@ public class Register extends Application {
             Column[i].setAlignment(Pos.CENTER);
         }
     }
-
+    
     @Override
     public void start(Stage stage) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

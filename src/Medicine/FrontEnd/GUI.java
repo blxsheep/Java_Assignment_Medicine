@@ -31,3 +31,11 @@ public class GUI extends Application {
         
     }
 }
+/**********************************************************************************
+public class GUI  {
+
+    public static void main(String[] args) {
+        new LOGIN().setVisible(true);  
+    }
+}
+***********************************************************************************/
