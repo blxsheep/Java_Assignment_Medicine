@@ -43,6 +43,8 @@ public class Register extends Application {
     HBox PWBox = new HBox(70);
     HBox TextBox = new HBox(70);
     VBox Na = new VBox(14);
+    
+    
 
     VBox Error_Page = new VBox(60);
     VBox NameBox2 = new VBox(10);
@@ -89,6 +91,7 @@ public class Register extends Application {
         SetErrpage();
         SetRegis();
         Admin1 Adminpage = new Admin1();
+        USER USERpage = new USER();
         np = false;
         fillName.setText("Your ID");
         fillPW.setText("");
@@ -113,7 +116,9 @@ public class Register extends Application {
                 System.out.println(user.getUserName() + " LOGIN ");
                 if (user.getRole().equals("Staff")) {
                     alltext[13].setText("User welcome");
-                } else {
+                    a.setScene(USERpage.Setscene(a));
+                    
+                   } else {
                     a.setScene(Adminpage.admain);
                 }
 
@@ -312,6 +317,7 @@ public class Register extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }
