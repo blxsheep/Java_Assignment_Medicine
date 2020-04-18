@@ -36,9 +36,8 @@ public class Comment {
         textbox.setPrefSize(250, 20); //size ลูก
         textbox.setMaxSize(250, 20);
         VBox.setMargin(textbox, new Insets(10));
-
+        
         pane.setPadding(new Insets(20)); //size แม่
-
         pane.setAlignment(Pos.CENTER);
         third.setTitle("Comment");
         pane.getChildren().addAll(textbox, btn, back);

@@ -105,7 +105,7 @@ public class USER extends Application {
 
     }
 
-    public void ReadDATA2() {
+     public  void ReadDATA2() {
         String line = new String();
         List<String> temp = new ArrayList<>();
         //  ArrayList chtype = new ArrayList<>();
@@ -162,8 +162,14 @@ public class USER extends Application {
     @Override
     public void start(Stage userStage) throws Exception { // this is main!
         userStage.show();
-        Symptom sym = new Symptom(userStage);
+        userStage.setScene(Setscene(userStage));
+
+    }
+
+    public Scene Setscene(Stage userStage) {
         
+        Symptom sym = new Symptom(userStage);
+
         userStage.setResizable(false);
 
         third = new Comment(userStage);
@@ -287,6 +293,9 @@ public class USER extends Application {
             sym.show();
             userStage.hide();
         });
+        
+        return scene;
+
     }
 //    @Override
 //    public void start(Stage stage) throws Exception {
