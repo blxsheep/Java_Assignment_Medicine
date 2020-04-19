@@ -195,6 +195,7 @@ public class Admin1 extends Application {
     Button upbackBtn = new Button();
     Button updateBtn = new Button();
     Button informBtn = new Button();
+    Button logoutBtn = new Button();
     Scene[] scene;
     VBox[] Row;
     HBox pVbox = new HBox(20);
@@ -261,12 +262,13 @@ public class Admin1 extends Application {
         allbutton[3].setText("เพิ่มยาตัวใหม่");
         allbutton[2].setText("อัพเดท/ดูข้อมูล");
         allbutton[1].setText("ตรวจสอบอาการผู้ป่วย");
+        logoutBtn.setText("Logout");
         Column[1].setAlignment(Pos.CENTER);
         for (int i = 1; i < 4; i++) {
             Column[1].getChildren().add(allbutton[i]);
         }
         page1.setAlignment(Pos.CENTER);
-        page1.getChildren().add(Column[1]);
+        page1.getChildren().addAll(Column[1],logoutBtn);
 
     }
 

@@ -46,7 +46,7 @@ public class Register extends Application {
     HBox PWBox = new HBox(70);
     HBox TextBox = new HBox(70);
     VBox Na = new VBox(14);
-
+     public  static String usrname = new String();
     VBox Error_Page = new VBox(60);
     VBox NameBox2 = new VBox(10);
     HBox BackBox = new HBox(20);
@@ -92,6 +92,7 @@ public class Register extends Application {
         SetErrpage();
         SetRegis();
         Admin1 Adminpage = new Admin1();
+        USER Userpage = new USER();
         np = false;
         fillName.setText("Your ID");
         fillPW.setText("");
@@ -112,12 +113,15 @@ public class Register extends Application {
         LogInpage.getChildren().addAll(TextBox, NameBox, PWBox, alltext[13], next, allbutton[3]);
 
         next.setOnAction((ActionEvent t) -> {
-            Person user = (Person) idcheckers();
+             Person user = (Person) idcheckers();
             if (user != null) {
                 System.out.println(user.getUserName() + " LOGIN " + user.getRole());
                 if (user.getRole().equals("User")) {
-                    alltext[13].setText("User welcome");
+                    usrname = user.getUserName();
+              //      alltext[13].setText("User welcome");
+                    a.setScene(Userpage.Setscene(a));
                 } else {
+                     usrname = user.getUserName();
                     a.setScene(Adminpage.admain);
 
                 }
@@ -322,6 +326,15 @@ public class Register extends Application {
             System.out.println(API.getAllDrug());
 
         });
+        Adminpage.logoutBtn.setOnAction((ActionEvent t) -> {
+            a.setScene(s1);
+            Setbacktostartingpage();
+        });
+       Userpage.logoutBtn.setOnAction((ActionEvent t) -> {
+            a.setScene(s1);
+            Setbacktostartingpage();
+        });
+       
     }
     ///// set position error page ////
 
@@ -456,6 +469,10 @@ public class Register extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public  static String getusrname(){
+        
+        return usrname;
     }
 
 }
