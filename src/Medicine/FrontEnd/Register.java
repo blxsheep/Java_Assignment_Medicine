@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import Medicine.BackEnd.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.stage.Modality;
 
 /**
  *
@@ -230,20 +231,7 @@ public class Register extends Application {
             System.out.println(" index >>" + index);
             API.removeDrug(newname);
 
-    
-//            Adminpage.Type.clear();
-//            Adminpage.Type1.clear();
-//            Adminpage.Medname.clear();
-//            Adminpage.Medname1.clear();
-            //     Adminpage.reset();
-            // Adminpage.Updatepage();
-
-
-//            Adminpage.typeBox.setValue("");
-//            Adminpage.typeBox2.setValue("");
-//            Adminpage.mednameBox.setValue("");
-//            Adminpage.mednameBox2.setValue("");
-                ArrayList<String> arx = Adminpage.cbtype();
+            ArrayList<String> arx = Adminpage.cbtype();
             List<List<String>> arr2 = Adminpage.cbname();
             System.out.print("CBTYPE ==  ");
             System.out.print(arx);
@@ -255,10 +243,38 @@ public class Register extends Application {
             Adminpage.typeBox.getItems().addAll(Type1);
             Adminpage.typeBox2.getItems().addAll(Type1);
 //  
-            
+
             System.out.println(API.getAllDrug());
         });
+        Adminpage.informBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if (Adminpage.typeBox2.getValue() != null && Adminpage.mednameBox2.getValue() != null) {
+                    System.out.println(String.format("Select %s -> %s", Adminpage.typeBox2.getValue(),  Adminpage.mednameBox2.getValue()));
+                    //API.InitDrugInform();
+                    String s = String.format("%s",  Adminpage.mednameBox2.getValue());
+                    System.out.println(API.getCustom("Drugs"));
+                    System.out.println(s);
+                    int index = Drug.getIdxDrug(s);
+                    Drug dg = Database.getDrug().get(index);
+                    System.out.println(dg);
+                    System.out.print("price = " + dg.getPrice());
 
+                    //System.out.println(indx);
+                    final Stage dialog = new Stage();
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.initOwner(a);
+                    VBox dialogVbox = new VBox(20);
+                    // dialogVbox.getChildren().add(new Text(String.format("Select %s -> %s", cb1.getValue(),cb2.getValue())));
+                    dialogVbox.getChildren().add(new Text(String.format("\n      Kind : %s\n\n      Name : %s\n\n      Description : %s\n\n      Price : %s\n\n      Stock : %s\n\n      Expiration Date : %s", dg.getKind(), dg.getName(), dg.getDescription(), dg.getPrice(),dg.getStock(),dg.getExpire())));
+                    Scene dialogScene = new Scene(dialogVbox, 700, 200);
+                    dialog.setScene(dialogScene);
+                    dialog.show();
+                } else {
+                    System.out.println("Error!");
+                }
+            }
+        });
         Adminpage.allbutton[8].setOnAction((ActionEvent t) -> {
             a.setScene(Adminpage.admain);
         });

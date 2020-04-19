@@ -194,8 +194,11 @@ public class Admin1 extends Application {
     Button removeBtn = new Button();
     Button upbackBtn = new Button();
     Button updateBtn = new Button();
+    Button informBtn = new Button();
     Scene[] scene;
     VBox[] Row;
+    HBox pVbox = new HBox(20);
+    HBox sVbox = new HBox(20);
     TextField[] allfill;
     TextField price = new TextField();
     TextField stock = new TextField();
@@ -269,16 +272,19 @@ public class Admin1 extends Application {
 
     void Updatepage() {
         mednameBox2.setVisibleRowCount(3);
-        allbutton[7].setText("ดูข้อมูล");
         mednameBox.setVisibleRowCount(3);
         //CountBox.setVisibleRowCount(3);
-
+        informBtn.setText("ดูข้อมูล");
         updateBtn.setText("อัพเดท");
         upbackBtn.setText("ย้อนกลับ");
         removeBtn.setText("Remove");
         alltext[1].setText("_______________________________________________________________________________________________________________");
-        Row[2].getChildren().addAll(typeBox2, mednameBox2, removeBtn);
-        page2.getChildren().addAll(typeBox, mednameBox, price, stock, updateBtn, upbackBtn);
+        pVbox.getChildren().addAll(price);
+        sVbox.getChildren().addAll(stock);
+        pVbox.setAlignment(Pos.CENTER);
+        sVbox.setAlignment(Pos.CENTER);
+        Row[2].getChildren().addAll(typeBox2, mednameBox2, informBtn,  removeBtn);
+        page2.getChildren().addAll(typeBox, mednameBox, pVbox, sVbox, updateBtn, upbackBtn);
         page2.setAlignment(Pos.BOTTOM_CENTER);
         page2s.setAlignment(Pos.TOP_CENTER);
         page2s.getChildren().add(Row[2]);

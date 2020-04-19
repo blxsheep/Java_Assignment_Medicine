@@ -189,12 +189,12 @@ System.out.println(Authority.login("t2", "12345"));
         ArrayList<Drug> arr = new ArrayList<Drug>();
 
         db.setFile("Drugs");
-        Drug d1 = new Drug("A", "a1", "20/2/20", "Nothing Here", 200, 1);
-//        Drug d2 = new Drug("A", "a2", "20/2/20", "Nothing Here", 20500, 2);
-       Drug d3 = new Drug("B", "b1", "20/2/20", "Nothing Here", 2007, 3);
-//        Drug d4 = new Drug("B", "b2", "20/2/20", "Nothing Here", 270, 4);
-//        arr.add(d1);
-//        arr.add(d2);
+        Drug d1 = new Drug("ยาเเก้ปวดท้อง", "ยาธาตุน้ำขาวกระต่ายบิน", "20/12/20", "ทำลายเชื้อโรคในลำไส้ รักษาอาการอักเสบของลำไส้ แก้ปวดท้อง", 200, 100);
+      Drug d2 = new Drug("ยาฆ่าเชื้อ", "Amoxicillin", "16/2/24", "ยาปฏิชีวนะกลุ่มเพนิซิลลิน (Penicillins) ซึ่งจะใช้ในการรักษาโรคที่มีสาเหตุการติดเชื้อมาจากแบคทีเรีย ", 200, 45);
+       Drug d3 = new Drug("ยาแก้ปวด", "paracetamol", "28/3/26", "มีฤทธิ์ยับยั้งการสร้างโพรสตาแกลนดิน (Prostaglandin) ในสมอง แบบเดียวกับยาต้านการอักเสบที่ไม่ใช่สเตียรอยด์ (NSAIDs)", 250, 30);
+       Drug d4 = new Drug("ยาดมเเละยาทา", "ยาดมโป้ยเซียน", "20/2/30", "ใช้ดม ใช้ทา ในหลอดเดียวกัน", 15, 45);
+        arr.add(d1);
+       arr.add(d2);
         arr.add(d1);
         arr.add(d3);
         db.write(arr);

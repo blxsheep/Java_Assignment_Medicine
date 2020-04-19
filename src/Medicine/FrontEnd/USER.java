@@ -254,7 +254,7 @@ public class USER extends Application {
             public void handle(ActionEvent e) {
                 if (cb1.getValue() != null && cb2.getValue() != null) {
                     System.out.println(String.format("Select %s -> %s", cb1.getValue(), cb2.getValue()));
-                    API.InitDrugInform();
+                    //API.InitDrugInform();
                     String s = String.format("%s", cb2.getValue());
                     System.out.println(API.getCustom("Drugs"));
                     System.out.println(s);
