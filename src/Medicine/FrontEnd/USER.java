@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+// TEst Push by dink
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,10 +42,12 @@ public class USER extends Application {
     ArrayList<String> type = new ArrayList<>();
     List<List<String>> name = new ArrayList<>();
     //  List<String> name = new ArrayList<>();
-    Button button;
 
+    Button button;
+    Button logoutBtn = new Button("Logout");
     //comment
     Comment third;
+  
 
     public static void main(String[] args) {
         launch(args);
@@ -103,7 +106,7 @@ public class USER extends Application {
 
     }
 
-    public void ReadDATA2() {
+     public  void ReadDATA2() {
         String line = new String();
         List<String> temp = new ArrayList<>();
         //  ArrayList chtype = new ArrayList<>();
@@ -159,8 +162,14 @@ public class USER extends Application {
 //            }
     @Override
     public void start(Stage userStage) throws Exception { // this is main!
+        userStage.show();
+        userStage.setScene(Setscene(userStage));
+
+    }
+
+    public Scene Setscene(Stage userStage) {
+        
         Symptom sym = new Symptom(userStage);
-        sym.show();
 
         userStage.setResizable(false);
 
@@ -179,7 +188,8 @@ public class USER extends Application {
         });
 
         Button button2 = new Button("ดูข้อมูลของยา");
-        Button button3 = new Button("ขอความคิดเห็นเกี่ยวกับโปรแกรม");
+        Button button4 = new Button("สอบถามอาการเบื้องต้น");
+        //Button button3 = new Button("ขอความคิดเห็นเกี่ยวกับโปรแกรม");
 
         /*
         ex A: a1,a2,a3,a4
@@ -224,7 +234,7 @@ public class USER extends Application {
 
         BorderPane layout = new BorderPane();
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(cb1, cb2, button2, button3);
+        vbox.getChildren().addAll(cb1, cb2, button2, button4,logoutBtn);
         //INSERT TOP LEFT BOTTON RIGHT
         VBox.setMargin(cb1, new Insets(10, 0, 5, 0)); // set Margin btn1
         VBox.setMargin(cb2, new Insets(10, 0, 5, 0)); // set Margin btn2
@@ -275,10 +285,15 @@ public class USER extends Application {
             }
         });
 
-        button3.setOnAction((ActionEvent ex) -> {
-            third.show();
+ 
+
+        button4.setOnAction((ActionEvent ex) -> {
+            sym.show();
             userStage.hide();
         });
+
+        
+        return scene;
 
     }
 //    @Override

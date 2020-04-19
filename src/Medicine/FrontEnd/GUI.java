@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package Medicine.FrontEnd;
+import Medicine.BackEnd.API;
+import Medicine.BackEnd.Person;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -15,6 +19,7 @@ import javafx.stage.Stage;
  *
  * @author USER
  */
+//<<<<<<< HEAD
 //public class GUI extends Application {
 //
 //    @Override
@@ -32,10 +37,32 @@ import javafx.stage.Stage;
 //    }
 //}
 ///**********************************************************************************
-public class GUI  {
+///public class GUI  {
+//=======
+public class GUI extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        System.out.println( API.getAllSymptom());
+       
+        stage.show();
+        stage.setScene(Setscene(stage));
+        
+    }
+    public Scene Setscene(Stage stage) {
+        
+        Register a = new Register(stage);
+        
+        stage.setTitle("LOGIN_PAGE");
+        
+        return a.scene[1];
+    }
+    
+//>>>>>>> origin/BlxSheep
 
     public static void main(String[] args) {
-        new LOGIN().setVisible(true);  
+//        new LOGIN().setVisible(true); 
+    launch(args);
     }
-}
+ }
 //***********************************************************************************/

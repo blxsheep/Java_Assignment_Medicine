@@ -18,21 +18,29 @@ public class API {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        API._INIT_DATABASE_();
+        API.InitDrugInform();
+       Database db = new Database();
+       db.setFile("Drugs");
+       //db.write(null);
+       //API.InitDrugInform();
+       
+        System.out.println(API.getAllDrug());
 //        System.out.println(API.getAllUser());
 //         Authority.login("Gai", "g12345"); 
-        API.InitDrugInform();
-        
+//        API.InitDrugInform();
+       //System.out.println(API.getAllDrug());
 //        
-//        Database db = new Database();
+  //    Authority.registor(new User("t1", "123", "", "", "", ""));
+System.out.println(API.getAllUser());
+System.out.println(Authority.login("t2", "12345"));
 //        db.setFile("BSymptoms");
 //        ArrayList<BSymptom> st = new ArrayList<BSymptom>();
 //        API.InitSymptom();
 //        System.out.println(API.getCustom("BSymptoms"));
         //db.setFile("Drugs");
-        
-      
-       int  index = Drug.getIdxDrug("b1");
-        System.out.println(index);
+        //      int  index = Drug.getIdxDrug("b1");
+        //    System.out.println(index);
 //        ArrayList<Drug> arr = new ArrayList<Drug>();
 //        API.InitDrugInform();
 //        System.out.println(API.getCustom("Drugs"));
@@ -96,13 +104,13 @@ public class API {
         Database db = st.getDbPath();
         return (ArrayList<Drug>) db.get();
     }
-    
+
     public static ArrayList<BComment> getAllComment() {
         Person st = new BComment();
         Database db = st.getDbPath();
         return (ArrayList<BComment>) db.get();
     }
-    
+
     public static ArrayList<BSymptom> getAllSymptom() {
         Person st = new BSymptom();
         Database db = st.getDbPath();
@@ -181,66 +189,67 @@ public class API {
         ArrayList<Drug> arr = new ArrayList<Drug>();
 
         db.setFile("Drugs");
-        Drug d1 = new Drug("A", "a1", "20/2/20", "Nothing Here", 200, 1);
-        Drug d2 = new Drug("A", "a2", "20/2/20", "Nothing Here", 20500, 2);
-        Drug d3 = new Drug("B", "b1", "20/2/20", "Nothing Here", 2007, 3);
-        Drug d4 = new Drug("B", "b2", "20/2/20", "Nothing Here", 270, 4);
+        Drug d1 = new Drug("ยาเเก้ปวดท้อง", "ยาธาตุน้ำขาวกระต่ายบิน", "20/12/20", "ทำลายเชื้อโรคในลำไส้ รักษาอาการอักเสบของลำไส้ แก้ปวดท้อง", 200, 100);
+      Drug d2 = new Drug("ยาฆ่าเชื้อ", "Amoxicillin", "16/2/24", "ยาปฏิชีวนะกลุ่มเพนิซิลลิน (Penicillins) ซึ่งจะใช้ในการรักษาโรคที่มีสาเหตุการติดเชื้อมาจากแบคทีเรีย ", 200, 45);
+       Drug d3 = new Drug("ยาแก้ปวด", "paracetamol", "28/3/26", "มีฤทธิ์ยับยั้งการสร้างโพรสตาแกลนดิน (Prostaglandin) ในสมอง แบบเดียวกับยาต้านการอักเสบที่ไม่ใช่สเตียรอยด์ (NSAIDs)", 250, 30);
+       Drug d4 = new Drug("ยาดมเเละยาทา", "ยาดมโป้ยเซียน", "20/2/30", "ใช้ดม ใช้ทา ในหลอดเดียวกัน", 15, 45);
         arr.add(d1);
-        arr.add(d2);
+       arr.add(d2);
+        arr.add(d1);
         arr.add(d3);
-        arr.add(d4);
         db.write(arr);
 
     }
-     public static void InitComment() {
+
+    public static void InitComment() {
 
         Database db = new Database();
         ArrayList<BComment> arr = new ArrayList<BComment>();
 
         db.setFile("BComments");
-      BComment  c = new BComment ("Ment Rakk","Dek doi");
-        
+        BComment c = new BComment("Ment Rakk", "Dek doi");
+
         arr.add(c);
-       
+
         db.write(arr);
 
     }
-     
-     public static void InitSymptom() {
+
+    public static void InitSymptom() {
 
         Database db = new Database();
         ArrayList<BSymptom> arr = new ArrayList<BSymptom>();
 
         db.setFile("BSymptoms");
-      BSymptom  c = new BSymptom ("Symptom Rxample");
-        
+        BSymptom c = new BSymptom("Symptom Rxample");
+
         arr.add(c);
-       
+
         db.write(arr);
 
     }
 
     public static void addDrug(Drug drug) {
-      Database db = new Database();
+        Database db = new Database();
         db.setFile("Drugs");
-        ArrayList<Drug> d= API.getAllDrug();
-        
-       if(d ==null){
-           ArrayList<Drug> k =new ArrayList<Drug>();
-              k.add(drug);
-                db.write(k);
-       }else {
-      
-        d.add(drug);
-        db.write(null);
-        db.write(d);
-       }
+        ArrayList<Drug> d = API.getAllDrug();
+
+        if (d == null) {
+            ArrayList<Drug> k = new ArrayList<Drug>();
+            k.add(drug);
+            db.write(k);
+        } else {
+
+            d.add(drug);
+            db.write(null);
+            db.write(d);
+        }
     }
 
     public static void removeDrug(String Dname) {
         int index = Drug.getIdxDrug(Dname);
-        System.out.println("inx"+index);
-        Database db =  new Database();
+        System.out.println("inx" + index);
+        Database db = new Database();
         db.setFile("Drugs");
         ArrayList<Drug> d = API.getAllDrug();
         d.remove(index);
@@ -248,53 +257,54 @@ public class API {
         db.write(d);
 
     }
-      public static void editDrug(String Old_Drugname,Drug New) {
-          // Hard when merge ,Have to create new Drug.
-         int index = Drug.getIdxDrug(Old_Drugname);
-         Database db = new Database();
-         db.setFile("Drugs");
-         ArrayList  arr = API.getAllDrug();
-         db.write(null);
-         arr.add(index, New);
-         arr.remove(index+1);
-          db.write(arr);
-          
+
+    public static void editDrug(String Old_Drugname, Drug New) {
+        // Hard when merge ,Have to create new Drug.
+        int index = Drug.getIdxDrug(Old_Drugname);
+        Database db = new Database();
+        db.setFile("Drugs");
+        ArrayList arr = API.getAllDrug();
+        db.write(null);
+        arr.add(index, New);
+        arr.remove(index + 1);
+        db.write(arr);
 
     }
+
     public static void addComment(BComment cm) {
 
-         Database db = new Database();
+        Database db = new Database();
         db.setFile("BComments");
         ArrayList<BComment> d = API.getAllComment();
-        
-       if(d ==null){
-           ArrayList<BComment> k =new ArrayList<BComment>();
-              k.add(cm);
-                db.write(k);
-       }else {
-      
-        d.add(cm);
-        db.write(null);
-        db.write(d);
-       }
+
+        if (d == null) {
+            ArrayList<BComment> k = new ArrayList<BComment>();
+            k.add(cm);
+            db.write(k);
+        } else {
+
+            d.add(cm);
+            db.write(null);
+            db.write(d);
+        }
     }
+
     public static void addSymptom(BSymptom st) {
 
-         Database db = new Database();
+        Database db = new Database();
         db.setFile("BSymptoms");
         ArrayList<BSymptom> d = API.getAllSymptom();
-        
-       if(d ==null){
-           ArrayList<BSymptom> k =new ArrayList<BSymptom>();
-              k.add(st);
-                db.write(k);
-       }else {
-      
-        d.add(st);
-        db.write(null);
-        db.write(d);
-       }
+
+        if (d == null) {
+            ArrayList<BSymptom> k = new ArrayList<BSymptom>();
+            k.add(st);
+            db.write(k);
+        } else {
+
+            d.add(st);
+            db.write(null);
+            db.write(d);
+        }
     }
-    
 
 }

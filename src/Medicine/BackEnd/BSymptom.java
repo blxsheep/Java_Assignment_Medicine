@@ -46,6 +46,13 @@ public class BSymptom extends Person{
     public String toString() {
         return "BSymptom{" + "Symptom: " + cymtomp + ", Patient: " + patient + '}';
     }
+
+    @Override
+    public String getRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
     
     

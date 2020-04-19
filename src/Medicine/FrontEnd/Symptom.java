@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -18,6 +20,7 @@ public class Symptom {
     Stage body = new Stage();
 
     String output = "";
+    Button back = new Button("back");
 
     public Symptom(Stage primary) {
 
@@ -29,6 +32,7 @@ public class Symptom {
         GridPane pane = new GridPane();
         pane.setHgap(10);
         pane.setVgap(10);
+        pane.getChildren().addAll(back);
         List<CheckBox> listCB = new ArrayList<>();
 
         int index = 0;
@@ -79,8 +83,9 @@ public class Symptom {
                 if (x.isSelected()) {
                     output += String.format(" %s", x.getText());
                 }
-            }
-            BSymptom st = new BSymptom(output);
+            }String  s = Register.getusrname();
+            BSymptom st = new BSymptom(output,s);
+            
             API.addSymptom(st);
             System.out.println("Result : " + output);
             System.out.println(API.getAllSymptom());
@@ -88,6 +93,11 @@ public class Symptom {
             this.body.hide();
             primary.show();
         }));
+        back.setOnAction((ActionEvent ex) -> {
+            this.body.hide();
+            primary.show();
+        });
+
         pane.add(btn, 5, 11, 3, 1);
         Scene scene = new Scene(pane, 800, 600);
 
