@@ -15,27 +15,27 @@ import javafx.stage.Stage;
  *
  * @author USER
  */
-public class GUI extends Application {
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        Register a = new Register(stage);
-        stage.setResizable(false);
-        stage.setScene(a.scene[1]);
-        stage.setTitle("LOGIN_PAGE");
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-        
-    }
-}
-/**********************************************************************************
+//public class GUI extends Application {
+//
+//    @Override
+//    public void start(Stage stage) throws Exception {
+//        Register a = new Register(stage);
+//        stage.setResizable(false);
+//        stage.setScene(a.scene[1]);
+//        stage.setTitle("LOGIN_PAGE");
+//        stage.show();
+//    }
+//
+//    public static void main(String[] args) {
+//        launch(args);
+//        
+//    }
+//}
+///**********************************************************************************
 public class GUI  {
 
     public static void main(String[] args) {
         new LOGIN().setVisible(true);  
     }
 }
-***********************************************************************************/
+//***********************************************************************************/

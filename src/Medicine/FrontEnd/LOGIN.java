@@ -32,7 +32,7 @@ public class LOGIN extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        HEADER = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         TAB_WINDOW = new javax.swing.JPanel();
         MIN = new javax.swing.JLabel();
         CLOSE = new javax.swing.JLabel();
@@ -40,17 +40,20 @@ public class LOGIN extends javax.swing.JFrame {
         TEXT_LOGIN = new javax.swing.JLabel();
         BOX_ID = new javax.swing.JTextField();
         BOX_PW = new javax.swing.JPasswordField();
-        Button_LOGIN = new javax.swing.JButton();
-        Button_CANCLE = new javax.swing.JButton();
         TEXT_ID = new javax.swing.JLabel();
         TEXT_PW = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Button_LOGIN = new javax.swing.JButton();
+        Button_CANCLE = new javax.swing.JButton();
+        jButton_Register = new javax.swing.JButton();
+        LOGO = new javax.swing.JLabel();
+        BUTTON = new javax.swing.JPanel();
+        BG_bottom = new javax.swing.JLabel();
         PIC_LEFT = new javax.swing.JPanel();
         GIF_0 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/Asset 2.png"))); // NOI18N
 
         setTitle("LOGIN");
         setBounds(new java.awt.Rectangle(60, 122, 60, 122));
@@ -66,15 +69,7 @@ public class LOGIN extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        HEADER.setBackground(new java.awt.Color(140, 163, 65));
-        HEADER.setFont(new java.awt.Font("OCR A Std", 1, 48)); // NOI18N
-        HEADER.setForeground(new java.awt.Color(187, 127, 187));
-        HEADER.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        HEADER.setText("Medicine CENTRE");
-        getContentPane().add(HEADER);
-        HEADER.setBounds(10, 60, 670, 100);
-
-        TAB_WINDOW.setBackground(new java.awt.Color(0, 153, 153));
+        TAB_WINDOW.setBackground(new java.awt.Color(153, 153, 255));
         TAB_WINDOW.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         MIN.setBackground(new java.awt.Color(0, 255, 51));
@@ -97,6 +92,8 @@ public class LOGIN extends javax.swing.JFrame {
         CLOSE.setText("X");
         CLOSE.setToolTipText("Close");
         CLOSE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CLOSE.setMaximumSize(new java.awt.Dimension(20, 33));
+        CLOSE.setPreferredSize(new java.awt.Dimension(20, 33));
         CLOSE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CLOSEMouseClicked(evt);
@@ -108,7 +105,7 @@ public class LOGIN extends javax.swing.JFrame {
         TAB_WINDOWLayout.setHorizontalGroup(
             TAB_WINDOWLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_WINDOWLayout.createSequentialGroup()
-                .addContainerGap(316, Short.MAX_VALUE)
+                .addContainerGap(606, Short.MAX_VALUE)
                 .addComponent(MIN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CLOSE, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,28 +113,36 @@ public class LOGIN extends javax.swing.JFrame {
         );
         TAB_WINDOWLayout.setVerticalGroup(
             TAB_WINDOWLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TAB_WINDOWLayout.createSequentialGroup()
-                .addGroup(TAB_WINDOWLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MIN)
-                    .addComponent(CLOSE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_WINDOWLayout.createSequentialGroup()
+                .addGroup(TAB_WINDOWLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CLOSE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(MIN, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         MIN.getAccessibleContext().setAccessibleDescription("");
 
         getContentPane().add(TAB_WINDOW);
-        TAB_WINDOW.setBounds(290, 0, 410, 40);
+        TAB_WINDOW.setBounds(0, 0, 700, 30);
 
         LOGIN_LAYER.setBackground(new java.awt.Color(51, 51, 51));
+        LOGIN_LAYER.setAlignmentX(0.0F);
+        LOGIN_LAYER.setAlignmentY(0.0F);
+        LOGIN_LAYER.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        TEXT_LOGIN.setFont(new java.awt.Font("MV Boli", 1, 36)); // NOI18N
+        TEXT_LOGIN.setBackground(new java.awt.Color(153, 153, 153));
+        TEXT_LOGIN.setDisplayedMnemonic('5');
+        TEXT_LOGIN.setFont(new java.awt.Font("Tekton Pro", 1, 36)); // NOI18N
+        TEXT_LOGIN.setForeground(new java.awt.Color(79, 182, 210));
         TEXT_LOGIN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TEXT_LOGIN.setText("~ LOGIN ~");
+        TEXT_LOGIN.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        TEXT_LOGIN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         BOX_ID.setToolTipText("Enter Your ID");
         BOX_ID.setActionCommand("<Not Set>");
         BOX_ID.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 1, 1, 5, new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/BG_LOGIN.png")))); // NOI18N
-        BOX_ID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        BOX_ID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BOX_ID.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BOX_ID.setName("scsc"); // NOI18N
         BOX_ID.addActionListener(new java.awt.event.ActionListener() {
@@ -148,14 +153,34 @@ public class LOGIN extends javax.swing.JFrame {
 
         BOX_PW.setToolTipText("PASSWORD");
         BOX_PW.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 1, 1, 5, new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/BG_LOGIN.png")))); // NOI18N
+        BOX_PW.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BOX_PW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BOX_PWActionPerformed(evt);
             }
         });
 
-        Button_LOGIN.setText("SIGN IN");
+        TEXT_ID.setBackground(new java.awt.Color(187, 187, 187));
+        TEXT_ID.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        TEXT_ID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TEXT_ID.setText("User  :");
+
+        TEXT_PW.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        TEXT_PW.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TEXT_PW.setText("Password :");
+
+        Button_LOGIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/B_login1.png"))); // NOI18N
+        Button_LOGIN.setBorder(null);
+        Button_LOGIN.setBorderPainted(false);
+        Button_LOGIN.setContentAreaFilled(false);
+        Button_LOGIN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Button_LOGIN.setDefaultCapable(false);
         Button_LOGIN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Button_LOGIN.setIconTextGap(-2);
+        Button_LOGIN.setMaximumSize(new java.awt.Dimension(16, 32));
+        Button_LOGIN.setMinimumSize(new java.awt.Dimension(16, 32));
+        Button_LOGIN.setPreferredSize(new java.awt.Dimension(160, 30));
+        Button_LOGIN.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/B_login2.png"))); // NOI18N
         Button_LOGIN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Button_LOGINMouseClicked(evt);
@@ -167,8 +192,15 @@ public class LOGIN extends javax.swing.JFrame {
             }
         });
 
-        Button_CANCLE.setText("CANCLE");
+        Button_CANCLE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/B_cancle1.png"))); // NOI18N
+        Button_CANCLE.setBorder(null);
+        Button_CANCLE.setBorderPainted(false);
+        Button_CANCLE.setContentAreaFilled(false);
+        Button_CANCLE.setDefaultCapable(false);
         Button_CANCLE.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Button_CANCLE.setIconTextGap(0);
+        Button_CANCLE.setPreferredSize(new java.awt.Dimension(160, 30));
+        Button_CANCLE.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/B_cancle2.png"))); // NOI18N
         Button_CANCLE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Button_CANCLEMouseClicked(evt);
@@ -180,113 +212,150 @@ public class LOGIN extends javax.swing.JFrame {
             }
         });
 
-        TEXT_ID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        TEXT_ID.setText("USER  :");
-
-        TEXT_PW.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        TEXT_PW.setText("Password :");
-
-        jButton1.setText("create new account >> click");
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/BG_LOGIN.png"))); // NOI18N
-        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/GIF1.gif"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Register.setText("create new account >> click");
+        jButton_Register.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/BG_LOGIN.png"))); // NOI18N
+        jButton_Register.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/GIF1.gif"))); // NOI18N
+        jButton_Register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_RegisterMouseClicked(evt);
+            }
+        });
+        jButton_Register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_RegisterActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/giphy.gif"))); // NOI18N
+        LOGO.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        LOGO.setMaximumSize(new java.awt.Dimension(280, 200));
+        LOGO.setMinimumSize(new java.awt.Dimension(180, 200));
+        LOGO.setName(""); // NOI18N
+        LOGO.setPreferredSize(new java.awt.Dimension(480, 200));
+
+        BUTTON.setDoubleBuffered(false);
+        BUTTON.setEnabled(false);
+        BUTTON.setFocusable(false);
+        BUTTON.setOpaque(false);
+
+        BG_bottom.setBackground(new java.awt.Color(51, 51, 51));
+        BG_bottom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BG_bottom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/++++.png"))); // NOI18N
+        BG_bottom.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        BG_bottom.setDisabledIcon(null);
+        BG_bottom.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BG_bottom.setIconTextGap(0);
+        BG_bottom.setOpaque(true);
+        BG_bottom.setRequestFocusEnabled(false);
+        BG_bottom.setVerifyInputWhenFocusTarget(false);
+
+        javax.swing.GroupLayout BUTTONLayout = new javax.swing.GroupLayout(BUTTON);
+        BUTTON.setLayout(BUTTONLayout);
+        BUTTONLayout.setHorizontalGroup(
+            BUTTONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BUTTONLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(BG_bottom, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        BUTTONLayout.setVerticalGroup(
+            BUTTONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BUTTONLayout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(BG_bottom, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        BG_bottom.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout LOGIN_LAYERLayout = new javax.swing.GroupLayout(LOGIN_LAYER);
         LOGIN_LAYER.setLayout(LOGIN_LAYERLayout);
         LOGIN_LAYERLayout.setHorizontalGroup(
             LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
-                .addGap(0, 45, Short.MAX_VALUE)
-                .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(TEXT_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(TEXT_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(BOX_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(TEXT_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(BOX_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
-                        .addComponent(Button_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Button_CANCLE, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 45, Short.MAX_VALUE))
+            .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton_Register, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))))
+                .addComponent(TEXT_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94))
+            .addComponent(BUTTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
+                        .addComponent(TEXT_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BOX_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
+                        .addComponent(TEXT_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BOX_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(Button_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Button_CANCLE, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         LOGIN_LAYERLayout.setVerticalGroup(
             LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LOGIN_LAYERLayout.createSequentialGroup()
-                .addGap(0, 200, Short.MAX_VALUE)
-                .addComponent(TEXT_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LOGIN_LAYERLayout.createSequentialGroup()
+                .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TEXT_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TEXT_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BOX_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TEXT_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BOX_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(LOGIN_LAYERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Button_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Button_CANCLE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 54, Short.MAX_VALUE))
+                    .addComponent(Button_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Button_CANCLE, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_Register)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         BOX_ID.getAccessibleContext().setAccessibleName("ID");
 
         getContentPane().add(LOGIN_LAYER);
-        LOGIN_LAYER.setBounds(290, 40, 410, 610);
+        LOGIN_LAYER.setBounds(280, 30, 420, 620);
 
         PIC_LEFT.setBackground(new java.awt.Color(57, 57, 57));
         PIC_LEFT.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
 
         GIF_0.setBackground(new java.awt.Color(255, 255, 255));
-        GIF_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        GIF_0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/GIF1.gif"))); // NOI18N
+        GIF_0.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        GIF_0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/bglog.png"))); // NOI18N
         GIF_0.setText("jLabel7");
+        GIF_0.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        GIF_0.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         javax.swing.GroupLayout PIC_LEFTLayout = new javax.swing.GroupLayout(PIC_LEFT);
         PIC_LEFT.setLayout(PIC_LEFTLayout);
         PIC_LEFTLayout.setHorizontalGroup(
             PIC_LEFTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PIC_LEFTLayout.createSequentialGroup()
-                .addComponent(GIF_0, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PIC_LEFTLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(GIF_0, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PIC_LEFTLayout.setVerticalGroup(
             PIC_LEFTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PIC_LEFTLayout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(GIF_0, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(GIF_0, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(PIC_LEFT);
-        PIC_LEFT.setBounds(0, 0, 290, 650);
+        PIC_LEFT.setBounds(0, 0, 280, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,16 +364,6 @@ public class LOGIN extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_formAncestorResized
-
-    private void BOX_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOX_IDActionPerformed
-        // TODO add your handling code here:
-         
-    }//GEN-LAST:event_BOX_IDActionPerformed
-
-    private void BOX_PWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOX_PWActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_BOX_PWActionPerformed
 
     private void CLOSEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CLOSEMouseClicked
       
@@ -317,25 +376,39 @@ public class LOGIN extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_MINMouseClicked
 
-    private void Button_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LOGINActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Button_LOGINActionPerformed
+    private void jButton_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegisterActionPerformed
+        
+    }//GEN-LAST:event_jButton_RegisterActionPerformed
 
     private void Button_CANCLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CANCLEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_CANCLEActionPerformed
 
-    private void Button_LOGINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_LOGINMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Button_LOGINMouseClicked
-
     private void Button_CANCLEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_CANCLEMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_CANCLEMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Button_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LOGINActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Button_LOGINActionPerformed
+
+    private void Button_LOGINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_LOGINMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_LOGINMouseClicked
+
+    private void BOX_PWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOX_PWActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_BOX_PWActionPerformed
+
+    private void BOX_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOX_IDActionPerformed
+           BOX_ID.setText("ID");       // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BOX_IDActionPerformed
+
+    private void jButton_RegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_RegisterMouseClicked
+      ;
+    }//GEN-LAST:event_jButton_RegisterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -369,24 +442,25 @@ public class LOGIN extends javax.swing.JFrame {
     
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG_bottom;
     private javax.swing.JTextField BOX_ID;
     private javax.swing.JPasswordField BOX_PW;
+    private javax.swing.JPanel BUTTON;
     private javax.swing.JButton Button_CANCLE;
     private javax.swing.JButton Button_LOGIN;
     private javax.swing.JLabel CLOSE;
     private javax.swing.JLabel GIF_0;
-    private javax.swing.JLabel HEADER;
     private javax.swing.JPanel LOGIN_LAYER;
+    private javax.swing.JLabel LOGO;
     private javax.swing.JLabel MIN;
     private javax.swing.JPanel PIC_LEFT;
     private javax.swing.JPanel TAB_WINDOW;
     private javax.swing.JLabel TEXT_ID;
     private javax.swing.JLabel TEXT_LOGIN;
     private javax.swing.JLabel TEXT_PW;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_Register;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
 

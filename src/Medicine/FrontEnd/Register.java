@@ -224,6 +224,10 @@ public final class Register extends Application {
         
     }
 
+    Register() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     ///// set position error page ////
     void SetErrpage() {
         Error_Page.setAlignment(Pos.CENTER);
