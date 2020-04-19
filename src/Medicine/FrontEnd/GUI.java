@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Medicine.FrontEnd;
+import Medicine.BackEnd.API;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        API.InitDrugInform();
         Register a = new Register(stage);
         stage.setScene(a.scene[1]);
         stage.setTitle("LOGIN_PAGE");

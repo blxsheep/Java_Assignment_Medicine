@@ -91,7 +91,6 @@ public class Register extends Application {
         SetErrpage();
         SetRegis();
         Admin1 Adminpage = new Admin1();
-
         np = false;
         fillName.setText("Your ID");
         fillPW.setText("");
@@ -110,6 +109,7 @@ public class Register extends Application {
         PWBox.getChildren().add(fillPW);
         TextBox.getChildren().add(alltext[1]);
         LogInpage.getChildren().addAll(TextBox, NameBox, PWBox, alltext[13], next, allbutton[3]);
+
         next.setOnAction((ActionEvent t) -> {
             Person user = (Person) idcheckers();
             if (user != null) {
@@ -196,7 +196,20 @@ public class Register extends Application {
             String exp = Adminpage.allfill[5].getText();
             API.addDrug(new Drug(kind, name, exp, des, price, stock));
             System.out.println(API.getCustom("Drugs"));
+            ArrayList<String> arr = Adminpage.cbtype();
+            List<List<String>> arr2 = Adminpage.cbname();
+            System.out.print("CBTYPE ==  ");
+            System.out.print(arr);
+            System.out.print("CBNAME==");
+            System.out.println(arr2);
+            ArrayList<String> Type1 = arr;
+            Adminpage.typeBox.getItems().clear();
+            Adminpage.typeBox2.getItems().clear();
+            Adminpage.typeBox.getItems().addAll(Type1);
+            Adminpage.typeBox2.getItems().addAll(Type1);
+
         });
+
         Adminpage.allbutton[7].setOnAction((ActionEvent t) -> {
             //clear
             Database db = new Database();
@@ -209,30 +222,89 @@ public class Register extends Application {
             Adminpage.allbutton[8].setText("Back");
             Adminpage.addq.getChildren().addAll(Adminpage.allbutton[7], Adminpage.allbutton[8]);
         });
+        //Remove drug
+        Adminpage.removeBtn.setOnAction((ActionEvent t) -> {
+            String newname = String.format("%s", Adminpage.mednameBox2.getValue());
+            // Remove button 
+            int index = Drug.getIdxDrug(newname);
+            System.out.println(" index >>" + index);
+            API.removeDrug(newname);
+
+    
+//            Adminpage.Type.clear();
+//            Adminpage.Type1.clear();
+//            Adminpage.Medname.clear();
+//            Adminpage.Medname1.clear();
+            //     Adminpage.reset();
+            // Adminpage.Updatepage();
+
+
+//            Adminpage.typeBox.setValue("");
+//            Adminpage.typeBox2.setValue("");
+//            Adminpage.mednameBox.setValue("");
+//            Adminpage.mednameBox2.setValue("");
+                ArrayList<String> arx = Adminpage.cbtype();
+            List<List<String>> arr2 = Adminpage.cbname();
+            System.out.print("CBTYPE ==  ");
+            System.out.print(arx);
+            System.out.print("CBNAME==");
+            System.out.println(arr2);
+            ArrayList<String> Type1 = arx;
+            Adminpage.typeBox.getItems().clear();
+            Adminpage.typeBox2.getItems().clear();
+            Adminpage.typeBox.getItems().addAll(Type1);
+            Adminpage.typeBox2.getItems().addAll(Type1);
+//  
+            
+            System.out.println(API.getAllDrug());
+        });
+
         Adminpage.allbutton[8].setOnAction((ActionEvent t) -> {
             a.setScene(Adminpage.admain);
         });
+        Adminpage.upbackBtn.setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.admain);
+        });
 //
-Adminpage.typeBox.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
+        Adminpage.typeBox.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
             @Override
             public void handle(ActionEvent e) {
-               Adminpage.mednameBox.getItems().clear(); // Clear old member
+
+                Adminpage.mednameBox.getItems().clear(); // Clear old member
                 int index = Adminpage.Type.indexOf(Adminpage.typeBox.getValue()); // Find index of (A,B,C) in type
-        // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
+                // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
                 System.out.println(Adminpage.cbname());
                 Adminpage.mednameBox.getItems().addAll(Adminpage.cbname().get(index)); // it mean name[i] -> but use .get(i)
             }
         });
 
-Adminpage.typeBox2.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
+        Adminpage.typeBox2.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
             @Override
             public void handle(ActionEvent e) {
-               Adminpage.mednameBox2.getItems().clear(); // Clear old member
-                int index = Adminpage.Type1.indexOf(Adminpage.typeBox2.getValue()); // Find index of (A,B,C) in type
-        // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
+                Adminpage.mednameBox2.getItems().clear(); // Clear old member
+                int index = Adminpage.Type1.indexOf(Adminpage.typeBox2.getValue()); // Find index of (A,B,C) in type               
+                // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
                 System.out.println(Adminpage.cbname());
                 Adminpage.mednameBox2.getItems().addAll(Adminpage.cbname().get(index)); // it mean name[i] -> but use .get(i)
             }
+        });
+
+        Adminpage.updateBtn.setOnAction((ActionEvent t) -> {
+            int xprice = Integer.parseInt(Adminpage.price.getText());
+            int xstock = Integer.parseInt(Adminpage.stock.getText());
+            String newname = String.format("%s", Adminpage.mednameBox.getValue());
+            String ntype = String.format("%s", Adminpage.typeBox.getValue());
+
+            // Update button 
+            int index = Drug.getIdxDrug(newname);
+            System.out.println(" index >>" + index);
+            ArrayList<Drug> arr = API.getAllDrug();
+            String exp = arr.get(index).getExpire();
+            String Des = arr.get(index).getDescription();
+            API.editDrug(newname, new Drug(ntype, newname, exp, Des, xprice, xstock));
+
+            System.out.println(API.getAllDrug());
+
         });
     }
     ///// set position error page ////

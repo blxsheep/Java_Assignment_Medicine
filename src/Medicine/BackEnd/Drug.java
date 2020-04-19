@@ -138,8 +138,10 @@ public class Drug extends Person {
 
     @Override
     public String toString() {
-        return "{Kind : " + this.kind + "name>>" + name + " Description : " + this.description + "}";
+        return "Drug{" + "kind=" + kind + ", name=" + name + ", expire=" + expire + ", description=" + description + ", price=" + price + ", stock=" + stock + '}'+"\n";
     }
+
+ 
 
     @Override
     public String getRole() {
