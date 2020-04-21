@@ -9,12 +9,12 @@ package Medicine.FrontEnd;
  *
  * @author Apirak Oulis
  */
-public class BEF_LOGIN extends javax.swing.JFrame {
+public class P_BEF_LOGIN extends javax.swing.JFrame {
 
     /**
      * Creates new form BEF_LOGIN
      */
-    public BEF_LOGIN() {
+    public P_BEF_LOGIN() {
         initComponents();
     }
 
@@ -91,20 +91,21 @@ public class BEF_LOGIN extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P_BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P_BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P_BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P_BEF_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BEF_LOGIN().setVisible(true);
+                new P_BEF_LOGIN().setVisible(true);
             }
         });
     }

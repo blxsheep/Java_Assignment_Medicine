@@ -5,42 +5,34 @@
  */
 package Medicine.FrontEnd;
 
+
+import Medicine.BackEnd.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import Medicine.BackEnd.*;
-//<<<<<<< HEAD
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
-import javax.swing.JPanel;
-//=======
-import java.util.ArrayList;
-import java.util.List;
 import javafx.stage.Modality;
-//>>>>>>> origin/BlxSheep
+import javafx.stage.Stage;
 
 /**
  *
@@ -72,8 +64,8 @@ public final class Register extends Application {
 
     ScrollPane sp = new ScrollPane();
 
-    Text[] alltext;
-    Button[] allbutton;
+    private Text[] alltext;
+    private Button[] allbutton;
     Scene[] scene;
     VBox[] Row;
     TextField[] allfill;
@@ -427,50 +419,50 @@ public final class Register extends Application {
         Error_Page.setAlignment(Pos.CENTER);
             NameBox2.setAlignment(Pos.CENTER);
             BackBox.setAlignment(Pos.BOTTOM_RIGHT);
-            alltext[3].setText("Plesae check YOUR ID or PASSWORD");
-            alltext[3].setFill(Color.RED);
-            alltext[2].setText("Error");
-            alltext[2].setFont(Font.font(20));
+            getAlltext()[3].setText("Plesae check YOUR ID or PASSWORD");
+            getAlltext()[3].setFill(Color.RED);
+            getAlltext()[2].setText("Error");
+            getAlltext()[2].setFont(Font.font(20));
             BackBox.getChildren().add(back);
-            NameBox2.getChildren().addAll(alltext[2], alltext[3]);
+            NameBox2.getChildren().addAll(getAlltext()[2], getAlltext()[3]);
             Error_Page.getChildren().addAll(NameBox2, BackBox);
         }
 
         void SetRegis
         
             () {
-        alltext[0].setText("สถานะ");
-            alltext[4].setText("ID :");
-            alltext[5].setText("PASSWORD :");
-            alltext[6].setText("CONFIRM YOUR PASSWORD :");
-            alltext[7].setText("ชื่อ :");
-            alltext[8].setText("นามสกุล :");
-            alltext[9].setText("อายุ :");
-            alltext[10].setText("อีเมล :");
-            alltext[11].setText("เพศ");
-            alltext[12].setText("");
-            alltext[12].setFill(Color.RED);
-            allbutton[4].setText("Register");
-            allbutton[5].setText("back");
+        getAlltext()[0].setText("สถานะ");
+            getAlltext()[4].setText("ID :");
+            getAlltext()[5].setText("PASSWORD :");
+            getAlltext()[6].setText("CONFIRM YOUR PASSWORD :");
+            getAlltext()[7].setText("ชื่อ :");
+            getAlltext()[8].setText("นามสกุล :");
+            getAlltext()[9].setText("อายุ :");
+            getAlltext()[10].setText("อีเมล :");
+            getAlltext()[11].setText("เพศ");
+            getAlltext()[12].setText("");
+            getAlltext()[12].setFill(Color.RED);
+            getAllbutton()[4].setText("Register");
+            getAllbutton()[5].setText("back");
             Na.setAlignment(Pos.TOP_RIGHT);
             Row[6].setAlignment(Pos.TOP_RIGHT);
             for (int j = 1; j <= 7; j++) {
-                Na.getChildren().addAll(alltext[j + 3]);
+                Na.getChildren().addAll(getAlltext()[j + 3]);
                 Row[6].getChildren().addAll(allfill[j]);
             }
             Column[0].setAlignment(Pos.TOP_CENTER);
             Column[0].setAlignment(Pos.TOP_CENTER);
-            Column[0].getChildren().addAll(alltext[0], comboBox2);
+            Column[0].getChildren().addAll(getAlltext()[0], comboBox2);
             Column[8].setAlignment(Pos.CENTER);
-            Column[8].getChildren().addAll(alltext[11], genderBox);
+            Column[8].getChildren().addAll(getAlltext()[11], genderBox);
             Registerpage2.setAlignment(Pos.TOP_CENTER);
             Registerpage2.getChildren().addAll(Na, Row[6]);
-            allbutton[4].setAlignment(Pos.CENTER_RIGHT);
-            allbutton[5].setAlignment(Pos.CENTER_RIGHT);
-            Column[11].getChildren().addAll(allbutton[4], allbutton[5]);
+            getAllbutton()[4].setAlignment(Pos.CENTER_RIGHT);
+            getAllbutton()[5].setAlignment(Pos.CENTER_RIGHT);
+            Column[11].getChildren().addAll(getAllbutton()[4], getAllbutton()[5]);
             Column[11].setAlignment(Pos.CENTER);
             Registerpage.setAlignment(Pos.TOP_CENTER);
-            Registerpage.getChildren().addAll(Registerpage2, Column[0], Column[8], alltext[12], Column[11]);
+            Registerpage.getChildren().addAll(Registerpage2, Column[0], Column[8], getAlltext()[12], Column[11]);
         }
 
         //////////////////////////////////////////////////////
@@ -524,17 +516,17 @@ public final class Register extends Application {
     }
 
     public void settext() {
-        alltext = new Text[20];
+        setAlltext(new Text[20]);
         for (int i = 0; i < 20; i++) {
-            alltext[i] = new Text("");
+            getAlltext()[i] = new Text("");
         }
     }
 
     public void setbut() {
-        allbutton = new Button[20];
+        setAllbutton(new Button[20]);
         for (int i = 1; i < 20; i++) {
-            allbutton[i] = new Button("");
-            allbutton[i].setAlignment(Pos.CENTER);
+            getAllbutton()[i] = new Button("");
+            getAllbutton()[i].setAlignment(Pos.CENTER);
         }
     }
 
@@ -577,4 +569,32 @@ public final class Register extends Application {
 
 //    >>>>>>> origin
 //    /BlxSheep
+
+    /**
+     * @return the alltext
+     */
+    public Text[] getAlltext() {
+        return alltext;
+    }
+
+    /**
+     * @param alltext the alltext to set
+     */
+    public void setAlltext(Text[] alltext) {
+        this.alltext = alltext;
+    }
+
+    /**
+     * @return the allbutton
+     */
+    public Button[] getAllbutton() {
+        return allbutton;
+    }
+
+    /**
+     * @param allbutton the allbutton to set
+     */
+    public void setAllbutton(Button[] allbutton) {
+        this.allbutton = allbutton;
+    }
 }
