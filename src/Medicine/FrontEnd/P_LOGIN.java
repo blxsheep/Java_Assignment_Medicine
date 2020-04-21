@@ -19,6 +19,7 @@ public class P_LOGIN extends javax.swing.JFrame {
     public P_LOGIN() {
         initComponents();
         this.setLocationRelativeTo(null); // set center on my screen 
+          //  LOGIN_LAYER.setVisible(false);
         REGISTER_LAYER.setVisible(false);
 
     }
@@ -266,7 +267,6 @@ public class P_LOGIN extends javax.swing.JFrame {
             jButton_Register.setBorderPainted(false);
             jButton_Register.setContentAreaFilled(false);
             jButton_Register.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            jButton_Register.setOpaque(true);
             jButton_Register.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/BG_LOGIN.png"))); // NOI18N
             jButton_Register.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Medicine/FrontEnd/Images/GIF1.gif"))); // NOI18N
             jButton_Register.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -872,11 +872,11 @@ public class P_LOGIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_backloginActionPerformed
 
     private void Regis_For_AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regis_For_AdminActionPerformed
-   
+
     }//GEN-LAST:event_Regis_For_AdminActionPerformed
 
     private void Regis_For_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regis_For_UserActionPerformed
-       
+
     }//GEN-LAST:event_Regis_For_UserActionPerformed
 
     private void Regis_For_AdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Regis_For_AdminMouseClicked
@@ -891,31 +891,45 @@ public class P_LOGIN extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+    
+        /*****************************************************************/
+        P_BEF_LOGIN screen = new P_BEF_LOGIN();
+        screen.setVisible(true);
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            for (int row = 0; row <=100; row++) {
+                Thread.sleep(50);
+                screen.loadingnumber.setText(Integer.toString(row)+"%");
+                screen.loadingprogress.setValue(row);
+                if (row == 100) {
+                    screen.setVisible(false);
+                   // screen2.setVisible(true);
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InterruptedException e) {
         }
-        //</editor-fold>
-        //</editor-fold>
+        /****************************************************************/
+                try {
+                    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+                    java.util.logging.Logger.getLogger(P_LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                //</editor-fold>
+                //</editor-fold>
 
-        //</editor-fold>
-        //</editor-fold>
+                //</editor-fold>
+                //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new P_LOGIN().setVisible(true);
-        });
+                /* Create and display the form */
+                java.awt.EventQueue.invokeLater(() -> {
+                    new P_LOGIN().setVisible(true);
+                });
 
-    }
-
-
+            }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG_bottom;
     private javax.swing.JTextField BOX_ID2;

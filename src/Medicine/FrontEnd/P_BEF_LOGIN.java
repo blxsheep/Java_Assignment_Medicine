@@ -16,6 +16,7 @@ public class P_BEF_LOGIN extends javax.swing.JFrame {
      */
     public P_BEF_LOGIN() {
         initComponents();
+         this.setLocationRelativeTo(null); // set center on my screen 
     }
 
     /**
@@ -27,48 +28,72 @@ public class P_BEF_LOGIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TOP = new javax.swing.JPanel();
-        BOTTOM = new javax.swing.JPanel();
+        Loading = new javax.swing.JPanel();
+        loadingnumber = new javax.swing.JLabel();
+        loadingprogress = new javax.swing.JProgressBar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Loading");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(500, 300));
+        setSize(new java.awt.Dimension(500, 300));
 
-        javax.swing.GroupLayout TOPLayout = new javax.swing.GroupLayout(TOP);
-        TOP.setLayout(TOPLayout);
-        TOPLayout.setHorizontalGroup(
-            TOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+        Loading.setBackground(new java.awt.Color(51, 51, 51));
+        Loading.setForeground(new java.awt.Color(51, 51, 51));
+        Loading.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+
+        loadingnumber.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
+        loadingnumber.setForeground(new java.awt.Color(169, 224, 49));
+        loadingnumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loadingnumber.setText("99%");
+        loadingnumber.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        loadingprogress.setBackground(new java.awt.Color(51, 51, 51));
+        loadingprogress.setForeground(new java.awt.Color(169, 224, 49));
+        loadingprogress.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 224, 49), 1, true));
+        loadingprogress.setBorderPainted(false);
+        loadingprogress.setFocusable(false);
+        loadingprogress.setPreferredSize(new java.awt.Dimension(14, 21));
+        loadingprogress.setRequestFocusEnabled(false);
+        loadingprogress.setStringPainted(true);
+        loadingprogress.setVerifyInputWhenFocusTarget(false);
+
+        javax.swing.GroupLayout LoadingLayout = new javax.swing.GroupLayout(Loading);
+        Loading.setLayout(LoadingLayout);
+        LoadingLayout.setHorizontalGroup(
+            LoadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoadingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loadingprogress, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoadingLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loadingnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(183, 183, 183))
         );
-        TOPLayout.setVerticalGroup(
-            TOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
-        BOTTOM.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout BOTTOMLayout = new javax.swing.GroupLayout(BOTTOM);
-        BOTTOM.setLayout(BOTTOMLayout);
-        BOTTOMLayout.setHorizontalGroup(
-            BOTTOMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        BOTTOMLayout.setVerticalGroup(
-            BOTTOMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
+        LoadingLayout.setVerticalGroup(
+            LoadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoadingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loadingnumber)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loadingprogress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TOP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BOTTOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Loading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(TOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BOTTOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(83, 83, 83)
+                .addComponent(Loading, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,15 +128,14 @@ public class P_BEF_LOGIN extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P_BEF_LOGIN().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P_BEF_LOGIN().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BOTTOM;
-    private javax.swing.JPanel TOP;
+    private javax.swing.JPanel Loading;
+    public javax.swing.JLabel loadingnumber;
+    public javax.swing.JProgressBar loadingprogress;
     // End of variables declaration//GEN-END:variables
 }
