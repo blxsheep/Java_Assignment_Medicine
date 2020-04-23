@@ -44,13 +44,18 @@ public class USER extends Application {
     ArrayList<String> type = new ArrayList<>();
     List<List<String>> name = new ArrayList<>();
     //  List<String> name = new ArrayList<>();
-   HBox suggestionBox = new HBox();
-    Scene sugges  = new Scene (suggestionBox, 500, 500,Color.BLUE);
     
+    HBox suggestionBox = new HBox();
+    VBox accountBox = new VBox(3);
+    VBox gaiyangBox = new VBox(3);
+    Scene sugges = new Scene(suggestionBox, 300, 300, Color.BLUE);
+
     Button button;
     Button logoutBtn = new Button("Logout");
     Button readDiagBtn = new Button("อ่านข้อความ");
- 
+    Button backBtn = new Button("ย้อนกลับ");
+    Button deleteBtn = new Button("ลบข้อความ");
+
     //comment
     Comment third;
 
@@ -177,7 +182,7 @@ public class USER extends Application {
         Symptom sym = new Symptom(userStage);
 
         userStage.setResizable(false);
-
+       
         third = new Comment(userStage);
         ReadDATA2(); // Call Function
         userStage.setTitle("Pharmacy Information System");
@@ -239,6 +244,8 @@ public class USER extends Application {
 
         BorderPane layout = new BorderPane();
         VBox vbox = new VBox();
+       
+        
         vbox.getChildren().addAll(cb1, cb2, button2, button4, readDiagBtn, logoutBtn);
         //INSERT TOP LEFT BOTTON RIGHT
         VBox.setMargin(cb1, new Insets(10, 0, 5, 0)); // set Margin btn1
@@ -295,18 +302,71 @@ public class USER extends Application {
             userStage.hide();
         });
 
+        deleteBtn.setOnAction((ActionEvent ex) -> {
+            User us = User.getById(Register.usrname);
+            String l = Register.usrname;
+            Text a = new Text();
+            Database db = new Database();
+            db.setFile("Suggestions");
+            ArrayList<Suggestion> arr = API.getAllSug();
+            System.out.println("arr>>");
+            System.out.println(arr);
+            System.out.println("<<");
+            db.write(null);
+            suggestionBox.getChildren().clear();
+            accountBox.getChildren().clear();
+            gaiyangBox.getChildren().clear();
+            int t = arr.size();
+            for (int i = arr.size() - 1; i >= 0; i--) {
+                //System.out.println("Name="+name);
+                if (arr.get(i).getReceiver().equals(l)) {
+                    System.out.println("First");
+                    arr.remove(i);
+                }
+            }
+            db.write(arr);
+            for (int i = 0; i < arr.size(); i++) {
+                if (arr.get(i).getReceiver().equals(l)) {
+                    
+                    a.setText(arr.get(i).getMessage());
+                   // suggestionBox.getChildren().addAll(new Text(arr.get(i).getMessage()));
+                }
+            }
+            System.out.println(arr);
+            accountBox.getChildren().add(new Text(String.format("ชื่อ : %s\nนามสกุล : %s\nอายุ : %s\nเพศ : %s", us.getFirstName(),us.getLastName(),us.getAge(),us.getGender())));
+            gaiyangBox.getChildren().addAll(accountBox,new Text("คำแนะนำจากเภสัชกร : "), a , deleteBtn, backBtn );
+            gaiyangBox.setAlignment(Pos.CENTER);
+            suggestionBox.getChildren().addAll(gaiyangBox);
+            suggestionBox.setAlignment(Pos.CENTER);
+        });
+            
+        backBtn.setOnAction((ActionEvent ex) -> {
+            userStage.setScene(scene);
+        });
+
         readDiagBtn.setOnAction((ActionEvent ex) -> {
-           String name  = Register.getusrname(); 
-           String ms = new String();
+            User us = User.getById(Register.usrname);
+            
+            String name = Register.getusrname();
+            String ms = new String();
             for (int i = 0; i < API.getAllSug().size(); i++) {
-                if (API.getAllSug().get(i).getReceiver().equals(name)){
+                if (API.getAllSug().get(i).getReceiver().equals(name)) {
                     ms = API.getAllSug().get(i).getMessage();
                 }
             }
             System.out.println(ms);
-            suggestionBox.getChildren().add(new Text(ms));
+            suggestionBox.getChildren().clear();
+            accountBox.getChildren().clear();
+            gaiyangBox.getChildren().clear();
+            accountBox.getChildren().add(new Text(String.format("ชื่อ : %s\nนามสกุล : %s\nอายุ : %s\nเพศ : %s", us.getFirstName(),us.getLastName(),us.getAge(),us.getGender())));
+            gaiyangBox.getChildren().addAll(accountBox, new Text("คำแนะนำจากเภสัชกร : " + ms), deleteBtn, backBtn );
+            gaiyangBox.setAlignment(Pos.CENTER);
+            suggestionBox.getChildren().addAll(gaiyangBox);
+            suggestionBox.setAlignment(Pos.CENTER);
+            
+            
             userStage.setScene(sugges);
-           
+
         });
 
         return scene;

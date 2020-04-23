@@ -214,11 +214,11 @@ public final class Register extends Application {
                 }
                 alltext[12].setText(" Login Success Press Back To Continues ");
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("asdasdasd");
-                alert.setTitle("TITLE");
-                alert.setHeaderText("Header");
-                alert.showAndWait();
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setContentText("asdasdasd");
+//                alert.setTitle("TITLE");
+//                alert.setHeaderText("Header");
+//                alert.showAndWait();
 
                 if (comboBox2.getValue().equals("Admin")) {
                     // Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
@@ -438,7 +438,7 @@ public final class Register extends Application {
            System.out.println(API.getCustom("Suggestions"));
          Adminpage.mednameBox3.setValue("");
           Adminpage.diagnoseField.setText("");
-            System.out.println(uss.getSuggestion());
+       //     System.out.println(uss.getSuggestion());
         });
         
         

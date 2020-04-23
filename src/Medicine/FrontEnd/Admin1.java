@@ -22,8 +22,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import Medicine.BackEnd.*;
+import java.util.HashSet;
 import java.util.List;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -203,6 +205,7 @@ public class Admin1 extends Application {
     HBox pVbox = new HBox(20);
     HBox sVbox = new HBox(20);
     HBox diagH = new HBox(20);
+    HBox patientPane = new HBox();
     TextField[] allfill;
     TextField diagnoseField = new TextField();
     TextField price = new TextField();
@@ -356,9 +359,14 @@ public class Admin1 extends Application {
         diagnoseBtn.setText("ส่งคำตอบรับ");
         diagH.getChildren().add(diagnoseField);
         diagH.setAlignment(Pos.BOTTOM_CENTER);
-        queuePatient.getChildren().addAll(allbutton[7], allbutton[8], mednameBox3,diagH,diagnoseBtn);
+        queuePatient.getChildren().addAll(allbutton[7], mednameBox3,diagH,diagnoseBtn, allbutton[8]);
         queuePatient.setAlignment(Pos.BOTTOM_CENTER);
-        addq.getChildren().addAll(VshowPatient,queuePatient);
+        patientPane.getChildren().addAll(queuePatient);
+        patientPane.setAlignment(Pos.BOTTOM_CENTER);
+        addq.getChildren().addAll(VshowPatient, patientPane);
+        VshowPatient.setAlignment(Pos.CENTER);
+        addq.setAlignment(Pos.CENTER);
+        
         
     }
 

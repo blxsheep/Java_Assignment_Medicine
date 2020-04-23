@@ -58,10 +58,10 @@ public class Suggestion extends Person {
     }
     }
 
-//    @Override
-//    public String toString() {
-//        return "Suggestion{" + "message=" + message + ", receiver=" + receiver + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Suggestion{" + "message=" + message + ", receiver=" + receiver + '}';
+    }
 
     @Override
     public String getRole() {
