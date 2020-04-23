@@ -223,11 +223,15 @@ public final class Register extends Application {
                 if (comboBox2.getValue().equals("Admin")) {
                     // Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
                     Admin st = new Admin(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                    String s = String.format("%s" ,genderBox.getValue());
+                    st.setGender(s);
                     Authority.registor(st);
                 }// get role
                 else if (comboBox2.getValue().equals("User")) {
                     //User st = new User(allfill[1].getText(), allfill[2].getText());
                     User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                    String s = String.format("%s" ,genderBox.getValue());
+                    st.setGender(s);
                     Authority.registor(st);
                 }
                 System.out.println(comboBox2.getValue());
