@@ -4,6 +4,7 @@ import Medicine.BackEnd.*;
 import Medicine.BackEnd.Drug;
 import com.sun.javafx.sg.prism.NGTriangleMesh;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -20,6 +21,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -28,6 +32,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 // TEst Push by dink
 
 /*
@@ -43,7 +48,7 @@ public class USER extends Application {
 
     ArrayList<String> type = new ArrayList<>();
     List<List<String>> name = new ArrayList<>();
-    //  List<String> name = new ArrayList<>();
+  
     
     HBox suggestionBox = new HBox();
     VBox accountBox = new VBox(3);
@@ -63,29 +68,6 @@ public class USER extends Application {
         launch(args);
     }
 
-//    public void ReadDATA() {
-//        String line = new String();
-//        List<String> temp = new ArrayList<>();
-//        //First Line is type
-//        int indexLine = 0;
-//        try ( BufferedReader reader = Files.newBufferedReader(Paths.get("data/database/", "Drugs.dat"), Charset.forName("UTF-8"))) {
-//            while ((line = reader.readLine()) != null) { // one loop = 1 line
-//                //System.out.println(line);
-//                if (indexLine == 0) { // First line
-//                    type = Arrays.asList(line.split(","));
-//                } else {
-//                    temp = new ArrayList<>(); // clear
-//                    temp = Arrays.asList(line.split(","));
-//                    name.add(temp);
-//                }
-//                indexLine++;
-//            }
-//        } catch (IOException e) {
-//            System.err.println(e);
-//        }
-//
-//        System.out.println(type);
-//    }
     public boolean isDuplicate(Drug dg, ArrayList<String> kind) {
         int ch = 0;
         for (int i = 0; i < kind.size(); i++) {
@@ -134,8 +116,6 @@ public class USER extends Application {
                 first = 1;
             } else {
 
-//                    System.out.print("Type =  "+type.get(k) + " vs ");
-//                    System.out.println("Arr "+i +">>"+ arr.get(i).getKind());
                 if (!isDuplicate(arr.get(i), type)) {
                     type.add(arr.get(i).getKind());
                     System.out.println("Added");
@@ -160,20 +140,13 @@ public class USER extends Application {
 
     }
 
-//                
-//                for (int j = 0; j < type.size(); j++) {
-//                    
-//                    if(type.get(j)== arr.get(i).getKind())
-//                        
-//                           temp.add(arr.get(i).getName());
-//                }
-//                name.add(temp); 
-//            
-//            }
     @Override
     public void start(Stage userStage) throws Exception { // this is main!
+        userStage.initStyle(StageStyle.UNDECORATED);
+         userStage.setScene(Setscene(userStage));
+        userStage.centerOnScreen();
         userStage.show();
-        userStage.setScene(Setscene(userStage));
+       
 
     }
 
@@ -201,35 +174,7 @@ public class USER extends Application {
         Button button4 = new Button("สอบถามอาการเบื้องต้น");
         //Button button3 = new Button("ขอความคิดเห็นเกี่ยวกับโปรแกรม");
 
-        /*
-        ex A: a1,a2,a3,a4
-           B: b1,b2,b3,b4,b5
-           C: ca1,cccc ...
-         */
- /*List<String> type = new ArrayList<>();
-        List<List<String>> name = new ArrayList<>();
-        type.add("A");
-        type.add("B");
-        type.add("C");
-
-        List<String> tempName = new ArrayList<>();
-        tempName.add("a1");
-        tempName.add("a2");
-        tempName.add("a3");
-        name.add(tempName);
-        
-        tempName = new ArrayList<>(); //Clear old member
-        tempName.add("b1");
-        tempName.add("b2");
-        tempName.add("b3");
-        name.add(tempName);
-        
-        tempName = new ArrayList<>(); //Clear old member
-        tempName.add("c1");
-        tempName.add("c2");
-        tempName.add("c3");
-        name.add(tempName);
-         */
+      
         ComboBox cb1 = new ComboBox();
         ComboBox cb2 = new ComboBox();
         cb1.setMinSize(200, 30);
@@ -237,9 +182,7 @@ public class USER extends Application {
         cb1.setPromptText("เลือกประเภทยา");
         cb2.setPromptText("เลือกยา");
 
-        //change font size                                  color
-        //cb1.setStyle("-fx-background-color: linear-gradient(#FFFFFF, #A12345);-fx-font-size: 17.0");
-        // insert member to combobox
+       
         cb1.getItems().addAll(type);
 
         BorderPane layout = new BorderPane();
@@ -252,8 +195,9 @@ public class USER extends Application {
         VBox.setMargin(cb2, new Insets(10, 0, 5, 0)); // set Margin btn2
         vbox.setAlignment(Pos.CENTER);
         layout.setCenter(vbox);
+        layout.setTop(GLOBALBAR(userStage));
         Scene scene = new Scene(layout, 400, 250);
-        userStage.setScene(scene);
+         userStage.setScene(scene);
         //userStage.show();
 
         //Event zone
@@ -285,10 +229,10 @@ public class USER extends Application {
                     final Stage dialog = new Stage();
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.initOwner(userStage);
-                    VBox dialogVbox = new VBox(20);
-                    // dialogVbox.getChildren().add(new Text(String.format("Select %s -> %s", cb1.getValue(),cb2.getValue())));
-                    dialogVbox.getChildren().add(new Text(String.format("\n\n\n      Kind : %s\n\n      Name : %s\n\n      Description : %s\n\n      Price : %s\n", dg.getKind(), dg.getName(), dg.getDescription(), dg.getPrice())));
-                    Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                    VBox dialogVbox = new VBox(20);                 
+                   dialogVbox.getChildren().add(new Text(String.format("\n\n\n      Kind : %s\n\n      Name : %s\n\n      Description : %s\n\n      Price : %s\n", dg.getKind(), dg.getName(), dg.getDescription(), dg.getPrice())));
+                  // dialogVbox.getChildren().add(textshow);
+                   Scene dialogScene = new Scene(dialogVbox, 650, 180);
                     dialog.setScene(dialogScene);
                     dialog.show();
                 } else {
@@ -333,7 +277,7 @@ public class USER extends Application {
                 }
             }
             System.out.println(arr);
-            accountBox.getChildren().add(new Text(String.format("ชื่อ : %s\nนามสกุล : %s\nอายุ : %s\nเพศ : %s", us.getFirstName(),us.getLastName(),us.getAge(),us.getGender())));
+            accountBox.getChildren().add(new Text(String.format("ชื่อ : %s\n นามสกุล : %s\nอายุ : %s\nเพศ : %s", us.getFirstName(),us.getLastName(),us.getAge(),us.getGender())));
             gaiyangBox.getChildren().addAll(accountBox,new Text("คำแนะนำจากเภสัชกร : "), a , deleteBtn, backBtn );
             gaiyangBox.setAlignment(Pos.CENTER);
             suggestionBox.getChildren().addAll(gaiyangBox);
@@ -372,9 +316,29 @@ public class USER extends Application {
         return scene;
 
     }
-//    @Override
-//    public void start(Stage stage) throws Exception {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+  public HBox GLOBALBAR(Stage a) {
+        HBox loginBar = new HBox();
+        loginBar.setStyle("-fx-background-color:rgb(187,88,35) ");
+        try {
+
+            ImageView minImage = new ImageView(new Image(new FileInputStream("src/Medicine/FrontEnd/Images/min1.png")));
+            loginBar.getChildren().add(minImage);
+            minImage.setOnMouseClicked((t) -> {
+                a.setIconified(true);
+            });
+            loginBar.setAlignment(Pos.CENTER_RIGHT);
+
+            ImageView closeImage = new ImageView(new Image(new FileInputStream("src/Medicine/FrontEnd/Images/cancle1.png")));
+            loginBar.getChildren().add(closeImage);
+            closeImage.setOnMouseClicked((t) -> {
+                System.exit(0);
+            });
+            loginBar.setAlignment(Pos.CENTER_RIGHT);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return loginBar;
+    }
 
 }

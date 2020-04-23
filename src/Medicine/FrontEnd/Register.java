@@ -8,6 +8,7 @@ package Medicine.FrontEnd;
 import Medicine.BackEnd.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
@@ -15,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -25,7 +27,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -42,10 +47,17 @@ public final class Register extends Application {
     boolean check, np;
     int i = 0, p = 0, o;
     VBox LogInpage = new VBox(5);
+    BorderPane loginPane = new BorderPane();
+    StackPane LoginStackPane = new StackPane();
+    StackPane BgRegi = new StackPane();
+
     VBox Registerpage = new VBox(4);
+    BorderPane REGIS_P = new BorderPane();
     HBox Registerpage2 = new HBox(4);
+
     HBox NameBox = new HBox(70);
     HBox PWBox = new HBox(70);
+
     HBox TextBox = new HBox(70);
     VBox Na = new VBox(14);
 
@@ -79,14 +91,14 @@ public final class Register extends Application {
     ComboBox genderBox = new ComboBox(gender);
 
     //set all scene//   
-    Scene s1 = new Scene(LogInpage, 600, 600);
-    Scene s2 = new Scene(Error_Page, 600, 600);
-    Scene s3 = new Scene(Registerpage, 600, 600);
+    Scene s1 = new Scene(loginPane, 700, 650);
+    Scene s2 = new Scene(Error_Page, 700, 650);
+    Scene s3 = new Scene(REGIS_P, 700, 650);
 
     /////////////////////////////////////////////////////////////
     /////////////setting for scene///////////////////////////////
     //Create starting page//
-    Register(Stage a) {
+    Register(Stage a) throws FileNotFoundException {
 
         /*-------------------------------------------------------*/
         // HBox.setMargin(fillName, new Insets(5));
@@ -94,22 +106,32 @@ public final class Register extends Application {
         fillPW.setPrefSize(150, 15);
         //    fillName.setPromptText("asd");
 
-        LogInpage.setStyle("-fx-background-image:url(\"src/Medicine/FrontEnd/Images/bg.png\");");
-        LogInpage.setPrefSize(600, 800);
+        //  LogInpage.setStyle("-fx-background-image:url(\"src/Medicine/FrontEnd/Images/bg.png\");");
+        //LogInpage.setStyle("-fx-background-color:rgb(51,51,51) ");
+       // LogInpage.setPrefSize(600, 800);
 
         next.setPrefSize(200, 15);
         //     next.setMaxSize(120, 60); // linear-gradient(#042A5A, #0B509B)
         next.setStyle("-fx-background-color :linear-gradient(#042A5A,#0B509B); -fx-text-fill: red;-fx-border-color: black;");
+
         try {
             next.setFont(Font.loadFont(new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Anantason-Regular.ttf")), 10));
             //  fillName.setFont(Font.loadFont(new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Anantason-Regular.ttf")), 10));
-            ImageView imgv = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/GIF1.gif"))));
-            LogInpage.getChildren().add(imgv);
+         //   ImageView imgv = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/GIF1.gif"))));
+//             ImageView imgv = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/GIF1.gif"))));
+            ImageView imglf = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/bglog.png"))));
+           // LogInpage.getChildren().add(imgv);
+           
+        ImageView bgRg = new ImageView(new Image(new FileInputStream(new File("src/Medicine/FrontEnd/Images/bglog.png"))));
+          LoginStackPane.getChildren().add(imglf);
+         BgRegi.getChildren().add(bgRg);
+         
+           //loginPane.setLeft(imglf);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*-------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------*/
 
         settext();
         setVbox();
@@ -118,24 +140,22 @@ public final class Register extends Application {
         setHbox();
         setTextbox();
         SetErrpage();
-        SetRegis();
+        SetRegis(a);
 
         Admin1 Adminpage = new Admin1();
 //<<<<<<< HEAD
         USER Userpage = new USER();
         np = false;
         fillName.setPromptText("YOUR ID");
+        fillName.setStyle("-fx-background-color:white;");
         fillPW.setPromptText("YOUR PASSWORD");
+        fillPW.setStyle("-fx-background-color:white;");
 
-//=======
-//       
-//        np = false;
-//        fillName.setText("Your ID");
-//        fillPW.setText("");
-//>>>>>>> origin/BlxSheep
         LogInpage.setAlignment(Pos.CENTER);
+        
         NameBox.setAlignment(Pos.CENTER);
         PWBox.setAlignment(Pos.CENTER);
+        
         TextBox.setAlignment(Pos.CENTER);
 
         allbutton[3].setText("สมัครสมาชิก");
@@ -148,10 +168,18 @@ public final class Register extends Application {
         alltext[13].setText("");
         alltext[13].setFill(Color.RED);
 
-        NameBox.getChildren().add(fillName);
+       NameBox.getChildren().add(fillName);
         PWBox.getChildren().add(fillPW);
+        BorderPane LoginBorderPane = new BorderPane();
         TextBox.getChildren().add(alltext[1]);
         LogInpage.getChildren().addAll(TextBox, NameBox, PWBox, alltext[13], next, allbutton[3]);
+        LogInpage.setPadding(new Insets(20, 80, 20, 20));
+        LoginBorderPane.setRight(LogInpage);
+        LoginStackPane.getChildren().add(LoginBorderPane);
+        
+        loginPane.setCenter(LoginStackPane);
+        loginPane.setTop(GLOBALBAR(a));
+        
 
         next.setOnAction((ActionEvent t) -> {
             Person user = (Person) idcheckers();
@@ -214,23 +242,23 @@ public final class Register extends Application {
                 }
                 alltext[12].setText(" Login Success Press Back To Continues ");
 
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                alert.setContentText("asdasdasd");
-//                alert.setTitle("TITLE");
-//                alert.setHeaderText("Header");
-//                alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("asdasdasd");
+                alert.setTitle("TITLE");
+                alert.setHeaderText("Header");
+                alert.showAndWait();
 
                 if (comboBox2.getValue().equals("Admin")) {
                     // Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
                     Admin st = new Admin(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
-                    String s = String.format("%s" ,genderBox.getValue());
+                    String s = String.format("%s", genderBox.getValue());
                     st.setGender(s);
                     Authority.registor(st);
                 }// get role
                 else if (comboBox2.getValue().equals("User")) {
                     //User st = new User(allfill[1].getText(), allfill[2].getText());
                     User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
-                    String s = String.format("%s" ,genderBox.getValue());
+                    String s = String.format("%s", genderBox.getValue());
                     st.setGender(s);
                     Authority.registor(st);
                 }
@@ -242,7 +270,7 @@ public final class Register extends Application {
 //                 << << << < HEAD
 //            
 // == == == =
-
+/*********************************************************************************/
         });
         Adminpage.allbutton[1].setOnAction((ActionEvent t) -> {
             // Queue Patient
@@ -270,6 +298,7 @@ public final class Register extends Application {
         Adminpage.allbutton[5].setOnAction((ActionEvent t) -> {
             a.setScene(Adminpage.admain);
         });
+    /********************************************************************************/
 //             << << << < HEAD
 //        
 //    
@@ -316,7 +345,7 @@ public final class Register extends Application {
             Adminpage.mednameBox3.setVisibleRowCount(3);
             Adminpage.allbutton[7].setText("Read ALL");
             Adminpage.allbutton[8].setText("Back");
-            Adminpage.addq.getChildren().addAll(Adminpage.VshowPatient,Adminpage.queuePatient);
+            Adminpage.addq.getChildren().addAll(Adminpage.VshowPatient, Adminpage.queuePatient);
 
         });
         //Remove drug
@@ -426,22 +455,28 @@ public final class Register extends Application {
             a.setScene(s1);
             Setbacktostartingpage();
         });
+        /**
+         * *********************************************************************
+         */
+
         Adminpage.diagnoseBtn.setOnAction((ActionEvent t) -> {
-         String sk = String.format("%s", Adminpage.mednameBox3.getValue());
-         String di  = Adminpage.diagnoseField.getText();
-         User uss = User.getById(sk);
+            String sk = String.format("%s", Adminpage.mednameBox3.getValue());
+            String di = Adminpage.diagnoseField.getText();
+            User uss = User.getById(sk);
 //        uss.setSuggestion(di);
-     //   Database  db = new Database();
-        //db.setFile("Suggestions");
-        Suggestion  sg = new  Suggestion(di ,sk );
-         Suggestion.addSug(sg);
-           System.out.println(API.getCustom("Suggestions"));
-         Adminpage.mednameBox3.setValue("");
-          Adminpage.diagnoseField.setText("");
-       //     System.out.println(uss.getSuggestion());
+            //   Database  db = new Database();
+            //db.setFile("Suggestions");
+            Suggestion sg = new Suggestion(di, sk);
+            Suggestion.addSug(sg);
+            System.out.println(API.getCustom("Suggestions"));
+            Adminpage.mednameBox3.setValue("");
+            Adminpage.diagnoseField.setText("");
+            //     System.out.println(uss.getSuggestion());
         });
-        
-        
+
+        /**
+         * *********************************************************************
+         */
 //                     >>> >>> > origin / BlxSheep
     }
     ///// set position error page ////
@@ -458,12 +493,14 @@ public final class Register extends Application {
         NameBox2.getChildren().addAll(getAlltext()[2], getAlltext()[3]);
         Error_Page.getChildren().addAll(NameBox2, BackBox);
     }
-
-    void SetRegis() {
+    // next.setFont(Font.loadFont(new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Anantason-Regular.ttf")), 10));
+    void SetRegis(Stage a) throws FileNotFoundException {
+        
+        Font f1 = new Font(28);
         getAlltext()[0].setText("สถานะ");
         getAlltext()[4].setText("ID :");
         getAlltext()[5].setText("PASSWORD :");
-        getAlltext()[6].setText("CONFIRM YOUR PASSWORD :");
+        getAlltext()[6].setText("CONFIRM PASSWORD :");
         getAlltext()[7].setText("ชื่อ :");
         getAlltext()[8].setText("นามสกุล :");
         getAlltext()[9].setText("อายุ :");
@@ -473,27 +510,69 @@ public final class Register extends Application {
         getAlltext()[12].setFill(Color.RED);
         getAllbutton()[4].setText("Register");
         getAllbutton()[5].setText("back");
+
         Na.setAlignment(Pos.TOP_RIGHT);
-        Row[6].setAlignment(Pos.TOP_RIGHT);
+        Row[6].setAlignment(Pos.CENTER);
         for (int j = 1; j <= 7; j++) {
             Na.getChildren().addAll(getAlltext()[j + 3]);
             Row[6].getChildren().addAll(allfill[j]);
+           Row[6].setSpacing(23);
         }
-        Column[0].setAlignment(Pos.TOP_CENTER);
-        Column[0].setAlignment(Pos.TOP_CENTER);
-        Column[0].getChildren().addAll(getAlltext()[0], comboBox2);
-        Column[8].setAlignment(Pos.CENTER);
-        Column[8].getChildren().addAll(getAlltext()[11], genderBox);
-        Registerpage2.setAlignment(Pos.TOP_CENTER);
+        for (int j = 0; j < 13; j++) {
+           if(j!=2&&j!=3){
+            FileInputStream font1 = new FileInputStream(new File("src/Medicine/FrontEnd/Fonts/Serithai-Regular.ttf"));
+            getAlltext()[j].setFont(Font.loadFont(font1, 18));
+           getAlltext()[j].setFill(Color.WHITE);
+           }
+        }
+        /**
+         * ***********************************************************************************
+         */  // Insets ซ้าย บน ล่าง ขวา
+        genderBox.setMinSize(175, 35);
+        comboBox2.setMinSize(175, 35);
+
+//        Column[0].setAlignment(Pos.CENTER);
+//        Column[0].setAlignment(Pos.CENTER); // สถานะ
+//        Column[0].getChildren().addAll(getAlltext()[0], comboBox2);
+//         Column[0].setPadding(new Insets(10, 10, 10, 10));
+         
+         GridPane comboGrad = new GridPane();
+         comboGrad.setPadding(new Insets(25,10, 25, 25));
+         comboGrad.add(getAlltext()[0], 0, 0); comboGrad.add(comboBox2, 1, 0);
+          comboGrad.add(getAlltext()[11], 0, 1); comboGrad.add(genderBox, 1, 1);
+        comboGrad.setAlignment(Pos.CENTER_RIGHT); comboGrad.setVgap(2);comboGrad.setHgap(2);
+        
+//          Column[8].setAlignment(Pos.CENTER); // เพศ
+//        Column[8].getChildren().addAll(getAlltext()[11], genderBox);
+//        Column[8].setPadding(new Insets(10, 10, 10, 10));
+
+        Registerpage2.setAlignment(Pos.CENTER);
         Registerpage2.getChildren().addAll(Na, Row[6]);
-        getAllbutton()[4].setAlignment(Pos.CENTER_RIGHT);
-        getAllbutton()[5].setAlignment(Pos.CENTER_RIGHT);
+        Registerpage2.setPadding(new Insets(10, 10, 10, 10));
+
+        getAllbutton()[4].setAlignment(Pos.CENTER);
+        getAllbutton()[5].setAlignment(Pos.CENTER);
+
         Column[11].getChildren().addAll(getAllbutton()[4], getAllbutton()[5]);
         Column[11].setAlignment(Pos.CENTER);
-        Registerpage.setAlignment(Pos.TOP_CENTER);
-        Registerpage.getChildren().addAll(Registerpage2, Column[0], Column[8], getAlltext()[12], Column[11]);
+        getAllbutton()[4].setAlignment(Pos.CENTER);
+        getAllbutton()[5].setAlignment(Pos.CENTER);
+        Column[11].setPadding(new Insets(10, 10, 10, 10));
+       
+        Registerpage.setAlignment(Pos.CENTER);
+        Registerpage.getChildren().addAll(Registerpage2,comboGrad, getAlltext()[12], Column[11]);
+        
+        BorderPane RegiBorderPane = new BorderPane();
+        RegiBorderPane.setRight(Registerpage);
+        BgRegi.getChildren().addAll(RegiBorderPane);
+        
+        REGIS_P.setCenter(BgRegi);
+        REGIS_P.setTop(GLOBALBAR(a));
     }
 
+    /**
+     * **************************************************************************************
+     */
     //////////////////////////////////////////////////////
     ///////////////another function///////////////////////
     //////////////////////////////////////////////////////
@@ -615,5 +694,30 @@ public final class Register extends Application {
      */
     public void setAllbutton(Button[] allbutton) {
         this.allbutton = allbutton;
+    }
+
+    public HBox GLOBALBAR(Stage a) {
+        HBox loginBar = new HBox();
+        loginBar.setStyle("-fx-background-color:rgb(187,88,35) ");
+        try {
+
+            ImageView minImage = new ImageView(new Image(new FileInputStream("src/Medicine/FrontEnd/Images/min1.png")));
+            loginBar.getChildren().add(minImage);
+            minImage.setOnMouseClicked((t) -> {
+                a.setIconified(true);
+            });
+            loginBar.setAlignment(Pos.CENTER_RIGHT);
+
+            ImageView closeImage = new ImageView(new Image(new FileInputStream("src/Medicine/FrontEnd/Images/cancle1.png")));
+            loginBar.getChildren().add(closeImage);
+            closeImage.setOnMouseClicked((t) -> {
+                System.exit(0);
+            });
+            loginBar.setAlignment(Pos.CENTER_RIGHT);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return loginBar;
     }
 }
