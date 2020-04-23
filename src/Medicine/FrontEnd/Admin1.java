@@ -182,13 +182,12 @@ public class Admin1 extends Application {
 
             }
             name.add(temp);
-      
 
             System.out.println("NAme= " + name);
         }
 
     }
-
+    ArrayList<BSymptom> arr = new ArrayList<BSymptom>();
     Text[] alltext;
     Button[] allbutton;
     Button removeBtn = new Button();
@@ -196,11 +195,16 @@ public class Admin1 extends Application {
     Button updateBtn = new Button();
     Button informBtn = new Button();
     Button logoutBtn = new Button();
+    Button diagnoseBtn = new Button();
     Scene[] scene;
     VBox[] Row;
+    VBox VshowPatient = new VBox(1);
+    VBox queuePatient = new VBox(1);
     HBox pVbox = new HBox(20);
     HBox sVbox = new HBox(20);
+    HBox diagH = new HBox(20);
     TextField[] allfill;
+    TextField diagnoseField = new TextField();
     TextField price = new TextField();
     TextField stock = new TextField();
     HBox[] Column;
@@ -216,30 +220,32 @@ public class Admin1 extends Application {
     Scene adupdate = new Scene(updatepage, 450, 450);
     Scene adadd = new Scene(addpage, 450, 450);
     Scene adshowpatient = new Scene(addq, 450, 450);
-    // ArrayList arr = API.getAllDrug();
+    // ArrayList arr = API.getAllDrug()
     ObservableList<String> Type = FXCollections.observableArrayList(cbtype());
     ObservableList<String> Type1 = FXCollections.observableArrayList(cbtype());
     ObservableList<List<String>> Medname = FXCollections.observableArrayList();
     ObservableList<List<String>> Medname1 = FXCollections.observableArrayList();
+    ObservableList<List<String>> Medname2 = FXCollections.observableArrayList();
     //  ObservableList<String> count = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "---------------");
 
     ComboBox typeBox = new ComboBox(Type); //Updatepage Lower cb
     ComboBox typeBox2 = new ComboBox(Type1);
-    ComboBox typeBox3 = new ComboBox(Type);
     ComboBox mednameBox = new ComboBox(Medname);
     ComboBox mednameBox2 = new ComboBox(Medname1);
-    public void reset(){
-            ObservableList<String> Type = FXCollections.observableArrayList(cbtype());
-    ObservableList<String> Type1 = FXCollections.observableArrayList(cbtype());
-    ObservableList<List<String>> Medname = FXCollections.observableArrayList();
-    ObservableList<List<String>> Medname1 = FXCollections.observableArrayList();
-    //  ObservableList<String> count = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "---------------");
+    ComboBox mednameBox3 = new ComboBox(Medname2);
 
-    ComboBox typeBox = new ComboBox(Type); //Updatepage Lower cb
-    ComboBox typeBox2 = new ComboBox(Type1);
-    ComboBox typeBox3 = new ComboBox(Type);
-    ComboBox mednameBox = new ComboBox(Medname);
-    ComboBox mednameBox2 = new ComboBox(Medname1);
+    public void reset() {
+        ObservableList<String> Type = FXCollections.observableArrayList(cbtype());
+        ObservableList<String> Type1 = FXCollections.observableArrayList(cbtype());
+        ObservableList<List<String>> Medname = FXCollections.observableArrayList();
+        ObservableList<List<String>> Medname1 = FXCollections.observableArrayList();
+        //  ObservableList<String> count = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "---------------");
+
+        ComboBox typeBox = new ComboBox(Type); //Updatepage Lower cb
+        ComboBox typeBox2 = new ComboBox(Type1);
+        ComboBox typeBox3 = new ComboBox(Type);
+        ComboBox mednameBox = new ComboBox(Medname);
+        ComboBox mednameBox2 = new ComboBox(Medname1);
     }
     //  ComboBox CountBox = new ComboBox(count);
 
@@ -250,6 +256,7 @@ public class Admin1 extends Application {
            but4 => goto addMed
      */
     Admin1() {
+
         setHbox();
         setTextbox();
         setbut();
@@ -258,6 +265,7 @@ public class Admin1 extends Application {
         Updatepage();
         Setadd();
         showpatient();
+        
         allbutton[4].setText("เพิ่มยา");
         allbutton[3].setText("เพิ่มยาตัวใหม่");
         allbutton[2].setText("อัพเดท/ดูข้อมูล");
@@ -268,7 +276,7 @@ public class Admin1 extends Application {
             Column[1].getChildren().add(allbutton[i]);
         }
         page1.setAlignment(Pos.CENTER);
-        page1.getChildren().addAll(Column[1],logoutBtn);
+        page1.getChildren().addAll(Column[1], logoutBtn);
 
     }
 
@@ -285,7 +293,7 @@ public class Admin1 extends Application {
         sVbox.getChildren().addAll(stock);
         pVbox.setAlignment(Pos.CENTER);
         sVbox.setAlignment(Pos.CENTER);
-        Row[2].getChildren().addAll(typeBox2, mednameBox2, informBtn,  removeBtn);
+        Row[2].getChildren().addAll(typeBox2, mednameBox2, informBtn, removeBtn);
         page2.getChildren().addAll(typeBox, mednameBox, pVbox, sVbox, updateBtn, upbackBtn);
         page2.setAlignment(Pos.BOTTOM_CENTER);
         page2s.setAlignment(Pos.TOP_CENTER);
@@ -322,24 +330,36 @@ public class Admin1 extends Application {
         addpage.getChildren().addAll(addpage2, Column[0], Column[11]);
     }
 
-    void showpatient() {
-        ArrayList<BSymptom> arr = new ArrayList<BSymptom>();
-
-        //     API.InitSymptom();
+    void refreshshowpatient() {
         arr = API.getAllSymptom();
+        
+        System.out.println(arr);
         if (arr == null) {
-            addq.getChildren().add(new Text(String.format("No Older Patient")));
+            VshowPatient.getChildren().clear();
+            VshowPatient.getChildren().add(new Text(String.format("No Older Patient")));
         } else {
+            VshowPatient.getChildren().clear();
             for (int i = 0; i < arr.size(); i++) {
-                addq.getChildren().clear();
-                addq.getChildren().add(new Text(String.format("Symptom  : %s   Writer : %s\n", arr.get(i).getCymtomp(), arr.get(i).getPatient())));
+                //  addq.getChildren().clear();
+
+                VshowPatient.getChildren().add(new Text(String.format("Symptom  : %s   Writer : %s\n", arr.get(i).getCymtomp(), arr.get(i).getPatient())));
 
             }
         }
-        allbutton[7].setText("Read ALL");
-        allbutton[8].setText("Back");
-        addq.getChildren().addAll(allbutton[7], allbutton[8]);
+ 
+    }
 
+    void showpatient() {
+        mednameBox3.setVisibleRowCount(3);
+        allbutton[7].setText("อ่านทั้งหมด");
+        allbutton[8].setText("ย้อนกลับ");
+        diagnoseBtn.setText("ส่งคำตอบรับ");
+        diagH.getChildren().add(diagnoseField);
+        diagH.setAlignment(Pos.BOTTOM_CENTER);
+        queuePatient.getChildren().addAll(allbutton[7], allbutton[8], mednameBox3,diagH,diagnoseBtn);
+        queuePatient.setAlignment(Pos.BOTTOM_CENTER);
+        addq.getChildren().addAll(VshowPatient,queuePatient);
+        
     }
 
     public void settext() {

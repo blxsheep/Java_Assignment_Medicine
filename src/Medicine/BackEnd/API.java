@@ -18,10 +18,11 @@ public class API {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        API._INIT_DATABASE_();
-        API.InitDrugInform();
+//        API._INIT_DATABASE_();
+//        API.InitDrugInform();
        Database db = new Database();
-       db.setFile("Drugs");
+       //db.newDatabase("Suggestions", db);
+       //db.setFile("Drugs");
        //db.write(null);
        //API.InitDrugInform();
        
@@ -101,8 +102,14 @@ System.out.println(Authority.login("t2", "12345"));
 
     public static ArrayList<Drug> getAllDrug() {
         Person st = new Drug();
-        Database db = st.getDbPath();
+        Database db = st.getDbPath();      
         return (ArrayList<Drug>) db.get();
+    }
+       public static ArrayList<Suggestion> getAllSug() {
+        Person st = new Suggestion();
+        Database db = st.getDbPath();  
+        //db.setFile("Suggestions");
+        return (ArrayList<Suggestion>) db.get();
     }
 
     public static ArrayList<BComment> getAllComment() {
@@ -114,11 +121,13 @@ System.out.println(Authority.login("t2", "12345"));
     public static ArrayList<BSymptom> getAllSymptom() {
         Person st = new BSymptom();
         Database db = st.getDbPath();
+        db.setFile("BSymptoms");
         return (ArrayList<BSymptom>) db.get();
     }
 
     public static ArrayList<Object> getCustom(String file) {
         Database db = new Database(file);
+        db.setFile(file);
         return (ArrayList<Object>) db.get();
     }
 
@@ -222,6 +231,21 @@ System.out.println(Authority.login("t2", "12345"));
 
         db.setFile("BSymptoms");
         BSymptom c = new BSymptom("Symptom Rxample");
+
+        arr.add(c);
+
+        db.write(arr);
+
+    }
+    
+    public static void InitSug() {
+
+        Database db = new Database();
+        ArrayList<Suggestion> arr = new ArrayList<Suggestion>();
+
+        db.setFile("Suggestions");
+Suggestion  c = new Suggestion("...","..");
+
 
         arr.add(c);
 

@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package Medicine.FrontEnd;
-import Medicine.BackEnd.API;
+
+import Medicine.BackEnd.*;
 import Medicine.BackEnd.Person;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -26,7 +27,10 @@ public class GUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println( API.getAllSymptom());
-       
+      // API.InitSug();
+       API.InitDrugInform();
+      // API.InitComment();
+       //API.InitSymptom();
         stage.show();
         stage.setScene(Setscene(stage));
         

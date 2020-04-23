@@ -5,7 +5,6 @@
  */
 package Medicine.FrontEnd;
 
-
 import Medicine.BackEnd.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -174,7 +173,7 @@ public final class Register extends Application {
                     a.setScene(Adminpage.admain);
 //<<<<<<< HEAD
                 }
-                }else {
+            } else {
                 alltext[13].setText("เกิดข้อผิดพลาด กรุณาตรวจสอบ ID หรือ PASSWORD อีกครั้ง");
 //=======
 //
@@ -185,328 +184,344 @@ public final class Register extends Application {
 //>>>>>>> origin/BlxSheep
                 Setbacktostartingpage();
             }
-            });
-            allbutton[3].setOnAction((ActionEvent t) -> {
-                a.setScene(scene[3]);
-                a.setTitle("Registor_PAGE");
-            });
-            ///////////////ErrorPage//////////////////
-            back.setOnAction((ActionEvent t) -> {
-                Setbacktostartingpage();
-                a.setScene(scene[1]);
-                alltext[13].setText("");
-                a.setTitle("LOGIN_PAGE");
-            });
-            ///////////Registor Page///////////////////
-            ////// Back to Loginpage From RegistorPage
-            allbutton[5].setOnAction((ActionEvent t) -> {
-                Setbacktostartingpage();
-                registerclear();
-                alltext[12].setText("");
-                alltext[13].setText("");
-                a.setScene(scene[1]);
-                a.setTitle("LOGIN_PAGE");
-            });
+        });
+        allbutton[3].setOnAction((ActionEvent t) -> {
+            a.setScene(scene[3]);
+            a.setTitle("Registor_PAGE");
+        });
+        ///////////////ErrorPage//////////////////
+        back.setOnAction((ActionEvent t) -> {
+            Setbacktostartingpage();
+            a.setScene(scene[1]);
+            alltext[13].setText("");
+            a.setTitle("LOGIN_PAGE");
+        });
+        ///////////Registor Page///////////////////
+        ////// Back to Loginpage From RegistorPage
+        allbutton[5].setOnAction((ActionEvent t) -> {
+            Setbacktostartingpage();
+            registerclear();
+            alltext[12].setText("");
+            alltext[13].setText("");
+            a.setScene(scene[1]);
+            a.setTitle("LOGIN_PAGE");
+        });
 
-            allbutton[4].setOnAction((ActionEvent t) -> {
-                if (checkpassWord()) {
-                    for (int i = 1; i < 8; i++) {
-                        System.out.println(allfill[i].getText());
-                    }
-                    alltext[12].setText(" Login Success Press Back To Continues ");
-
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("asdasdasd");
-                    alert.setTitle("TITLE");
-                    alert.setHeaderText("Header");
-                    alert.showAndWait();
-
-                    if (comboBox2.getValue().equals("Admin")) {
-                        // Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
-                        Admin st = new Admin(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
-                        Authority.registor(st);
-                    }// get role
-                    else if (comboBox2.getValue().equals("User")) {
-                        //User st = new User(allfill[1].getText(), allfill[2].getText());
-                        User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
-                        Authority.registor(st);
-                    }
-                    genderBox.getValue();
-                    System.out.println(comboBox2.getValue());
-                    registerclear();
-                } else {
-                    alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
+        allbutton[4].setOnAction((ActionEvent t) -> {
+            if (checkpassWord()) {
+                for (int i = 1; i < 8; i++) {
+                    System.out.println(allfill[i].getText());
                 }
+                alltext[12].setText(" Login Success Press Back To Continues ");
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("asdasdasd");
+                alert.setTitle("TITLE");
+                alert.setHeaderText("Header");
+                alert.showAndWait();
+
+                if (comboBox2.getValue().equals("Admin")) {
+                    // Admin st = new Admin(allfill[1].getText(), allfill[2].getText());
+                    Admin st = new Admin(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                    Authority.registor(st);
+                }// get role
+                else if (comboBox2.getValue().equals("User")) {
+                    //User st = new User(allfill[1].getText(), allfill[2].getText());
+                    User st = new User(allfill[1].getText(), allfill[2].getText(), allfill[4].getText(), allfill[5].getText(), allfill[6].getText(), allfill[7].getText());
+                    Authority.registor(st);
+                }
+                System.out.println(comboBox2.getValue());
+                registerclear();
+            } else {
+                alltext[12].setText("เกิดข้อผิดพลาดกรุณาเช็คข้อมูลอีกครั้ง");
+            }
 //                 << << << < HEAD
 //            
 // == == == =
 
-            });
-            Adminpage.allbutton[1].setOnAction((ActionEvent t) -> {
-                // Queue Patient
-                a.setScene(Adminpage.adshowpatient);
+        });
+        Adminpage.allbutton[1].setOnAction((ActionEvent t) -> {
+            // Queue Patient
+            String ss = new String();
+            ArrayList<String> userName = new ArrayList<>();
+            for (int j = 0; j < API.getAllUser().size(); j++) {
+                ss = API.getAllUser().get(j).getUserName();
+                userName.add(ss);
+
+            }
+            Adminpage.refreshshowpatient();
+            Adminpage.mednameBox3.getItems().clear();
+            Adminpage.mednameBox3.getItems().addAll(userName);
+            //Adminpage.showpatient();
+            a.setScene(Adminpage.adshowpatient);
+
 //                 >>> >>> > origin / BlxSheep
-            });
-            Adminpage.allbutton[2].setOnAction((ActionEvent t) -> {
-                a.setScene(Adminpage.adupdate);
-            });
-            Adminpage.allbutton[3].setOnAction((ActionEvent t) -> {
-                a.setScene(Adminpage.adadd);
-            });
-            Adminpage.allbutton[5].setOnAction((ActionEvent t) -> {
-                a.setScene(Adminpage.admain);
-            });
+        });
+        Adminpage.allbutton[2].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.adupdate);
+        });
+        Adminpage.allbutton[3].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.adadd);
+        });
+        Adminpage.allbutton[5].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.admain);
+        });
 //             << << << < HEAD
 //        
 //    
-     //   }
+        //   }
 //                == == ==
-                 //Add to add drug
-                Adminpage.allbutton[4].setOnAction((ActionEvent t) -> {
-                    String name = Adminpage.allfill[1].getText();
-                    String des = Adminpage.allfill[2].getText();
-                    int stock = Integer.parseInt(Adminpage.allfill[3].getText());
-                    int price = Integer.parseInt(Adminpage.allfill[4].getText());
-                    String kind = Adminpage.allfill[7].getText();
-                    String exp = Adminpage.allfill[5].getText();
-                    API.addDrug(new Drug(kind, name, exp, des, price, stock));
-                    System.out.println(API.getCustom("Drugs"));
-                    ArrayList<String> arr = Adminpage.cbtype();
-                    List<List<String>> arr2 = Adminpage.cbname();
-                    System.out.print("CBTYPE ==  ");
-                    System.out.print(arr);
-                    System.out.print("CBNAME==");
-                    System.out.println(arr2);
-                    ArrayList<String> Type1 = arr;
-                    Adminpage.typeBox.getItems().clear();
-                    Adminpage.typeBox2.getItems().clear();
-                    Adminpage.typeBox.getItems().addAll(Type1);
-                    Adminpage.typeBox2.getItems().addAll(Type1);
+        //Add to add drug
+        Adminpage.allbutton[4].setOnAction((ActionEvent t) -> {
+            String name = Adminpage.allfill[1].getText();
+            String des = Adminpage.allfill[2].getText();
+            int stock = Integer.parseInt(Adminpage.allfill[3].getText());
+            int price = Integer.parseInt(Adminpage.allfill[4].getText());
+            String kind = Adminpage.allfill[7].getText();
+            String exp = Adminpage.allfill[5].getText();
+            API.addDrug(new Drug(kind, name, exp, des, price, stock));
+            System.out.println(API.getCustom("Drugs"));
+            ArrayList<String> arr = Adminpage.cbtype();
+            List<List<String>> arr2 = Adminpage.cbname();
+            System.out.print("CBTYPE ==  ");
+            System.out.print(arr);
+            System.out.print("CBNAME==");
+            System.out.println(arr2);
+            ArrayList<String> Type1 = arr;
+            Adminpage.typeBox.getItems().clear();
+            Adminpage.typeBox2.getItems().clear();
+            Adminpage.typeBox.getItems().addAll(Type1);
+            Adminpage.typeBox2.getItems().addAll(Type1);
 //                     >>> >>> > origin / BlxSheep
 //                            << << << < HEAD
-    
+
 //                    Register() {
 //                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 ////                         == == == =
-                    });
+        });
 
-                    Adminpage.allbutton[7].setOnAction((ActionEvent t) -> {
-                        //clear
-                        Database db = new Database();
-                        db.setFile("BSymptoms");
-                        db.write(null);
-                        System.out.println(API.getAllAdmin());
-                        Adminpage.addq.getChildren().clear();
-                        Adminpage.addq.getChildren().add(new Text(String.format("No Older Patient")));
-                        Adminpage.allbutton[7].setText("Read ALL");
-                        Adminpage.allbutton[8].setText("Back");
-                        Adminpage.addq.getChildren().addAll(Adminpage.allbutton[7], Adminpage.allbutton[8]);
-                    });
-                    //Remove drug
-                    Adminpage.removeBtn.setOnAction((ActionEvent t) -> {
-                        String newname = String.format("%s", Adminpage.mednameBox2.getValue());
-                        // Remove button 
-                        int index = Drug.getIdxDrug(newname);
-                        System.out.println(" index >>" + index);
-                        API.removeDrug(newname);
+        Adminpage.allbutton[7].setOnAction((ActionEvent t) -> {
+            //clear
 
-                        ArrayList<String> arx = Adminpage.cbtype();
-                        List<List<String>> arr2 = Adminpage.cbname();
-                        System.out.print("CBTYPE ==  ");
-                        System.out.print(arx);
-                        System.out.print("CBNAME==");
-                        System.out.println(arr2);
-                        ArrayList<String> Type1 = arx;
-                        Adminpage.typeBox.getItems().clear();
-                        Adminpage.typeBox2.getItems().clear();
-                        Adminpage.typeBox.getItems().addAll(Type1);
-                        Adminpage.typeBox2.getItems().addAll(Type1);
+            Database db = new Database();
+            db.setFile("BSymptoms");
+            db.write(null);
+            System.out.println(API.getAllAdmin());
+            Adminpage.VshowPatient.getChildren().clear();
+            Adminpage.VshowPatient.getChildren().add(new Text(String.format("No Older Patient")));
+            Adminpage.mednameBox3.setVisibleRowCount(3);
+            Adminpage.allbutton[7].setText("Read ALL");
+            Adminpage.allbutton[8].setText("Back");
+            Adminpage.addq.getChildren().addAll(Adminpage.VshowPatient,Adminpage.queuePatient);
+
+        });
+        //Remove drug
+        Adminpage.removeBtn.setOnAction((ActionEvent t) -> {
+            String newname = String.format("%s", Adminpage.mednameBox2.getValue());
+            // Remove button 
+            int index = Drug.getIdxDrug(newname);
+            System.out.println(" index >>" + index);
+            API.removeDrug(newname);
+
+            ArrayList<String> arx = Adminpage.cbtype();
+            List<List<String>> arr2 = Adminpage.cbname();
+            System.out.print("CBTYPE ==  ");
+            System.out.print(arx);
+            System.out.print("CBNAME==");
+            System.out.println(arr2);
+            ArrayList<String> Type1 = arx;
+            Adminpage.typeBox.getItems().clear();
+            Adminpage.typeBox2.getItems().clear();
+            Adminpage.typeBox.getItems().addAll(Type1);
+            Adminpage.typeBox2.getItems().addAll(Type1);
 //  
 
-                        System.out.println(API.getAllDrug());
-                    });
-                    Adminpage.informBtn.setOnAction(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent e) {
-                            if (Adminpage.typeBox2.getValue() != null && Adminpage.mednameBox2.getValue() != null) {
-                                System.out.println(String.format("Select %s -> %s", Adminpage.typeBox2.getValue(), Adminpage.mednameBox2.getValue()));
-                                //API.InitDrugInform();
-                                String s = String.format("%s", Adminpage.mednameBox2.getValue());
-                                System.out.println(API.getCustom("Drugs"));
-                                System.out.println(s);
-                                int index = Drug.getIdxDrug(s);
-                                Drug dg = Database.getDrug().get(index);
-                                System.out.println(dg);
-                                System.out.print("price = " + dg.getPrice());
+            System.out.println(API.getAllDrug());
+        });
+        Adminpage.informBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if (Adminpage.typeBox2.getValue() != null && Adminpage.mednameBox2.getValue() != null) {
+                    System.out.println(String.format("Select %s -> %s", Adminpage.typeBox2.getValue(), Adminpage.mednameBox2.getValue()));
+                    //API.InitDrugInform();
+                    String s = String.format("%s", Adminpage.mednameBox2.getValue());
+                    System.out.println(API.getCustom("Drugs"));
+                    System.out.println(s);
+                    int index = Drug.getIdxDrug(s);
+                    Drug dg = Database.getDrug().get(index);
+                    System.out.println(dg);
+                    System.out.print("price = " + dg.getPrice());
 
-                                //System.out.println(indx);
-                                final Stage dialog = new Stage();
-                                dialog.initModality(Modality.APPLICATION_MODAL);
-                                dialog.initOwner(a);
-                                VBox dialogVbox = new VBox(20);
-                                // dialogVbox.getChildren().add(new Text(String.format("Select %s -> %s", cb1.getValue(),cb2.getValue())));
-                                dialogVbox.getChildren().add(new Text(String.format("\n      Kind : %s\n\n      Name : %s\n\n      Description : %s\n\n      Price : %s\n\n      Stock : %s\n\n      Expiration Date : %s", dg.getKind(), dg.getName(), dg.getDescription(), dg.getPrice(), dg.getStock(), dg.getExpire())));
-                                Scene dialogScene = new Scene(dialogVbox, 700, 200);
-                                dialog.setScene(dialogScene);
-                                dialog.show();
-                            } else {
-                                System.out.println("Error!");
-                            }
-                        }
-                    });
-                    Adminpage.allbutton[8].setOnAction((ActionEvent t) -> {
-                        a.setScene(Adminpage.admain);
-                    });
-                    Adminpage.upbackBtn.setOnAction((ActionEvent t) -> {
-                        a.setScene(Adminpage.admain);
-                    });
-//
-                    Adminpage.typeBox.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
-                        @Override
-                        public void handle(ActionEvent e) {
-
-                            Adminpage.mednameBox.getItems().clear(); // Clear old member
-                            int index = Adminpage.Type.indexOf(Adminpage.typeBox.getValue()); // Find index of (A,B,C) in type
-                            // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
-                            System.out.println(Adminpage.cbname());
-                            Adminpage.mednameBox.getItems().addAll(Adminpage.cbname().get(index)); // it mean name[i] -> but use .get(i)
-                        }
-                    });
-
-                    Adminpage.typeBox2.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
-                        @Override
-                        public void handle(ActionEvent e) {
-                            Adminpage.mednameBox2.getItems().clear(); // Clear old member
-                            int index = Adminpage.Type1.indexOf(Adminpage.typeBox2.getValue()); // Find index of (A,B,C) in type               
-                            // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
-                            System.out.println(Adminpage.cbname());
-                            Adminpage.mednameBox2.getItems().addAll(Adminpage.cbname().get(index)); // it mean name[i] -> but use .get(i)
-                        }
-                    });
-
-                    Adminpage.updateBtn.setOnAction((ActionEvent t) -> {
-                        int xprice = Integer.parseInt(Adminpage.price.getText());
-                        int xstock = Integer.parseInt(Adminpage.stock.getText());
-                        String newname = String.format("%s", Adminpage.mednameBox.getValue());
-                        String ntype = String.format("%s", Adminpage.typeBox.getValue());
-
-                        // Update button 
-                        int index = Drug.getIdxDrug(newname);
-                        System.out.println(" index >>" + index);
-                        ArrayList<Drug> arr = API.getAllDrug();
-                        String exp = arr.get(index).getExpire();
-                        String Des = arr.get(index).getDescription();
-                        API.editDrug(newname, new Drug(ntype, newname, exp, Des, xprice, xstock));
-
-                        System.out.println(API.getAllDrug());
-
-                    });
-                    Adminpage.logoutBtn.setOnAction((ActionEvent t) -> {
-                        a.setScene(s1);
-                        Setbacktostartingpage();
-                    });
-                    Userpage.logoutBtn.setOnAction((ActionEvent t) -> {
-                        a.setScene(s1);
-                        Setbacktostartingpage();
-                    });
-//                     >>> >>> > origin / BlxSheep
+                    //System.out.println(indx);
+                    final Stage dialog = new Stage();
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.initOwner(a);
+                    VBox dialogVbox = new VBox(20);
+                    // dialogVbox.getChildren().add(new Text(String.format("Select %s -> %s", cb1.getValue(),cb2.getValue())));
+                    dialogVbox.getChildren().add(new Text(String.format("\n      Kind : %s\n\n      Name : %s\n\n      Description : %s\n\n      Price : %s\n\n      Stock : %s\n\n      Expiration Date : %s", dg.getKind(), dg.getName(), dg.getDescription(), dg.getPrice(), dg.getStock(), dg.getExpire())));
+                    Scene dialogScene = new Scene(dialogVbox, 700, 200);
+                    dialog.setScene(dialogScene);
+                    dialog.show();
+                } else {
+                    System.out.println("Error!");
                 }
-                ///// set position error page ////
+            }
+        });
+        Adminpage.allbutton[8].setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.admain);
+        });
+        Adminpage.upbackBtn.setOnAction((ActionEvent t) -> {
+            a.setScene(Adminpage.admain);
+        });
+//
+        Adminpage.typeBox.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
+            @Override
+            public void handle(ActionEvent e) {
 
-        void SetErrpage
+                Adminpage.mednameBox.getItems().clear(); // Clear old member
+                int index = Adminpage.Type.indexOf(Adminpage.typeBox.getValue()); // Find index of (A,B,C) in type
+                // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
+                System.out.println(Adminpage.cbname());
+                Adminpage.mednameBox.getItems().addAll(Adminpage.cbname().get(index)); // it mean name[i] -> but use .get(i)
+            }
+        });
+
+        Adminpage.typeBox2.setOnAction(new EventHandler<ActionEvent>() { // if cb1 change value = change value in cb 2 ...
+            @Override
+            public void handle(ActionEvent e) {
+                Adminpage.mednameBox2.getItems().clear(); // Clear old member
+                int index = Adminpage.Type1.indexOf(Adminpage.typeBox2.getValue()); // Find index of (A,B,C) in type               
+                // Adminpage.Medname= FXCollections.observableArrayList(Adminpage.cbname());
+                System.out.println(Adminpage.cbname());
+                Adminpage.mednameBox2.getItems().addAll(Adminpage.cbname().get(index)); // it mean name[i] -> but use .get(i)
+            }
+        });
+
+        Adminpage.updateBtn.setOnAction((ActionEvent t) -> {
+            int xprice = Integer.parseInt(Adminpage.price.getText());
+            int xstock = Integer.parseInt(Adminpage.stock.getText());
+            String newname = String.format("%s", Adminpage.mednameBox.getValue());
+            String ntype = String.format("%s", Adminpage.typeBox.getValue());
+
+            // Update button 
+            int index = Drug.getIdxDrug(newname);
+            System.out.println(" index >>" + index);
+            ArrayList<Drug> arr = API.getAllDrug();
+            String exp = arr.get(index).getExpire();
+            String Des = arr.get(index).getDescription();
+            API.editDrug(newname, new Drug(ntype, newname, exp, Des, xprice, xstock));
+
+            System.out.println(API.getAllDrug());
+
+        });
+        Adminpage.logoutBtn.setOnAction((ActionEvent t) -> {
+            a.setScene(s1);
+            Setbacktostartingpage();
+        });
+        Userpage.logoutBtn.setOnAction((ActionEvent t) -> {
+            a.setScene(s1);
+            Setbacktostartingpage();
+        });
+        Adminpage.diagnoseBtn.setOnAction((ActionEvent t) -> {
+         String sk = String.format("%s", Adminpage.mednameBox3.getValue());
+         String di  = Adminpage.diagnoseField.getText();
+         User uss = User.getById(sk);
+//        uss.setSuggestion(di);
+     //   Database  db = new Database();
+        //db.setFile("Suggestions");
+        Suggestion  sg = new  Suggestion(di ,sk );
+         Suggestion.addSug(sg);
+           System.out.println(API.getCustom("Suggestions"));
+         Adminpage.mednameBox3.setValue("");
+          Adminpage.diagnoseField.setText("");
+            System.out.println(uss.getSuggestion());
+        });
         
-            () {
+        
+//                     >>> >>> > origin / BlxSheep
+    }
+    ///// set position error page ////
+
+    void SetErrpage() {
         Error_Page.setAlignment(Pos.CENTER);
-            NameBox2.setAlignment(Pos.CENTER);
-            BackBox.setAlignment(Pos.BOTTOM_RIGHT);
-            getAlltext()[3].setText("Plesae check YOUR ID or PASSWORD");
-            getAlltext()[3].setFill(Color.RED);
-            getAlltext()[2].setText("Error");
-            getAlltext()[2].setFont(Font.font(20));
-            BackBox.getChildren().add(back);
-            NameBox2.getChildren().addAll(getAlltext()[2], getAlltext()[3]);
-            Error_Page.getChildren().addAll(NameBox2, BackBox);
-        }
+        NameBox2.setAlignment(Pos.CENTER);
+        BackBox.setAlignment(Pos.BOTTOM_RIGHT);
+        getAlltext()[3].setText("Plesae check YOUR ID or PASSWORD");
+        getAlltext()[3].setFill(Color.RED);
+        getAlltext()[2].setText("Error");
+        getAlltext()[2].setFont(Font.font(20));
+        BackBox.getChildren().add(back);
+        NameBox2.getChildren().addAll(getAlltext()[2], getAlltext()[3]);
+        Error_Page.getChildren().addAll(NameBox2, BackBox);
+    }
 
-        void SetRegis
-        
-            () {
+    void SetRegis() {
         getAlltext()[0].setText("สถานะ");
-            getAlltext()[4].setText("ID :");
-            getAlltext()[5].setText("PASSWORD :");
-            getAlltext()[6].setText("CONFIRM YOUR PASSWORD :");
-            getAlltext()[7].setText("ชื่อ :");
-            getAlltext()[8].setText("นามสกุล :");
-            getAlltext()[9].setText("อายุ :");
-            getAlltext()[10].setText("อีเมล :");
-            getAlltext()[11].setText("เพศ");
-            getAlltext()[12].setText("");
-            getAlltext()[12].setFill(Color.RED);
-            getAllbutton()[4].setText("Register");
-            getAllbutton()[5].setText("back");
-            Na.setAlignment(Pos.TOP_RIGHT);
-            Row[6].setAlignment(Pos.TOP_RIGHT);
-            for (int j = 1; j <= 7; j++) {
-                Na.getChildren().addAll(getAlltext()[j + 3]);
-                Row[6].getChildren().addAll(allfill[j]);
-            }
-            Column[0].setAlignment(Pos.TOP_CENTER);
-            Column[0].setAlignment(Pos.TOP_CENTER);
-            Column[0].getChildren().addAll(getAlltext()[0], comboBox2);
-            Column[8].setAlignment(Pos.CENTER);
-            Column[8].getChildren().addAll(getAlltext()[11], genderBox);
-            Registerpage2.setAlignment(Pos.TOP_CENTER);
-            Registerpage2.getChildren().addAll(Na, Row[6]);
-            getAllbutton()[4].setAlignment(Pos.CENTER_RIGHT);
-            getAllbutton()[5].setAlignment(Pos.CENTER_RIGHT);
-            Column[11].getChildren().addAll(getAllbutton()[4], getAllbutton()[5]);
-            Column[11].setAlignment(Pos.CENTER);
-            Registerpage.setAlignment(Pos.TOP_CENTER);
-            Registerpage.getChildren().addAll(Registerpage2, Column[0], Column[8], getAlltext()[12], Column[11]);
+        getAlltext()[4].setText("ID :");
+        getAlltext()[5].setText("PASSWORD :");
+        getAlltext()[6].setText("CONFIRM YOUR PASSWORD :");
+        getAlltext()[7].setText("ชื่อ :");
+        getAlltext()[8].setText("นามสกุล :");
+        getAlltext()[9].setText("อายุ :");
+        getAlltext()[10].setText("อีเมล :");
+        getAlltext()[11].setText("เพศ");
+        getAlltext()[12].setText("");
+        getAlltext()[12].setFill(Color.RED);
+        getAllbutton()[4].setText("Register");
+        getAllbutton()[5].setText("back");
+        Na.setAlignment(Pos.TOP_RIGHT);
+        Row[6].setAlignment(Pos.TOP_RIGHT);
+        for (int j = 1; j <= 7; j++) {
+            Na.getChildren().addAll(getAlltext()[j + 3]);
+            Row[6].getChildren().addAll(allfill[j]);
         }
+        Column[0].setAlignment(Pos.TOP_CENTER);
+        Column[0].setAlignment(Pos.TOP_CENTER);
+        Column[0].getChildren().addAll(getAlltext()[0], comboBox2);
+        Column[8].setAlignment(Pos.CENTER);
+        Column[8].getChildren().addAll(getAlltext()[11], genderBox);
+        Registerpage2.setAlignment(Pos.TOP_CENTER);
+        Registerpage2.getChildren().addAll(Na, Row[6]);
+        getAllbutton()[4].setAlignment(Pos.CENTER_RIGHT);
+        getAllbutton()[5].setAlignment(Pos.CENTER_RIGHT);
+        Column[11].getChildren().addAll(getAllbutton()[4], getAllbutton()[5]);
+        Column[11].setAlignment(Pos.CENTER);
+        Registerpage.setAlignment(Pos.TOP_CENTER);
+        Registerpage.getChildren().addAll(Registerpage2, Column[0], Column[8], getAlltext()[12], Column[11]);
+    }
 
-        //////////////////////////////////////////////////////
-        ///////////////another function///////////////////////
-        //////////////////////////////////////////////////////
-        boolean checkpassWord
-        
-            () {
+    //////////////////////////////////////////////////////
+    ///////////////another function///////////////////////
+    //////////////////////////////////////////////////////
+    boolean checkpassWord() {
         if (allfill[2].getText().equals(allfill[3].getText()) && allfill[2].getText() != " ") {
-                check = true;
-            } else {
-                check = false;
-            }
-            return check;
+            check = true;
+        } else {
+            check = false;
         }
+        return check;
+    }
 
-        void Setbacktostartingpage
-        
-            () {
+    void Setbacktostartingpage() {
         fillName.setPromptText("YOUR ID");
-            fillPW.setText("");
-            comboBox.setValue("");
-            scene[1] = s1;
-        }
+        fillPW.setText("");
+        comboBox.setValue("");
+        scene[1] = s1;
+    }
 
-        void registerclear
-        
-            () {
+    void registerclear() {
         for (int j = 1; j < 8; j++) {
-                allfill[j].setText("");
-            }
-            comboBox2.setValue("");
-            genderBox.setValue("");
+            allfill[j].setText("");
         }
+        comboBox2.setValue("");
+        genderBox.setValue("");
+    }
 
-        Object idcheckers
-        
-            () {
+    Object idcheckers() {
         System.out.println("test " + fillName.getText());
-            return Authority.login(fillName.getText(), fillPW.getText());
+        return Authority.login(fillName.getText(), fillPW.getText());
 
-        }
-    
-    
+    }
 
     public void settingscene() {
         scene = new Scene[5];
@@ -562,6 +577,7 @@ public final class Register extends Application {
 //    <<<<<<< HEAD
 //
 //    =======
+
     public static String getusrname() {
 
         return usrname;
@@ -569,7 +585,6 @@ public final class Register extends Application {
 
 //    >>>>>>> origin
 //    /BlxSheep
-
     /**
      * @return the alltext
      */

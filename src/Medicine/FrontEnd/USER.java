@@ -21,8 +21,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,12 +44,15 @@ public class USER extends Application {
     ArrayList<String> type = new ArrayList<>();
     List<List<String>> name = new ArrayList<>();
     //  List<String> name = new ArrayList<>();
-
+   HBox suggestionBox = new HBox();
+    Scene sugges  = new Scene (suggestionBox, 500, 500,Color.BLUE);
+    
     Button button;
     Button logoutBtn = new Button("Logout");
+    Button readDiagBtn = new Button("อ่านข้อความ");
+ 
     //comment
     Comment third;
-  
 
     public static void main(String[] args) {
         launch(args);
@@ -106,7 +111,7 @@ public class USER extends Application {
 
     }
 
-     public  void ReadDATA2() {
+    public void ReadDATA2() {
         String line = new String();
         List<String> temp = new ArrayList<>();
         //  ArrayList chtype = new ArrayList<>();
@@ -168,7 +173,7 @@ public class USER extends Application {
     }
 
     public Scene Setscene(Stage userStage) {
-        
+
         Symptom sym = new Symptom(userStage);
 
         userStage.setResizable(false);
@@ -234,7 +239,7 @@ public class USER extends Application {
 
         BorderPane layout = new BorderPane();
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(cb1, cb2, button2, button4,logoutBtn);
+        vbox.getChildren().addAll(cb1, cb2, button2, button4, readDiagBtn, logoutBtn);
         //INSERT TOP LEFT BOTTON RIGHT
         VBox.setMargin(cb1, new Insets(10, 0, 5, 0)); // set Margin btn1
         VBox.setMargin(cb2, new Insets(10, 0, 5, 0)); // set Margin btn2
@@ -285,14 +290,25 @@ public class USER extends Application {
             }
         });
 
- 
-
         button4.setOnAction((ActionEvent ex) -> {
             sym.show();
             userStage.hide();
         });
 
-        
+        readDiagBtn.setOnAction((ActionEvent ex) -> {
+           String name  = Register.getusrname(); 
+           String ms = new String();
+            for (int i = 0; i < API.getAllSug().size(); i++) {
+                if (API.getAllSug().get(i).getReceiver().equals(name)){
+                    ms = API.getAllSug().get(i).getMessage();
+                }
+            }
+            System.out.println(ms);
+            suggestionBox.getChildren().add(new Text(ms));
+            userStage.setScene(sugges);
+           
+        });
+
         return scene;
 
     }

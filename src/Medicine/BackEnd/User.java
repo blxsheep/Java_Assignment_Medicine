@@ -13,7 +13,15 @@ import java.util.Arrays;
  * @author USER
  */
 public class User extends Person {
+public String  Suggestion ;
 
+    public String getSuggestion() {
+        return Suggestion;
+    }
+
+    public void setSuggestion(String Suggestion) {
+        this.Suggestion = Suggestion;
+    }
 private String role = "User";
   //  private ArrayList<Course> courses = new ArrayList<Course>();
 
