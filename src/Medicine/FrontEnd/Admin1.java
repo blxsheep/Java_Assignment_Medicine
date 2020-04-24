@@ -82,7 +82,7 @@ public class Admin1 extends  Application{
        mednameBox.setVisibleRowCount(3);
         CountBox.setVisibleRowCount(3);
         allbutton[6].setText("อัพเดท");
-        allbutton[5].setText("ย้อนกลับ");
+       
         alltext[1].setText("_______________________________________________________________________________________________________________");
         Row[2].getChildren().addAll(typeBox2,mednameBox2,allbutton[7],alltext[1]);
         page2.getChildren().addAll(typeBox,mednameBox,CountBox,allbutton[6],allbutton[5]);
